@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Taryphs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Udate</th>
+      <th>Edate</th>
+      <th>Index</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @taryphs.each do |taryph| %>
+      <tr>
+        <td><%= taryph.udate %></td>
+        <td><%= taryph.edate %></td>
+        <td><%= taryph.index %></td>
+        <td><%= link_to 'Show', taryph %></td>
+        <td><%= link_to 'Edit', edit_taryph_path(taryph) %></td>
+        <td><%= link_to 'Destroy', taryph, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Taryph', new_taryph_path %>

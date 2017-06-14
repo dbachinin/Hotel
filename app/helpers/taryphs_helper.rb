@@ -1,0 +1,2 @@
+module TaryphsHelper
+end

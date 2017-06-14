@@ -1,0 +1,2 @@
+class Taryph < ApplicationRecord
+end

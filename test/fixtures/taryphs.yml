@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  udate: 2017-06-14
+  edate: 2017-06-14
+  index: 1.5
+
+two:
+  udate: 2017-06-14
+  edate: 2017-06-14
+  index: 1.5

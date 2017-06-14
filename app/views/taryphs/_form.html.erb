@@ -1,0 +1,32 @@
+<%= form_with(model: taryph, local: true) do |form| %>
+  <% if taryph.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(taryph.errors.count, "error") %> prohibited this taryph from being saved:</h2>
+
+      <ul>
+      <% taryph.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :udate %>
+    <%= form.date_select :udate, id: :taryph_udate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :edate %>
+    <%= form.date_select :edate, id: :taryph_edate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :index %>
+    <%= form.text_field :index, id: :taryph_index %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
