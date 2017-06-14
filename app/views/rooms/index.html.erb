@@ -18,11 +18,10 @@
       <tr>
         <td><%= room.name %></td>
         <td><%= room.description %></td>
-        <td><%= room.bad %></td>
+        <td><%= room.bed %></td>
         <td><%= room.lux %></td>
-        <td><%= link_to 'Show', room %></td>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td>
-        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', ([@hotel, room]) %></td>
+
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Room', new_room_path %>
+

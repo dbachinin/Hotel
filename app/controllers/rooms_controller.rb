@@ -4,12 +4,15 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+    @hotel = Hotel.find(params[:hotel_id])
+    @rooms = @hotel.rooms.all
   end
 
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @hotel = Hotel.find(params[:hotel_id])
+    @room = @hotel.rooms.find(params[:id])
   end
 
   # GET /rooms/new

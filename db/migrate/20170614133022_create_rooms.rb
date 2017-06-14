@@ -3,7 +3,7 @@ class CreateRooms < ActiveRecord::Migration[5.1]
     create_table :rooms do |t|
       t.string :name
       t.text :description
-      t.integer :bad
+      t.integer :bed
       t.boolean :lux
 
       t.timestamps
