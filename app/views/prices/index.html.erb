@@ -16,9 +16,9 @@
       <tr>
         <td><%= price.price %></td>
         <td><%= price.description %></td>
-        <td><%= link_to 'Show', ([@hotel,@rooms,@price]) %></td>
-        <td><%= link_to 'Edit', edit_hotel_room_price_path(:id => price.id) %></td>
-        <td><%= link_to 'Destroy', ([@hotel,@rooms,price]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', (@price) %></td>
+        <td><%= link_to 'Edit', edit_price_path(:id => price.id) %></td>
+        <td><%= link_to 'Destroy', (price), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

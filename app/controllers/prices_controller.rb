@@ -12,9 +12,11 @@ class PricesController < ApplicationController
   # GET /prices/1
   # GET /prices/1.json
   def show
-    @hotel = Hotel.find(params[:hotel_id])
-    @rooms = @hotel.rooms.find(params[:room_id])
-    @price = @rooms.price.find(params[:id])
+    # @hotel = Hotel.find(params[:hotel_id])
+    # @rooms = @hotel.rooms.find(params[:room_id])
+    @price = Price.find(params[:id])
+    @rooms_ = Room.find(@price.room_id)
+    @hotel_ = Hotel.find(@rooms_.hotel_id)
   end
 
   # GET /prices/new
@@ -27,9 +29,9 @@ class PricesController < ApplicationController
 
   # GET /prices/1/edit
   def edit
-    @hotel = Hotel.find(params[:hotel_id])
-    @rooms = @hotel.rooms.find(params[:room_id])
-    @price = @rooms.price.find(params[:id])
+    @price = Price.find(params[:id])
+    @rooms_ = Room.find(@price.room_id)
+    @hotel_ = Hotel.find(@rooms_.hotel_id)
     @price_val = @price.price
     @desc_val = @price.description
   end
@@ -52,7 +54,7 @@ class PricesController < ApplicationController
     
     respond_to do |format|
       if @price.save
-        format.html { redirect_to ([@hotel,@rooms,@price]), notice: 'Price was successfully created.' }
+        format.html { redirect_to hotel_room_prices_path, notice: 'Price was successfully created.' }
         format.json { render :show, status: :created, location: @price }
       else
         format.html { render :new }
@@ -64,8 +66,9 @@ class PricesController < ApplicationController
   # PATCH/PUT /prices/1
   # PATCH/PUT /prices/1.json
   def update
-    @hotel = Hotel.find(params[:hotel_id])
-    @rooms = @hotel.rooms.find(params[:room_id])
+    @price = Price.find(params[:id])
+    @rooms = Room.find(@price.room_id)
+    @hotel = Hotel.find(@rooms.hotel_id)
     respond_to do |format|
       if @price.update(price_params)
         format.html { redirect_to @price, notice: 'Price was successfully updated.' }
@@ -80,9 +83,12 @@ class PricesController < ApplicationController
   # DELETE /prices/1
   # DELETE /prices/1.json
   def destroy
+    @price = Price.find(params[:id])
+    @rooms = Room.find(@price.room_id)
+    @hotel = Hotel.find(@rooms.hotel_id)
     @price.destroy
     respond_to do |format|
-      format.html { redirect_to hotel_room_prices_url, notice: 'Price was successfully destroyed.' }
+      format.html { redirect_to ([@hotel,@rooms,@price]), notice: 'Price was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

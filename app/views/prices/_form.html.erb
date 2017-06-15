@@ -22,7 +22,8 @@
     <%= form.label :description %>
     <%= form.text_area :description, value: @desc_val, id: :price_description %>
   </div>
-  <%= form.hidden_field :hotel_id, value: @hotel_id %>
+  <%= form.hidden_field :hotel_id, value: @hotel_id if params[:hotel_id] %>
+  <%= form.hidden_field :hotel_id, value: @rooms_.hotel_id unless params[:hotel_id] %>
   <div class="actions">
     <%= form.submit %>
   </div>
