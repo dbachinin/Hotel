@@ -20,6 +20,46 @@
   <%= @room.lux %>
 </p>
 
+<p id="notice"><%= notice %></p>
+
+<h1>Prices</h1>
+    <% @room.price.each do |price|
+      base = price.price
+      stroke = Array(base)
+      @tar = []
+      price.taryph.each {|i| per = i.udate.to_s + "<->" + i.edate.to_s; cen = sprintf("₽%2.2f",base+i.index); @tar.push([per,cen])}
+      stroke.push(@tar)
+      str = stroke.join(',').split(',')
+     %>
+
+<p>
+Base price
+<%= price.price %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Price</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+
+<% str.each_slice(str.count) do |line|%>
+  <tr>
+  <% line.each do |item| %>
+  <td>
+  <%= item %>
+  </td>
+    <% end %>
+       </tr>
+    <% end %>
+    <% end %>
+ 
+</table>
+
+<br>
 
 <%= link_to 'Back', hotel_rooms_path %>
 <%= link_to 'Prices', ([@hotel, @room,'prices']) %>

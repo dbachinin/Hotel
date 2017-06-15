@@ -1,38 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Prices</h1>
+<p>
+  <strong>Price:</strong>
+  <%= @price.price %>
+</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Price</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
+<p>
+  <strong>Description:</strong>
+  <%= @price.description %>
+</p>
 
-    <% @prices.each do |price|
-      base = price.price
-      stroke = Array(base)
-      @tar = []
-      price.taryph.each {|i| @tar.push([i.udate, i.edate, i.index])}
-      stroke.push(@tar)
-      str = stroke.join(',').split(',')
-     %>
-<% str.each_slice(str.count) do |line|%>
-  <tr>
-  <% line.each do |item| %>
-  <td>
-  <%= item %>
-  </td>
-    <% end %>
 
-       </tr>
-    <% end %>
-    <% end %>
- 
-</table>
-
-<br>
 
 <%= link_to 'Edit', edit_price_path(@price) %> |
 <%= link_to 'Back', ([@hotel_,@room_]) %>|
