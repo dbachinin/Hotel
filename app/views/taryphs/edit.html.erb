@@ -1,6 +1,37 @@
 <h1>Editing Taryph</h1>
 
-<%= render 'form', taryph: @taryph %>
+<%= form_with url: (@taryph) do |form| %>
+  <% if @taryph.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(taryph.errors.count, "error") %> prohibited this taryph from being saved:</h2>
+
+      <ul>
+      <% taryph.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :udate %>
+    <%= form.date_select :udate, value: @udate_, id: :taryph_udate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :edate %>
+    <%= form.date_select :edate, value: @edate_, id: :taryph_edate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :index %>
+    <%= form.text_field :index, value: @index_, id: :taryph_index %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', @taryph %> |
-<%= link_to 'Back', taryphs_path %>
+<%= link_to 'Back', taryph_path %>

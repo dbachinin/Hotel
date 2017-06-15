@@ -1,4 +1,4 @@
-<%= form_with(model: taryph, local: true) do |form| %>
+<%= form_with url: (price_taryphs_path(@price, @taryph)) do |form| %>
   <% if taryph.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(taryph.errors.count, "error") %> prohibited this taryph from being saved:</h2>
@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= form.label :udate %>
-    <%= form.date_select :udate, id: :taryph_udate %>
+    <%= form.date_select :udate, value: @udate_, id: :taryph_udate %>
   </div>
 
   <div class="field">
     <%= form.label :edate %>
-    <%= form.date_select :edate, id: :taryph_edate %>
+    <%= form.date_select :edate, value: @edate_, id: :taryph_edate %>
   </div>
 
   <div class="field">
     <%= form.label :index %>
-    <%= form.text_field :index, id: :taryph_index %>
+    <%= form.text_field :index, value: @index_, id: :taryph_index %>
   </div>
 
   <div class="actions">

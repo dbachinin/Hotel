@@ -11,4 +11,5 @@
 </p>
 
 <%= link_to 'Edit', edit_price_path(@price) %> |
-<%= link_to 'Back', ([@hotel_,@room_]) %>
+<%= link_to 'Back', ([@hotel_,@room_]) %>|
+<%= link_to 'Taryph', new_price_taryph_path(:price_id => @price.id) %>
