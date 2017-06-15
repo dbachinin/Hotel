@@ -4,7 +4,9 @@ class TaryphsController < ApplicationController
   # GET /taryphs
   # GET /taryphs.json
   def index
-    @taryphs = Taryph.all
+    @price = Price.find(params[:price_id])
+    @taryphs = @price.taryph.all
+
   end
 
   # GET /taryphs/1
@@ -14,7 +16,8 @@ class TaryphsController < ApplicationController
 
   # GET /taryphs/new
   def new
-    @taryph = Taryph.new
+    @price = Price.find(params[:price_id])
+    @taryph = @price.taryph.build
   end
 
   # GET /taryphs/1/edit
@@ -24,15 +27,16 @@ class TaryphsController < ApplicationController
   # POST /taryphs
   # POST /taryphs.json
   def create
-    @taryph = Taryph.new(taryph_params)
+    @price = Price.find(params[:price_id])
+    @taryph = @price.taryph.build((taryph_params))
 
     respond_to do |format|
       if @taryph.save
-        format.html { redirect_to @taryph, notice: 'Taryph was successfully created.' }
+        format.html { redirect_to ([@price,@taryph]), notice: 'Taryph was successfully created.' }
         format.json { render :show, status: :created, location: @taryph }
       else
         format.html { render :new }
-        format.json { render json: @taryph.errors, status: :unprocessable_entity }
+        format.json { render json: ([@price,@taryph]).errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +45,12 @@ class TaryphsController < ApplicationController
   # PATCH/PUT /taryphs/1.json
   def update
     respond_to do |format|
-      if @taryph.update(taryph_params)
-        format.html { redirect_to @taryph, notice: 'Taryph was successfully updated.' }
-        format.json { render :show, status: :ok, location: @taryph }
+      if ([@price,@taryph]).update(taryph_params)
+        format.html { redirect_to ([@price,@taryph]), notice: 'Taryph was successfully updated.' }
+        format.json { render :show, status: :ok, location: ([@price,@taryph]) }
       else
         format.html { render :edit }
-        format.json { render json: @taryph.errors, status: :unprocessable_entity }
+        format.json { render json: ([@price,@taryph]).errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +73,6 @@ class TaryphsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def taryph_params
-      params.require(:taryph).permit(:udate, :edate, :index)
+      params.require(:taryph).permit(:price_id, :id, :udate, :edate, :index)
     end
 end

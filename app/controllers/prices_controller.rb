@@ -4,31 +4,50 @@ class PricesController < ApplicationController
   # GET /prices
   # GET /prices.json
   def index
-    @prices = Price.all
+    @hotel = Hotel.find(params[:hotel_id])
+    @rooms = @hotel.rooms.find(params[:room_id])
+    @prices = @rooms.price.all
   end
 
   # GET /prices/1
   # GET /prices/1.json
   def show
+    @hotel = Hotel.find(params[:hotel_id])
+    @rooms = @hotel.rooms.find(params[:room_id])
+    @price = @rooms.price.find(params[:id])
   end
 
   # GET /prices/new
   def new
-    @price = Price.new
+    @hotel = Hotel.find(params[:hotel_id])
+    @rooms = @hotel.rooms.find(params[:room_id])
+    @price = @rooms.price.build
+    @hotel_id = params[:hotel_id]
   end
 
   # GET /prices/1/edit
   def edit
   end
 
+  # def testing
+    
+  #   @hotel = Hotel.find(@hotel_id)
+    
+  #   @rooms = @hotel.rooms.find(params[:room_id])
+  #   @price = @rooms.price.build
+  # end
+
   # POST /prices
   # POST /prices.json
   def create
-    @price = Price.new(price_params)
-
+    p @hotel_id
+    @hotel = Hotel.find(params[:hotel_id])
+    @rooms = @hotel.rooms.find(params[:room_id])
+    @price = @rooms.price.build
+    
     respond_to do |format|
       if @price.save
-        format.html { redirect_to @price, notice: 'Price was successfully created.' }
+        format.html { redirect_to ([@hotel,@rooms,@price]), notice: 'Price was successfully created.' }
         format.json { render :show, status: :created, location: @price }
       else
         format.html { render :new }
@@ -56,7 +75,7 @@ class PricesController < ApplicationController
   def destroy
     @price.destroy
     respond_to do |format|
-      format.html { redirect_to prices_url, notice: 'Price was successfully destroyed.' }
+      format.html { redirect_to hotel_room_prices_url, notice: 'Price was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +88,6 @@ class PricesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def price_params
-      params.require(:price).permit(:price, :description)
+      params.require(:price).permit(:hotel_id, :price, :description)
     end
 end
