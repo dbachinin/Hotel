@@ -27,6 +27,11 @@ class PricesController < ApplicationController
 
   # GET /prices/1/edit
   def edit
+    @hotel = Hotel.find(params[:hotel_id])
+    @rooms = @hotel.rooms.find(params[:room_id])
+    @price = @rooms.price.find(params[:id])
+    @price_val = @price.price
+    @desc_val = @price.description
   end
 
   # def testing
@@ -59,6 +64,8 @@ class PricesController < ApplicationController
   # PATCH/PUT /prices/1
   # PATCH/PUT /prices/1.json
   def update
+    @hotel = Hotel.find(params[:hotel_id])
+    @rooms = @hotel.rooms.find(params[:room_id])
     respond_to do |format|
       if @price.update(price_params)
         format.html { redirect_to @price, notice: 'Price was successfully updated.' }

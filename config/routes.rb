@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :hotels, only: [:show, :index] do
   	resources :rooms, only: [:show, :index] do
   		resources :prices do
-         post 'create' => 'prices#create'
+#         post 'create' => 'prices#create'
   			resources :taryphs
   		end
   	end

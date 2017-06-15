@@ -15,12 +15,12 @@
 
   <div class="field">
     <%= form.label :price %>
-    <%= form.text_field :price, id: :price_price %>
+    <%= form.text_field :price, value: @price_val, id: :price_price %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :price_description %>
+    <%= form.text_area :description, value: @desc_val, id: :price_description %>
   </div>
   <%= form.hidden_field :hotel_id, value: @hotel_id %>
   <div class="actions">
