@@ -29,3 +29,4 @@
 <br>
 
 <%= link_to 'New Taryph', new_price_taryph_path %>
+<%= link_to 'Back', price_path(Price.find(params[:price_id]).id) %>
