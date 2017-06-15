@@ -43,7 +43,7 @@ class PricesController < ApplicationController
     p @hotel_id
     @hotel = Hotel.find(params[:hotel_id])
     @rooms = @hotel.rooms.find(params[:room_id])
-    @price = @rooms.price.build
+    @price = @rooms.price.build(price_params)
     
     respond_to do |format|
       if @price.save
@@ -88,6 +88,6 @@ class PricesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def price_params
-      params.require(:price).permit(:hotel_id, :price, :description)
+      params.permit(:price, :description)
     end
 end
