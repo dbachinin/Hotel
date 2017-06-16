@@ -10,5 +10,20 @@
   <%= @booking.check_out %>
 </p>
 
+<p>
+  <strong>Hotel:</strong>
+  <%= @booking.hotel_id %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @booking.room_id %>
+</p>
+
+<p>
+  <strong>Booked:</strong>
+  <%= @booking.booked %>
+</p>
+
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
 <%= link_to 'Back', bookings_path %>

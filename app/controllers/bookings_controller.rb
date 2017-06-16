@@ -5,6 +5,8 @@ class BookingsController < ApplicationController
   # GET /bookings.json
   def index
     @bookings = Booking.all
+    @hotel = Hotel.find(params[:hotel_id])
+    @room = Room.find(params[:room_id])
   end
 
   # GET /bookings/1
@@ -15,6 +17,9 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    @hotel = Hotel.find(params[:hotel_id])
+    @room = Room.find(params[:room_id])
+   # @room.price.last.taryph.each {|i| p "fff" if Date.parse(i.udate.to_s) < Date.parse('2017-04-18') and Date.parse(i.edate.to_s) < Date.parse('2017-04-18')}
   end
 
   # GET /bookings/1/edit
@@ -69,6 +74,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:check_in, :check_out)
+      params.require(:booking).permit(:check_in, :check_out, :hotel_id, :room_id, :booked, :subtotal)
     end
 end

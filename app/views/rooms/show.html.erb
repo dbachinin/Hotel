@@ -25,16 +25,17 @@
 <h1>Prices</h1>
     <% @room.price.each do |price|
       base = price.price
-      stroke = Array(base)
+      stroke = Array(sprintf("₽%2.2f",base))
       @tar = []
-      price.taryph.each {|i| per = i.udate.to_s + "<->" + i.edate.to_s; cen = sprintf("₽%2.2f",base+i.index); @tar.push([per,cen])}
+      price.taryph.each {|i| per = i.udate.to_s + "<->" + i.edate.to_s; cen = sprintf("₽%2.2f",price.price+i.index); @tar.push([per,cen])}
       stroke.push(@tar)
       str = stroke.join(',').split(',')
      %>
 
 <p>
-Base price
-<%= price.price %>
+Today price
+<% price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today} %>
+<%= sprintf("₽%2.2f",price.price+@index) %>
 </p>
 
 <table>
@@ -50,7 +51,11 @@ Base price
   <tr>
   <% line.each do |item| %>
   <td>
+  <%if item.include? "₽"%>
   <%= item %>
+  <% else%>
+  <strong><%= item %></strong>
+  <% end %>
   </td>
     <% end %>
        </tr>
@@ -61,5 +66,6 @@ Base price
 
 <br>
 
-<%= link_to 'Back', hotel_rooms_path %>
-<%= link_to 'Prices', ([@hotel, @room,'prices']) %>
+<%= link_to 'Back', hotel_rooms_path %>|
+<%= link_to 'Prices', ([@hotel, @room,'prices']) %>|
+<%= link_to 'Booking', {controller: "bookings", action: "new", hotel_id: params[:hotel_id], room_id: params[:id]} %>

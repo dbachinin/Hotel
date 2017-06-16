@@ -21,6 +21,16 @@
     <%= form.datetime_select :check_out, id: :booking_check_out %>
   </div>
 
+  <div class="price">
+  
+  </div>
+    <%= form.hidden_field :hotel_id, value: params[:hotel_id], id: :booking_hotel_id %>
+
+
+    <%= form.hidden_field :room_id, value: params[:room_id], id: :booking_room_id %>
+    <%= form.hidden_field :booked, id: :booking_booked %>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

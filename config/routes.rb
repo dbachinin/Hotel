@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   
-  resources :bookings
   
+  resources :bookings
   resources :hotels, only: [:show, :index] do
   	resources :rooms, only: [:show, :index] do
   		resources :prices, shallow: true do
