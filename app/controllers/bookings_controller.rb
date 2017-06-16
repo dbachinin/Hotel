@@ -5,8 +5,8 @@ class BookingsController < ApplicationController
   # GET /bookings.json
   def index
     @bookings = Booking.all
-    @hotel = Hotel.find(params[:hotel_id])
-    @room = Room.find(params[:room_id])
+    #@hotel = Hotel.find(params[:hotel_id])
+    #@room = Room.find(params[:room_id])
   end
 
   # GET /bookings/1

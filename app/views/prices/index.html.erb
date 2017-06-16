@@ -29,3 +29,4 @@
 
 <%= link_to 'New Price', new_hotel_room_price_path %>|
 <%= link_to 'Back', hotel_room_path(id: params[:room_id]) %>
+<%= link_to 'Taryph', price_taryphs_path(:price_id => @rooms.price.last) %>

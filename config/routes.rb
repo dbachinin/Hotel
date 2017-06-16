@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   root 'hotels#index'
 post "/prices/:id" => 'prices#update'
 post "/taryphs/:id" => 'taryphs#update'
+post "/bookings/new"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

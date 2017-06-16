@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :check_in %>
-    <%= form.datetime_select :check_in, id: :booking_check_in %>
+    <%= form.datetime_select :check_in, value: @check_in,id: :booking_check_in %>
   </div>
 
   <div class="field">
     <%= form.label :check_out %>
-    <%= form.datetime_select :check_out, id: :booking_check_out %>
+    <%= form.datetime_select :check_out, value: @check_out,id: :booking_check_out %>
   </div>
 
   <div class="price">

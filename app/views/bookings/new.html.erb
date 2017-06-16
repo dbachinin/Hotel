@@ -1,5 +1,10 @@
 <h1>New Booking</h1>
-<%= Price.where(room_id: params[:room_id]).last.price %>
+<% price = Price.where(room_id: params[:room_id]).last %>
+<p>
+Today price
+<% price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today} %>
+<%= sprintf("₽%2.2f",price.price+@index) %>
+</p>
 <%= render 'form', booking: @booking %>
 
 <%= link_to 'Back', bookings_path %>
