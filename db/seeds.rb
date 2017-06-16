@@ -89,3 +89,17 @@ Room.create([
     { name: "Трехместный люкс",description: "Трехместный номер люкс",bed: 3,lux: true,hotel_id: 1},
     { name: "Четырехместный номер",description: "Четырехместный двухкомнатный номер",bed: 4,lux: true,hotel_id: 1}
     ])
+Price.create([
+    {price: 0.0, description: "", room_id: 1},
+    {price: 0.0, description: "", room_id: 2},
+    {price: 0.0, description: "", room_id: 3},
+    {price: 0.0, description: "", room_id: 4},
+    {price: 0.0, description: "", room_id: 5}
+    ])
+Taryph.create([
+    {udate: "",edate: "", index: 0.0, price_id: 1},
+    {udate: "",edate: "", index: 0.0, price_id: 2},
+    {udate: "",edate: "", index: 0.0, price_id: 3},
+    {udate: "",edate: "", index: 0.0, price_id: 4},
+    {udate: "",edate: "", index: 0.0, price_id: 5},
+    ])
