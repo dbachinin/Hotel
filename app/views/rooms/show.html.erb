@@ -70,18 +70,4 @@ Today price
 <%= link_to 'Prices', ([@hotel, @room,'prices']) %>|
 <%= link_to 'Booking', {controller: "bookings", action: "new", hotel_id: params[:hotel_id], room_id: params[:id]} %>
 
-<%= form_with url: {controller: "bookings", action: "new", hotel_id: params[:hotel_id], room_id: params[:id]}  do |form| %>
-  <div class="field">
-    <%= form.label :check_in %>
-    <%= form.datetime_select :check_in, id: :booking_check_in %>
-  </div>
 
-  <div class="field">
-    <%= form.label :check_out %>
-    <%= form.datetime_select :check_out, id: :booking_check_out %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
