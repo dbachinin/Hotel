@@ -1,3 +1,11 @@
+<!-- 
+<input type="text" class="daterange"/> -->
+<%= javascript_tag do %>
+  disa = '<%= @disa %>'.replace(/&quot;/g,'"');
+  check_in = '<%= Date.today%>';
+  check_out = '<%= Date.today.days_since(1)%>';
+<% end %>
+
 <%= form_with(model: booking, local: true) do |form| %>
   <% if booking.errors.any? %>
     <div id="error_explanation">
@@ -10,25 +18,22 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :check_in %>
-    <%= form.datetime_select :check_in, value: @check_in,id: :booking_check_in %>
-  </div>
-
-  <div class="field">
-    <%= form.label :check_out %>
-    <%= form.datetime_select :check_out, value: @check_out,id: :booking_check_out %>
+<div class="input-daterange input-group" id="datepicker">
+    <%= form.datetime_field :check_in, "data-provide" => 'datepicker',"data-date-format" => 'yyyy-mm-dd', class: "input-sm datepicker" %>
+    <span class="input-group-addon">to</span>
+    <%= form.datetime_field :check_out, class: "input-sm datepicker" %>
   </div>
 
   <div class="price">
   
   </div>
-    <%= form.hidden_field :hotel_id, value: params[:hotel_id], id: :booking_hotel_id %>
+    <%= form.hidden_field :hotel_id, value: params[:hotel_id], id: :booking_hotel_id if params[:room_id] %>
 
 
     <%= form.hidden_field :room_id, value: params[:room_id], id: :booking_room_id %>
     <%= form.hidden_field :booked, id: :booking_booked %>
+
+    <%= form.hidden_field :room_id, value: Booking.find(params[:id]).room_id, id: :booking_room_id unless params[:room_id]%>
 
 
   <div class="actions">

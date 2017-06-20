@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
   $('.datepicker').datepicker
-    format: 'mm/dd/yyyy'
+    format: 'yyyy-mm-dd'
+    startDate: check_in
     weekStart: 1
     maxViewMode: 2
     todayBtn: true
@@ -11,6 +12,9 @@ $(document).ready ->
     daysOfWeekHighlighted: '0,6'
     calendarWeeks: true
     todayHighlight: true
-    startDate: 0
-    # datesDisabled: disa
+    datesDisabled: disa
   return
+
+  # $(document).ready ->
+  # $('input[class="daterange"]').daterangepicker()
+  # return

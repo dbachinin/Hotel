@@ -30,8 +30,8 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
-    @subprice = @booking.calc_subtotal(@booking.room_id)
-    @search_employ = @booking.search_employ
+    #@subprice = @booking.calc_subtotal(@booking.room_id)
+    #@search_employ = @booking.search_employ
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
