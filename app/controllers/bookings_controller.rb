@@ -30,8 +30,10 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
-    #@subprice = @booking.calc_subtotal(@booking.room_id)
-    #@search_employ = @booking.search_employ
+    @booking.calc_subtotal
+    # search_employ = @booking.search_employ
+    # search_employ.each {|i| b = Booking.where(id: i).first; (Date.parse(b.check_in.to_s)..Date.parse(b.check_out.to_s)).each {|d| @found.push(d) }}
+    # @found.uniq!
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }

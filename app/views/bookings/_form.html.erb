@@ -21,7 +21,7 @@
 <div class="input-daterange input-group" id="datepicker">
     <%= form.datetime_field :check_in, "data-provide" => 'datepicker',"data-date-format" => 'yyyy-mm-dd', class: "input-sm datepicker" %>
     <span class="input-group-addon">to</span>
-    <%= form.datetime_field :check_out, class: "input-sm datepicker" %>
+    <%= form.datetime_field :check_out, "data-provide" => 'datepicker',"data-date-format" => 'yyyy-mm-dd', class: "input-sm datepicker" %>
   </div>
 
   <div class="price">
