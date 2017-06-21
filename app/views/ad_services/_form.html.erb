@@ -1,0 +1,32 @@
+<%= form_with(model: ad_service, local: true) do |form| %>
+  <% if ad_service.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ad_service.errors.count, "error") %> prohibited this ad_service from being saved:</h2>
+
+      <ul>
+      <% ad_service.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :ad_service_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :ad_service_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :enable %>
+    <%= form.check_box :enable, id: :ad_service_enable %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

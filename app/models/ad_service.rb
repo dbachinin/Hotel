@@ -1,0 +1,2 @@
+class AdService < ApplicationRecord
+end

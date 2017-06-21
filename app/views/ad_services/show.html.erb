@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ad_service.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @ad_service.price %>
+</p>
+
+<p>
+  <strong>Enable:</strong>
+  <%= @ad_service.enable %>
+</p>
+
+<%= link_to 'Edit', edit_ad_service_path(@ad_service) %> |
+<%= link_to 'Back', ad_services_path %>

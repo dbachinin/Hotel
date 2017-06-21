@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   
   
+  resources :ad_services
   resources :bookings
   resources :hotels, only: [:show, :index] do
   	resources :rooms, only: [:show, :index] do
