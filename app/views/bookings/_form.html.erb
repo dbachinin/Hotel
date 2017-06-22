@@ -1,12 +1,11 @@
-<!-- 
-<input type="text" class="daterange"/> -->
+<!-- <div id="page_output" style="text-align:center; margin-top:80px; margin-bottom:20px; "></div> -->
 <%= javascript_tag do %>
-  disa = '<%= @disa %>'.replace(/&quot;/g,'"');
-  check_in = '<%= Date.today%>';
-  check_out = '<%= Date.today.days_since(1)%>';
+  disa = '<%= @disa.to_json %>';
+  disa = JSON.parse(disa.replace(/&quot;/g,'"'));
+
 <% end %>
 
-<%= form_with(model: booking, local: true) do |form| %>
+<%= form_with(model: booking) do |form| %>
   <% if booking.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -19,9 +18,9 @@
     </div>
   <% end %>
 <div class="input-daterange input-group" id="datepicker">
-    <%= form.datetime_field :check_in, "data-provide" => 'datepicker',"data-date-format" => 'yyyy-mm-dd', class: "input-sm datepicker" %>
-    <span class="input-group-addon">to</span>
-    <%= form.datetime_field :check_out, "data-provide" => 'datepicker',"data-date-format" => 'yyyy-mm-dd', class: "input-sm datepicker" %>
+    <%= form.text_field :check_in,  class: "input-sm datepicker", id: :start %>
+    <span class="input-addon">to</span>
+    <%= form.text_field :check_out,  class: "input-sm datepicker", id: :out %>
   </div>
 
   <div class="price">

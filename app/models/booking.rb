@@ -1,5 +1,5 @@
 class Booking < ApplicationRecord
-	belongs_to :ad_service
+	# belongs_to :ad_service
 	def calc_subtotal
 		# days_count = (self.check_in - self.check_out).to_i
 
@@ -47,6 +47,14 @@ class Booking < ApplicationRecord
 
 	end
 
+	def search_full_employ(room_id)
+
+		@found = []
+		Booking.where(room_id: room_id).each do |i|
+			b = Booking.where(id: i).first; (Date.parse(b.check_in.to_s)..Date.parse(b.check_out.to_s)).each {|d| @found.push(d.strftime) }
+		end
+		return @found
+	end
 		# price = Price.find(tar.find(@tar).price_id)
 		# cen = price + Taryph.find(@tar).index if (check_in - Taryph.find(@tar).edate).to_i > (check_in - check_out).to_i
 

@@ -4,7 +4,8 @@ class AdServicesController < ApplicationController
   # GET /ad_services
   # GET /ad_services.json
   def index
-    @ad_services = AdService.all
+    @booking = 
+    @ad_services = @booking.ad_service.all
   end
 
   # GET /ad_services/1
@@ -14,7 +15,7 @@ class AdServicesController < ApplicationController
 
   # GET /ad_services/new
   def new
-    @ad_service = AdService.new
+    @ad_service = booking.ad_service.build
   end
 
   # GET /ad_services/1/edit
@@ -24,7 +25,7 @@ class AdServicesController < ApplicationController
   # POST /ad_services
   # POST /ad_services.json
   def create
-    @ad_service = AdService.new(ad_service_params)
+    @ad_service = booking.ad_service.build(ad_service_params)
 
     respond_to do |format|
       if @ad_service.save
@@ -69,6 +70,6 @@ class AdServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ad_service_params
-      params.require(:ad_service).permit(:name, :price, :enable)
+      params.require(:ad_service).permit(:name, :price, :enable, :nameng, :ad_service_id)
     end
 end

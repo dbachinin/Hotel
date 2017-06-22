@@ -19,6 +19,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @hotel = Hotel.find(params[:hotel_id])
     @room = Room.find(params[:room_id])
+    @disa = @booking.search_full_employ(@room.id)
+    @disa.uniq!
+    p @disa 
    # @room.price.last.taryph.each {|i| p "fff" if Date.parse(i.udate.to_s) < Date.parse('2017-04-18') and Date.parse(i.edate.to_s) < Date.parse('2017-04-18')}
   end
 
@@ -31,9 +34,6 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.calc_subtotal
-    # search_employ = @booking.search_employ
-    # search_employ.each {|i| b = Booking.where(id: i).first; (Date.parse(b.check_in.to_s)..Date.parse(b.check_out.to_s)).each {|d| @found.push(d) }}
-    # @found.uniq!
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }

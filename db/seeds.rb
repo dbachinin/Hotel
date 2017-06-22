@@ -97,9 +97,14 @@ Price.create([
     {price: 0.0, description: "", room_id: 5}
     ])
 Taryph.create([
-    {udate: "2017-01-01",edate: "2017-01-01", index: 0.0, price_id: 1},
-    {udate: "2017-01-01",edate: "2017-01-01", index: 0.0, price_id: 2},
-    {udate: "2017-01-01",edate: "2017-01-01", index: 0.0, price_id: 3},
-    {udate: "2017-01-01",edate: "2017-01-01", index: 0.0, price_id: 4},
-    {udate: "2017-01-01",edate: "2017-01-01", index: 0.0, price_id: 5},
+    {udate: "2017-01-10",edate: "2017-04-26", index: 500.0, price_id: 1},
+    {udate: "2017-04-26",edate: "2017-05-10", index: 900.0, price_id: 1},
+    {udate: "2017-05-10",edate: "2017-06-01", index: 300.0, price_id: 1},
+    {udate: "2017-06-01",edate: "2017-06-15", index: 1500.0, price_id: 1},
+    {udate: "2017-06-15",edate: "2017-07-01", index: 2200.0, price_id: 1},
+    {udate: "2017-07-01",edate: "2017-07-15", index: 2900.0, price_id: 1},
+    {udate: "2017-07-15",edate: "2017-09-01", index: 3700.0, price_id: 1},
+    {udate: "2017-09-01",edate: "2017-09-15", index: 1800.0, price_id: 1},
+    {udate: "2017-09-15",edate: "2017-10-01", index: 1500.0, price_id: 1},
+    {udate: "2017-10-01",edate: "2017-11-30", index: 0.0, price_id: 1},
     ])
