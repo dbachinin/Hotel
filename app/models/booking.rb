@@ -52,6 +52,8 @@ class Booking < ApplicationRecord
 		@found = []
 		Booking.where(room_id: room_id).each do |i|
 			b = Booking.where(id: i).first; (Date.parse(b.check_in.to_s)..Date.parse(b.check_out.to_s)).each {|d| @found.push(d.strftime) }
+			# b = Booking.where(id: i).first; (Date.parse(b.check_in.to_s)..Date.parse(b.check_out.to_s)).each {|d| @found.push(d.strftime '%Q') }
+
 		end
 		return @found
 	end

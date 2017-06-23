@@ -1,4 +1,4 @@
-<!-- <div id="page_output" style="text-align:center; margin-top:80px; margin-bottom:20px; "></div> -->
+<input type="text" id="TextBox3" />
 <%= javascript_tag do %>
   disa = '<%= @disa.to_json %>';
   disa = JSON.parse(disa.replace(/&quot;/g,'"'));
@@ -18,9 +18,9 @@
     </div>
   <% end %>
 <div class="input-daterange input-group" id="datepicker">
-    <%= form.text_field :check_in,  class: "input-sm datepicker", id: :start %>
+    <%= form.text_field :check_in,  class: "input-sm datepicker1", id: :start %>
     <span class="input-addon">to</span>
-    <%= form.text_field :check_out,  class: "input-sm datepicker", id: :out %>
+    <%= form.text_field :check_out,  class: "input-sm datepicker2", id: :out %>
   </div>
 
   <div class="price">
