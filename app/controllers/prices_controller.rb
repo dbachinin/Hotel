@@ -1,12 +1,16 @@
 class PricesController < ApplicationController
   before_action :set_price, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /prices
   # GET /prices.json
   def index
+    if current_user.id == 1
     @hotel = Hotel.find(params[:hotel_id])
     @rooms = @hotel.rooms.find(params[:room_id])
     @prices = @rooms.price.all
+  else
+    redirect_to hotel_rooms_path(Hotel.find(params[:hotel_id]).id), alert: 'You havent access'
+  end
   end
 
   # GET /prices/1
@@ -14,26 +18,38 @@ class PricesController < ApplicationController
   def show
     # @hotel = Hotel.find(params[:hotel_id])
     # @rooms = @hotel.rooms.find(params[:room_id])
-    @price = Price.find(params[:id])
-    @rooms_ = Room.find(@price.room_id)
-    @hotel_ = Hotel.find(@rooms_.hotel_id)
+    if current_user.id == 1
+      @price = Price.find(params[:id])
+      @rooms_ = Room.find(@price.room_id)
+      @hotel_ = Hotel.find(@rooms_.hotel_id)
+    else
+      redirect_to hotel_rooms_path(Hotel.find(params[:hotel_id]).id)
+    end
   end
 
   # GET /prices/new
   def new
+    if current_user.id == 1
     @hotel = Hotel.find(params[:hotel_id])
     @rooms = @hotel.rooms.find(params[:room_id])
     @price = @rooms.price.build
     @hotel_id = params[:hotel_id]
+    else
+      redirect_to hotel_rooms_path(Hotel.find(params[:hotel_id]).id)
+    end
   end
 
   # GET /prices/1/edit
   def edit
+    if current_user.id == 1
     @price = Price.find(params[:id])
     @rooms_ = Room.find(@price.room_id)
     @hotel_ = Hotel.find(@rooms_.hotel_id)
     @price_val = @price.price
     @desc_val = @price.description
+    else
+      redirect_to hotel_rooms_path(Hotel.find(params[:hotel_id]).id)
+    end
   end
 
   # def testing
@@ -47,7 +63,8 @@ class PricesController < ApplicationController
   # POST /prices
   # POST /prices.json
   def create
-    p @hotel_id
+    if current_user.id == 1    
+    # p @hotel_id
     @hotel = Hotel.find(params[:hotel_id])
     @rooms = @hotel.rooms.find(params[:room_id])
     @price = @rooms.price.build(price_params)
@@ -60,6 +77,9 @@ class PricesController < ApplicationController
         format.html { render :new }
         format.json { render json: @price.errors, status: :unprocessable_entity }
       end
+    end
+    else
+      redirect_to hotel_rooms_path(Hotel.find(params[:hotel_id]).id)
     end
   end
 
@@ -83,6 +103,7 @@ class PricesController < ApplicationController
   # DELETE /prices/1
   # DELETE /prices/1.json
   def destroy
+    if current_user.id == 1
     @price = Price.find(params[:id])
     @rooms = Room.find(@price.room_id)
     @hotel = Hotel.find(@rooms.hotel_id)
@@ -90,6 +111,9 @@ class PricesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to ([@hotel,@rooms,@price]), notice: 'Price was successfully destroyed.' }
       format.json { head :no_content }
+    end
+    else
+      redirect_to hotel_rooms_path(Hotel.find(params[:hotel_id]).id)
     end
   end
 
