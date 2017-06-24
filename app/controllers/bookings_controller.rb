@@ -1,10 +1,10 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    @bookings = current_user.bookings.all
     #@hotel = Hotel.find(params[:hotel_id])
     #@room = Room.find(params[:room_id])
   end
@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings/new
   def new
-    @booking = Booking.new
+    @booking = current_user.bookings.build
     @hotel = Hotel.find(params[:hotel_id])
     @room = Room.find(params[:room_id])
     @disa = @booking.search_full_employ(@room.id)
@@ -32,7 +32,7 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    @booking = current_user.bookings.build(booking_params)
     @booking.calc_subtotal
     respond_to do |format|
       if @booking.save

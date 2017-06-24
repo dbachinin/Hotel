@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170624060444) do
+ActiveRecord::Schema.define(version: 20170624062634) do
 
   create_table "ad_services", force: :cascade do |t|
     t.string "name"
@@ -31,7 +31,9 @@ ActiveRecord::Schema.define(version: 20170624060444) do
     t.datetime "updated_at", null: false
     t.float "subtotal"
     t.integer "ad_services_id"
+    t.integer "user_id"
     t.index ["ad_services_id"], name: "index_bookings_on_ad_services_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "hotels", force: :cascade do |t|

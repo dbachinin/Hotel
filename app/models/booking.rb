@@ -1,5 +1,6 @@
 class Booking < ApplicationRecord
 	# belongs_to :ad_service
+	belongs_to :user
 	def calc_subtotal
 		# days_count = (self.check_in - self.check_out).to_i
 
