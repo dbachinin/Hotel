@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   
   
+  devise_for :users
   resources :ad_services
   resources :bookings
   resources :hotels, only: [:show, :index] do

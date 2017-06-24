@@ -10,6 +10,13 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <% if alert %>
+  <p class="alert"><%= alert %></p>
+  <% end%>
+  <% if notice %>
+  <p class="notice"><%= notice %></p>
+  <%end%>
+
 
   <body>
     <%= yield %>
