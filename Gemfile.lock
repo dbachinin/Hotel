@@ -78,6 +78,8 @@ GEM
     erubi (1.6.0)
     execjs (2.7.0)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.4)
@@ -111,6 +113,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
+    normalize-rails (4.1.1)
     orm_adapter (0.5.0)
     pg (0.20.0)
     public_suffix (2.0.5)
@@ -204,11 +207,13 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise
+  font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
   listen (>= 3.0.5, < 3.2)
   momentjs-rails
+  normalize-rails
   pg
   puma (~> 3.7)
   rails (~> 5.1.1)

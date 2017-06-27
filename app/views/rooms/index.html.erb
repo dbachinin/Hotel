@@ -1,34 +1,63 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Rooms</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Bad</th>
-      <th>Lux</th>
-      <th>Price</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div id="pricing" class="container" name="pricing">
+  <br>
+  <div class="row">
+    <br>
+    <div class="col-lg-6 col-lg-offset-3">
+      <h2 class="centered">КОМНАТЫ В "ВЕРСАЛЬ 2"</h2>
+      <hr>
+      <br>
+      <br>
+    </div>
+  </div>
+  <div class="row">
     <% @rooms.each do |room| %>
-      <tr>
-        <td><%= room.name %></td>
-        <td><%= room.description %></td>
-        <td><%= room.bed %></td>
-        <td><%= room.lux %></td>
-        <td><%= room.price.last.price %></td>
-        <td><%= link_to 'Show', ([@hotel, room]) %></td>
+    <%room.price.last.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today}%>
+    <div class="col-lg-3">
+      <div class="pricing-option">
+        <div class="pricing-top">
+          <span class="pricing-edition">сейчас</span>
+          <span class="price">
+            <small style="bottom: 25px;left: 5px;">₽</small>
+            <span class="price-amount"><%= room.price.last.price+@index %></span>
+            <small style="left: 0px;">/д</small>
+          </span>
+        </div>
+        <ul>
+          <li>
+          Номер
+            <strong><%= room.name %></strong>
+            
+          </li>
+          <li>
+            
+            <strong><%= room.description %></strong>
+            
+          </li>
+          <li>
+            <strong><%= room.bed %></strong>
+            Кровати
+          </li>
+          <% if room.lux %>
+          <li>
+            <i class="fa fa-diamond" aria-hidden="true"></i>
+            *
+          </li>
+          <%end%>
+        </ul>
+        <a class="pricing-signup"<%= link_to 'Смотреть', ([@hotel, room]) %></a>
+      </div>
+    </div>
 
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to "Back", @hotel %>
+    <%end%>
+  </div>
+
+</div>
+
+
+
+
+<%= link_to "Back", @hotel, class: "btn-lg btn-theme"%>

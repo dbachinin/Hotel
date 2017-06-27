@@ -34,11 +34,13 @@ class BookingsController < ApplicationController
   def create
     @booking = current_user.bookings.build(booking_params)
     @booking.calc_subtotal
-    respond_to do |format|
-      if @booking.save
+    if @booking.save
+      respond_to do |format|
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
-      else
+      end
+    else
+      respond_to do |format|
         format.html { render :new }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end

@@ -25,11 +25,11 @@
 <h1>Prices</h1>
     <% @room.price.each do |price|
       base = price.price
-      stroke = Array(sprintf("₽%2.2f",base))
+      @stroke = Array(sprintf("₽%2.2f",base))
       @tar = []
       price.taryph.each {|i| per = i.udate.to_s + "<->" + i.edate.to_s; cen = sprintf("₽%2.2f",price.price+i.index); @tar.push([per,cen])}
-      stroke.push(@tar)
-      str = stroke.join(',').split(',')
+      @stroke.push(@tar)
+      str = @stroke.join(',').split(',')
      %>
 
 <p>
@@ -67,7 +67,11 @@ Today price
 <br>
 
 <%= link_to 'Back', hotel_rooms_path %>|
+<% if current_user %>
+<% if current_user.id == 1 %>
 <%= link_to 'Prices', ([@hotel, @room,'prices']) %>|
+<% end %>
+<% end %>
 <%= link_to 'Booking', {controller: "bookings", action: "new", hotel_id: params[:hotel_id], room_id: params[:id]} %>
 
 

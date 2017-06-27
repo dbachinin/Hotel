@@ -17,6 +17,7 @@ li.dropdown:hover > .dropdown-menu {
 <head>
   <title>HotelLudi</title>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="/assets/reset.css">
   <link rel="stylesheet" href="/assets/bootstrap.min.css">
   <script src="/assets/jquery.js" type="text/javascript"></script>
   <script src="/assets/jquery_ujs.js" type="text/javascript"></script>
@@ -35,15 +36,17 @@ li.dropdown:hover > .dropdown-menu {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Люди</a>
+        <a class="navbar-brand" href="#"><%= image_tag("logo.png")%></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="active"><%= link_to "Отели", root_path%></li>
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
+          <%if @hotel%>
+          <li><%= link_to "Комнаты", hotel_rooms_path(@hotel) %></li>
+          <%end%>
+<!--           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="#">Action</a></li>
@@ -54,7 +57,7 @@ li.dropdown:hover > .dropdown-menu {
               <li class="divider"></li>
               <li><a href="#">One more separated link</a></li>
             </ul>
-          </li>
+          </li> -->
         </ul>
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
@@ -63,12 +66,10 @@ li.dropdown:hover > .dropdown-menu {
           <button type="submit" class="btn btn-default">Submit</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
+<!--           <li><a href="#">Link</a></li> -->
           <% if user_signed_in? %>
-          Здравствуйте <strong><%= current_user.login %> !</strong>.
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.login %> <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
               <li class="divider"></li>
