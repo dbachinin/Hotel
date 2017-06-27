@@ -1,70 +1,68 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @room.name %>
-</p>
+<div id="pricing" class="container" name="pricing">
+  <br>
+  <div class="row">
+    <br>
+    <div class="col-lg-6 col-lg-offset-3">
+      <h2 class="centered"><%= @room.name %></h2>
+      <hr>
+      <br>
+      <br>
+      <p><%= @room.description %></p>
+      <% price = @room.price.last %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @room.description %>
-</p>
-
-<p>
-  <strong>Bed:</strong>
-  <%= @room.bed %>
-</p>
-
-<p>
-  <strong>Lux:</strong>
-  <%= @room.lux %>
-</p>
-
-<p id="notice"><%= notice %></p>
-
-<h1>Prices</h1>
-    <% @room.price.each do |price|
-      base = price.price
-      @stroke = Array(sprintf("₽%2.2f",base))
-      @tar = []
-      price.taryph.each {|i| per = i.udate.to_s + "<->" + i.edate.to_s; cen = sprintf("₽%2.2f",price.price+i.index); @tar.push([per,cen])}
-      @stroke.push(@tar)
-      str = @stroke.join(',').split(',')
-     %>
-
-<p>
-Today price
-<% price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today} %>
-<%= sprintf("₽%2.2f",price.price+@index) %>
-</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Price</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
+   </div>
+  </div>
 
 
-<% str.each_slice(str.count) do |line|%>
-  <tr>
-  <% line.each do |item| %>
-  <td>
-  <%if item.include? "₽"%>
-  <%= item %>
-  <% else%>
-  <strong><%= item %></strong>
-  <% end %>
-  </td>
-    <% end %>
-       </tr>
-    <% end %>
-    <% end %>
- 
-</table>
 
-<br>
+  <div class="row">
+    <% 
+    price.taryph.each do |i| 
+      per = i.udate.to_s + "<->" + i.edate.to_s
+      cen = price.price+i.index
+      month = ["Январь","Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+      %>
+      <div class="col-lg-3">
+        <div class="pricing-option">
+          <div class="pricing-top">
+          <% if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) > Date.today  %>
+            <span class="special-label">ЦЕНА СЕЙЧАС!</span>
+            <%end%>
+            
+            <span class="pricing-edition"><%=month[Date.parse(i.udate.to_s).month - 1]%></span>
+            <span class="price">
+              <small style="bottom: 25px;left: 5px;">₽</small>
+
+              <span class="price-amount"><%= cen %></span>
+              <small style="left: 0px;">/д</small>
+            </span>
+          </div>
+          <ul>
+            <li>
+            <strong><%= per %></strong>
+            </li>
+        </ul>
+
+          </div>
+
+      </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
 <%= link_to 'Back', hotel_rooms_path %>|
 <% if current_user %>
