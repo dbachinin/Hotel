@@ -1,5 +1,15 @@
-<p id="notice"><%= notice %></p>
 
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+<style type="text/css">body {
+  padding-top: 70px;
+  background-color: #efeee9;
+}</style>
+
+<p id="notice"><%= notice %></p>
+<script type="text/javascript">
+$('.carousel').on('mouseenter',function(){ $( this ).carousel();})
+  </script>
+  <%= @caruid %>
 <div id="pricing" class="container" name="pricing">
   <br>
   <div class="row">
@@ -15,10 +25,16 @@
    </div>
   </div>
 
+
+<br>
+<br>
+<hr>
+<br>
+
 <%= carousel_for(@room.image_urls)%>
-      <hr>
-      <br>
-      <br>
+<br>
+<hr>
+<br>
 
   <div class="row">
     <% 

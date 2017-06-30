@@ -17,13 +17,15 @@ li.dropdown:hover > .dropdown-menu {
 <head>
   <title>HotelLudi</title>
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'reset': 'reload' %>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'bootstrap.min': 'reload' %>
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+  
+  <%= stylesheet_link_tag    'application', media: 'all', 'reset': 'reload' %>
+  
   <%= javascript_include_tag 'application', 'jquery': 'reload' %>
   <%= javascript_include_tag 'application', 'jquery_ujs': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <div class="container">
   <nav class="navbar navbar-default" role="navigation">

@@ -1,8 +1,22 @@
 <input type="text" id="TextBox3" />
 <%= javascript_tag do %>
+
   disa = '<%= @disa.to_json %>';
   disa = JSON.parse(disa.replace(/&quot;/g,'"'));
+(function() {
+  $(document).on('turbolinks:load', function() {
+    return $('#datepicker').datepicker({
+      format: 'yyyy-mm-dd',
+      todayBtn: true,
+      language: 'ru',
+      daysOfWeekHighlighted: '0,6',
+      todayHighlight: true,
+      datesDisabled: disa,
+      autoclose: true
+    });
+  });
 
+}).call(this);
 <% end %>
 
 <%= form_with(model: booking, local: true) do |form| %>

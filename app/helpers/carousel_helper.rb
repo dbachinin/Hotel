@@ -12,6 +12,7 @@ module CarouselHelper
     def html
       content = safe_join([indicators, slides, controls])
       content_tag(:div, content, id: uid, class: 'carousel slide')
+
     end
 
     private
@@ -61,6 +62,9 @@ module CarouselHelper
 
       icon = content_tag(:i, '', class: "glyphicon glyphicon-chevron-#{direction}")
       control = link_to(icon, "##{uid}", options)
+
     end
+
   end
+
 end

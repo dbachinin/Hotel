@@ -1,15 +1,18 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-$(document).on 'turbolinks:load', ->
-  $('#datepicker').datepicker
-    format: 'yyyy-mm-dd'
-    todayBtn: true
-    language: 'ru'
-    daysOfWeekHighlighted: '0,6'
-    todayHighlight: true
-    datesDisabled: disa
-    autoclose: true
+# $(document).on 'turbolinks:load', ->
+#   $('#datepicker').datepicker
+#     format: 'yyyy-mm-dd'
+#     todayBtn: true
+#     language: 'ru'
+#     daysOfWeekHighlighted: '0,6'
+#     todayHighlight: true
+#     datesDisabled: disa
+#     autoclose: true
+
+
+    
     # return
 #     $(document).ready ->
 # start1 = $('#start').datepicker('getDate')
