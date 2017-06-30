@@ -18,5 +18,6 @@ Rails.application.routes.draw do
 post "/prices/:id" => 'prices#update'
 post "/taryphs/:id" => 'taryphs#update'
 post "/bookings/new"
+post "/subprice" => 'bookings#subprice'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

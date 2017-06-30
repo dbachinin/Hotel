@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  include SubtotalHelper
   # GET /bookings
   # GET /bookings.json
   def index
@@ -8,7 +9,9 @@ class BookingsController < ApplicationController
     #@hotel = Hotel.find(params[:hotel_id])
     #@room = Room.find(params[:room_id])
   end
-
+  def subprice
+    @dat = price_subtotal(params[:room_id],params[:check_in],params[:check_out])
+  end
   # GET /bookings/1
   # GET /bookings/1.json
   def show
@@ -33,7 +36,7 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = current_user.bookings.build(booking_params)
-    @booking.calc_subtotal
+    @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out)
     if @booking.save
       respond_to do |format|
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
