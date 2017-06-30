@@ -18,8 +18,9 @@
 
 }).call(this);
 
-$('#start').bind("mouseenter mouseleave", function(){
-  $('#TextBox3').val($('#start').val());
+$('#out').bind("mouseenter mouseleave", function(){
+  let sum = start.value + out.value
+  $('#TextBox3').val(sum);
 });
 <% end %>
 
