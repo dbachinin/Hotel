@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
     @room = Room.find(params[:room_id])
     @disa = @booking.search_full_employ(@room.id)
     @disa.uniq!
-    p @disa 
+    # p @disa 
    # @room.price.last.taryph.each {|i| p "fff" if Date.parse(i.udate.to_s) < Date.parse('2017-04-18') and Date.parse(i.edate.to_s) < Date.parse('2017-04-18')}
   end
 
