@@ -1,4 +1,4 @@
-<input type="text" id="TextBox3" />
+
 <%= javascript_tag do %>
 
   disa = '<%= @disa.to_json %>';
@@ -17,16 +17,7 @@
   });
 
 }).call(this);
-$.ajax({
-        url : "/subprice",
-        type : "post",
-        data : { room_id: booking_room_id.value, check_in: start.value, check_out: out.value}
-    });
 
-$('#out').bind("mouseenter mouseleave", function(){
-  let sum = <%= @dat %>
-  $('#TextBox3').val(sum);
-});
 
 
 <% end %>
@@ -55,13 +46,27 @@ $('#out').bind("mouseenter mouseleave", function(){
     <%= form.hidden_field :hotel_id, value: params[:hotel_id], id: :booking_hotel_id if params[:room_id] %>
 
 
-    <%= form.hidden_field :room_id, value: params[:room_id], id: :booking_room_id %>
+    <%= form.hidden_field :room_id, value: params[:room_id], id: :room %>
     <%= form.hidden_field :booked, id: :booking_booked %>
 
-    <%= form.hidden_field :room_id, value: Booking.find(params[:id]).room_id, id: :booking_room_id unless params[:room_id]%>
-
+    <%= form.hidden_field :room_id, value: Booking.find(params[:id]).room_id, id: :room unless params[:room_id]%>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+<%= javascript_tag do %>
+
+$('#out').bind("mouseenter mouseleave", function(){
+  var tmp = null;
+  $.ajax({
+        url : "/subprice",
+        type : "post",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data : { room_id: room.value, check_in: start.value, check_out: out.value},
+        dataType: "json html"
+        
+    });
+
+});
+<%end%>

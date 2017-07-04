@@ -1,6 +1,8 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  respond_to :html, :js
+
   include SubtotalHelper
   # GET /bookings
   # GET /bookings.json
@@ -10,7 +12,11 @@ class BookingsController < ApplicationController
     #@room = Room.find(params[:room_id])
   end
   def subprice
-    @dat = price_subtotal(params[:room_id],params[:check_in],params[:check_out])
+    @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s)
+    p @subprice
+    respond_to do |format|
+      format.js
+    end
   end
   # GET /bookings/1
   # GET /bookings/1.json
@@ -24,9 +30,14 @@ class BookingsController < ApplicationController
     @room = Room.find(params[:room_id])
     @disa = @booking.search_full_employ(@room.id)
     @disa.uniq!
+    # respond_to do |format|
+    #   format.html
+    #   format.json
+    #   format.js
+    # end
     # p @disa 
    # @room.price.last.taryph.each {|i| p "fff" if Date.parse(i.udate.to_s) < Date.parse('2017-04-18') and Date.parse(i.edate.to_s) < Date.parse('2017-04-18')}
-  end
+ end
 
   # GET /bookings/1/edit
   def edit

@@ -40,3 +40,4 @@
   # $(document).ready ->
   # $('input[class="daterange"]').daterangepicker()
   # return
+  

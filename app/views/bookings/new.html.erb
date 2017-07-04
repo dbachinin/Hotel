@@ -5,6 +5,12 @@ Today price
 <% price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today} %>
 <%= sprintf("₽%2.2f",price.price+@index) %>
 </p>
+
+<ul id="subprice">
+<%= render(:partial => "subprice", :formats=>[:html])  %>
+</ul>
+
 <%= render 'form', booking: @booking %>
+
 
 <%= link_to 'Back', bookings_path %>
