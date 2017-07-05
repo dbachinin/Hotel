@@ -7,8 +7,9 @@ Today price
 </p>
 
 <ul id="subprice">
-<%= render(:partial => "subprice", :formats=>[:html])  %>
+
 </ul>
+<%= render partial: "bookings/subprice", formats: [:js]%>
 
 <%= render 'form', booking: @booking %>
 

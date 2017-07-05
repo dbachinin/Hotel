@@ -64,7 +64,7 @@ $('#out').bind("mouseenter mouseleave", function(){
         type : "post",
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         data : { room_id: room.value, check_in: start.value, check_out: out.value},
-        dataType: "json html"
+        dataType: "json html",
         
     });
 

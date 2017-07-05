@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s)
     p @subprice
     respond_to do |format|
-      format.js
+      format.js { head @subprice }
     end
   end
   # GET /bookings/1
