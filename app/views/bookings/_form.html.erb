@@ -22,7 +22,7 @@
 
 <% end %>
 
-<%= form_with(model: booking, remoute: true,local: false) do |form| %>
+<%= form_with(model: booking, remoute: false,local: true) do |form| %>
   <% if booking.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -65,11 +65,8 @@ $('.input-sm').on('keyup keypress blur change', function(){
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         data : { room_id: room.value, check_in: start.value, check_out: out.value},
         dataType: "script",
-        error: function (xhr, status) {
-            alert(data);
-        },
         success: function (result) {
-        eval(data)
+        eval()
         }
     });
 

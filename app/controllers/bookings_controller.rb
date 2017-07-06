@@ -1,26 +1,30 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # respond_to :html, :js
+ # respond_to :json
 
   include SubtotalHelper
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = current_user.bookings.all
+    if current_user.id == 1
+      @bookings = Booking.all
+    else
+      @bookings = current_user.bookings.all
+    end
     #@hotel = Hotel.find(params[:hotel_id])
     #@room = Room.find(params[:room_id])
   end
   def subprice
     @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s)
-    render do
-      subprice.js.erb {}
-    end
+    # render do
+    #   subprice.js.erb {}
+    # end
     p @subprice
-    respond_to do |format|
-      format.html
-      format.js 
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.js 
+    # end
 
   end
   # GET /bookings/1
@@ -35,11 +39,12 @@ class BookingsController < ApplicationController
     @room = Room.find(params[:room_id])
     @disa = @booking.search_full_employ(@room.id)
     @disa.uniq!
-    # respond_to do |format|
-    #   format.html
-    #   format.json
+
+     # respond_to do |format|
+      # format.html
+       # format.json
     #   format.js
-    # end
+     # end
     # p @disa 
    # @room.price.last.taryph.each {|i| p "fff" if Date.parse(i.udate.to_s) < Date.parse('2017-04-18') and Date.parse(i.edate.to_s) < Date.parse('2017-04-18')}
  end
@@ -64,7 +69,7 @@ class BookingsController < ApplicationController
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
-  end
+end
 
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json

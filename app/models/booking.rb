@@ -1,14 +1,15 @@
 class Booking < ApplicationRecord
 	# belongs_to :ad_service
 	belongs_to :user
+	validates :check_in, uniqueness: { scope: :room_id }
 
 
-	def search_employ
-		@lock = []
-		Booking.all.each {|i| @lock.push(i.id) if (Date.parse(self.check_in.to_s) - Date.parse(i.check_out.to_s)) * (Date.parse(i.check_in.to_s) - Date.parse(self.check_out.to_s)) >= 0 && i.room_id == self.room_id } 
-		return @lock
+	# def search_employ
+	# 	@lock = []
+	# 	Booking.all.each {|i| @lock.push(i.id) if (Date.parse(self.check_in.to_s) - Date.parse(i.check_out.to_s)) * (Date.parse(i.check_in.to_s) - Date.parse(self.check_out.to_s)) >= 0 && i.room_id == self.room_id } 
+	# 	return @lock
 
-	end
+	# end
 
 	def search_full_employ(room_id)
 
@@ -22,5 +23,14 @@ class Booking < ApplicationRecord
 	end
 		# price = Price.find(tar.find(@tar).price_id)
 		# cen = price + Taryph.find(@tar).index if (check_in - Taryph.find(@tar).edate).to_i > (check_in - check_out).to_i
+		
+		private
+		def employed_room
+			Booking.where(room_id: self.room_id).each do |i|
+				if Date.parse(i.check_out.to_s) <= Date.parse(self.check_out.to_s) && Date.parse(i.check_in.to_s) >= Date.parse(self.check_in.to_s)
+					errors.add(:check_in, "cannot be booking this date")
 
+				end
+			end
+		end
 	end

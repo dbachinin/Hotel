@@ -9,7 +9,9 @@
       <th>Check out</th>
       <th>Hotel</th>
       <th>Room</th>
-      <th>Booked</th>
+      <% if current_user.id == 1 %>
+      <th>Username</th>
+      <%end%>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +23,9 @@
         <td><%= booking.check_out %></td>
         <td><%= booking.hotel_id %></td>
         <td><%= booking.room_id %></td>
-        <td><%= booking.booked %></td>
+        <% if current_user.id == 1 %>
+        <td><%= User.find(booking.user_id).email %></td>
+        <%end%>
         <td><%= link_to 'Show', booking %></td>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
         <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
