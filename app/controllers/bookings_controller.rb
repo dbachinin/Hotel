@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  respond_to :html, :js
+  # respond_to :html, :js
 
   include SubtotalHelper
   # GET /bookings
@@ -13,10 +13,15 @@ class BookingsController < ApplicationController
   end
   def subprice
     @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s)
+    render do
+      subprice.js.erb {}
+    end
     p @subprice
     respond_to do |format|
-      format.js { head @subprice }
+      format.html
+      format.js 
     end
+
   end
   # GET /bookings/1
   # GET /bookings/1.json
