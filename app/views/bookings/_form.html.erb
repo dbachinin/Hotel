@@ -49,7 +49,9 @@
     <%= form.hidden_field :room_id, value: params[:room_id], id: :room %>
     <%= form.hidden_field :booked, id: :booking_booked %>
 
-    <%= form.hidden_field :room_id, value: Booking.find(params[:id]).room_id, id: :room unless params[:room_id]%>
+    <%= form.hidden_field :room_id, value: @room_id, id: :room unless params[:room_id] %>
+      
+   
 
   <div class="actions">
     <%= form.submit %>

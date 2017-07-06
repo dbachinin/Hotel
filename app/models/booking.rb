@@ -1,8 +1,10 @@
 class Booking < ApplicationRecord
 	# belongs_to :ad_service
 	belongs_to :user
-	validates :check_in, uniqueness: { scope: :room_id }
-
+	with_options if: :employ? do |room|
+		room.validates :check_in, presence: true, if: :employed_room
+		room.validates :check_out, presence: true, if: :employed_room
+	end
 
 	# def search_employ
 	# 	@lock = []
@@ -28,7 +30,7 @@ class Booking < ApplicationRecord
 		def employed_room
 			Booking.where(room_id: self.room_id).each do |i|
 				if Date.parse(i.check_out.to_s) <= Date.parse(self.check_out.to_s) && Date.parse(i.check_in.to_s) >= Date.parse(self.check_in.to_s)
-					errors.add(:check_in, "cannot be booking this date")
+					errors.add(:check_in, "cannot be booking this selected date")
 
 				end
 			end

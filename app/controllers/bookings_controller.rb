@@ -51,12 +51,15 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1/edit
   def edit
+    # @subprice = price_subtotal(@booking.room_id,Date.parse(@booking.check_in).to_s,Date.parse(@booking.check_out).to_s)
   end
 
   # POST /bookings
   # POST /bookings.json
   def create
     @booking = current_user.bookings.build(booking_params)
+    @hotel = Hotel.find(@booking.hotel_id)
+    @room = Room.find(@booking.room_id)
     @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out)
     if @booking.save
       respond_to do |format|
@@ -65,7 +68,7 @@ class BookingsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :new }
+        format.html { render :new, locals: {hotel_id: @hotel.id, room_id: @room.id} }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
