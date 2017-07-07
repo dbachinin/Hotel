@@ -15,7 +15,7 @@
     <% @prices.each do |price| %>
       <tr>
       <% price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today} %>
-        <td><%= price.price+@index %></td>
+        <td><%= price.price.to_s + ": now price "%><strong><%= price.price+@index %></strong></td>
         <td><%= price.description %></td>
         <td><%= link_to 'Show', price_path(:id => price.id) %></td>
         <td><%= link_to 'Edit', edit_price_path(:id => price.id) %></td>
