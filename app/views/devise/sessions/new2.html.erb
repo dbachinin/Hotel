@@ -1,0 +1,85 @@
+           <style type="text/css">
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}</style>
+           <div class="row">
+            <div class="col-md-12">
+              Login via
+              <div class="social-buttons">
+                <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+              </div>
+              or
+              
+                <%= form_for(:user, url: session_path(:user)) do |f| %>
+                <div class="form-group">
+                  <%= f.label :login, class: "sr-only" %> <br />
+                  <%= f.text_field :login, placeholder: "You email or loginame", autofocus: true, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <%= f.label :password, class: "sr-only", for: "InputPassword" %><br />
+                  <%= f.password_field :password, autocomplete: "off", id: "InputPassword2", class: "form-control" %>
+                </div>
+                <div class="check_box">
+                  <label>
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                  </label>
+                </div>
+                <div class="actions">
+                  <%= f.submit "Log in", class: "btn btn-primary btn-block" %>
+                </div>
+                <% end %>
+              </form>
+            </div>
+          </div>
+
+
