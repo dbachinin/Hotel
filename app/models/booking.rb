@@ -5,6 +5,7 @@ class Booking < ApplicationRecord
 		room.validates :check_in, presence: true, if: :employed_room
 		room.validates :check_out, presence: true, if: :employed_room
 	end
+	validates_exclusion_of :subtotal, { in: [0.0], message: "не должно быть 0" }
 
 	# def search_employ
 	# 	@lock = []

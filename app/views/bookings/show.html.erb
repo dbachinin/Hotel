@@ -1,28 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Check in:</strong>
-  <%= @booking.check_in %>
+  <strong>Дата заезда</strong>
+  <%= Date.parse(@booking.check_in.to_s).strftime("%B %d, %Y, %A") %>
 </p>
 
 <p>
-  <strong>Check out:</strong>
-  <%= @booking.check_out %>
+  <strong>Дата отъезда:</strong>
+  <%= Date.parse(@booking.check_out.to_s).strftime("%B %d, %Y, %A") %>
 </p>
 
 <p>
   <strong>Hotel:</strong>
-  <%= @booking.hotel_id %>
+  <%= Hotel.find(@booking.hotel_id).name %>
 </p>
 
 <p>
   <strong>Room:</strong>
-  <%= @booking.room_id %>
-</p>
-
-<p>
-  <strong>Booked:</strong>
-  <%= @booking.booked %>
+  <%= Room.find(@booking.room_id).name %>
 </p>
 
 <p>

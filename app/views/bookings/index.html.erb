@@ -1,6 +1,5 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Bookings</h1>
+<h1>My bookings</h1>
 
 <table>
   <thead>
@@ -12,6 +11,7 @@
       <% if current_user.id == 1 %>
       <th>Username</th>
       <%end%>
+      <th>Days</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,13 +19,14 @@
   <tbody>
     <% @bookings.each do |booking| %>
       <tr>
-        <td><%= booking.check_in %></td>
-        <td><%= booking.check_out %></td>
-        <td><%= booking.hotel_id %></td>
-        <td><%= booking.room_id %></td>
+        <td><%= Date.parse(booking.check_in.to_s) %></td>
+        <td><%= Date.parse(booking.check_out.to_s) %></td>
+        <td><%= Hotel.find(booking.hotel_id).name %></td>
+        <td><%= Room.find(booking.room_id).name %></td>
         <% if current_user.id == 1 %>
         <td><%= User.find(booking.user_id).email %></td>
         <%end%>
+        <td><%= (Date.parse(booking.check_out.to_s) - Date.parse(booking.check_in.to_s)).to_i %></td>
         <td><%= link_to 'Show', booking %></td>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
         <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -35,5 +36,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Booking', new_booking_path %>

@@ -1,20 +1,23 @@
 
 <%= javascript_tag do %>
-
-  disa = '<%= @disa.to_json %>';
-  disa = JSON.parse(disa.replace(/&quot;/g,'"'));
+      var date = new Date();
+      var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      disa = '<%= @disa.to_json %>';
+      disa = JSON.parse(disa.replace(/&quot;/g,'"'));
 (function() {
-  $(document).on('turbolinks:load', function() {
+    $(document).on('turbolinks:load', function() {
     return $('#datepicker').datepicker({
-      format: 'yyyy-mm-dd',
-      todayBtn: true,
-      language: 'ru',
-      daysOfWeekHighlighted: '0,6',
-      todayHighlight: true,
-      datesDisabled: disa,
-      autoclose: true
-    });
-  });
+    format: 'yyyy-mm-dd',
+    todayBtn: true,
+    language: 'ru',
+    daysOfWeekHighlighted: '0,6',
+    todayHighlight: true,
+    datesDisabled: disa,
+    autoclose: true,
+    startDate: today,
+    orientation: "auto left"
+});
+});
 
 }).call(this);
 
@@ -23,54 +26,55 @@
 <% end %>
 
 <%= form_with(model: booking, remoute: false,local: true) do |form| %>
-  <% if booking.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+<% if booking.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
 
-      <ul>
-      <% booking.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% booking.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 <div class="input-daterange input-group" id="datepicker">
-    <%= form.text_field :check_in,  class: "input-sm datepicker1", id: :start %>
-    <span class="input-addon">to</span>
-    <%= form.text_field :check_out,  class: "input-sm datepicker2", id: :out %>
-  </div>
+  <%= form.text_field :check_in,  class: "input-sm form-control", id: :start %>
+  <div class="input-group-addon">to</div>
+  <%= form.text_field :check_out,  class: "input-sm form-control", id: :out %>
+</div>
 
-  <div class="price">
-  
-  </div>
-    <%= form.hidden_field :hotel_id, value: params[:hotel_id], id: :booking_hotel_id if params[:room_id] %>
+<div class="price">
+
+</div>
+<%= form.hidden_field :hotel_id, value: params[:hotel_id], id: :booking_hotel_id if params[:room_id] %>
 
 
-    <%= form.hidden_field :room_id, value: params[:room_id], id: :room %>
-    <%= form.hidden_field :booked, id: :booking_booked %>
+<%= form.hidden_field :room_id, value: params[:room_id], id: :room %>
+<%= form.hidden_field :booked, id: :booking_booked %>
 
-    <%= form.hidden_field :room_id, value: @room_id, id: :room unless params[:room_id] %>
-      
-   
+<%= form.hidden_field :room_id, value: @room_id, id: :room unless params[:room_id] %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<br>
+<hr>
+
+<div class="actions col-lg-2">
+  <%= form.submit "Забронировать", class: "btn btn-primary btn-block" %>
+</div>
 <% end %>
 <%= javascript_tag do %>
 
 $('.input-sm').on('keyup keypress blur change', function(){
-  var tmp = null;
-  $.ajax({
-        url : "/subprice",
-        type : "post",
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-        data : { room_id: room.value, check_in: start.value, check_out: out.value},
-        dataType: "script",
-        success: function (result) {
-        eval()
-        }
-    });
+var tmp = null;
+$.ajax({
+url : "/subprice",
+type : "post",
+beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+data : { room_id: room.value, check_in: start.value, check_out: out.value},
+dataType: "script",
+success: function (result) {
+eval()
+}
+});
 
 });
 <%end%>

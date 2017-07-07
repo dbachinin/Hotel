@@ -1,11 +1,30 @@
-<h1>New Booking</h1>
+<style type="text/css">
+	body {
+  background-image: url(<%= Dir["room"+ @room.id.to_s+"/*"].sample%>;)
+  background-repeat: repeat-x repeat-y;
+}
+</style>
+<div class="col-lg-6 col-lg-offset-3">
+<div id="registerwrap">
+<h1 class="centered">Бронирование номера <%= @room.name.upcase %>
+	<br>
+	в <%= @hotel.name %>
+</h1>
+</div>
 <% price = Price.where(room_id: params[:room_id]).last %>
 
-<br>
-<p id="subprice"></p>
+<div class="pricing-option">
+<div class="pricing-top">
+<span class="pricing-edition">Сумма за выбранный период</span>
+<span class="price">
 
+<span class="price-amount">
+<div id="subprice"></div>
+</span>
+</span>
+</div>
+</div>
 
 <%= render 'form', booking: @booking %>
 
-
-<%= link_to 'Back', bookings_path %>
+</div>

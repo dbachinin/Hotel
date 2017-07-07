@@ -18,11 +18,13 @@
 <br>
 <br>
 <hr>
-<%= link_to 'Back', hotel_rooms_path %>|
 <% if current_user && current_user.id == 1 %>
+<%= link_to 'Back', hotel_rooms_path %>|
+
 <%= link_to 'Prices', ([@hotel, @room,'prices']) %>|
-<% end %>
+
 <%= link_to 'Booking', {controller: "bookings", action: "new", hotel_id: params[:hotel_id], room_id: params[:id]} %>
+<% end %>
 <br>
 
 <%= carousel_for(@room.image_urls)%>
