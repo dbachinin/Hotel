@@ -16,3 +16,4 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
 //= require turbolinks
 //= require_tree .
+$('.carousel').on('mouseenter',function(){ $( this ).carousel();})

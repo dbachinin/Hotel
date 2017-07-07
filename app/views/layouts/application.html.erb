@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <style>
-body {
+  body {
     margin: 30px 0px;
-}
-.navbar-default .navbar-nav > li.dropdown:hover > a, 
-.navbar-default .navbar-nav > li.dropdown:hover > a:hover,
-.navbar-default .navbar-nav > li.dropdown:hover > a:focus {
+  }
+  .navbar-default .navbar-nav > li.dropdown:hover > a, 
+  .navbar-default .navbar-nav > li.dropdown:hover > a:hover,
+  .navbar-default .navbar-nav > li.dropdown:hover > a:focus {
     background-color: rgb(231, 231, 231);
     color: rgb(85, 85, 85);
-}
-li.dropdown:hover > .dropdown-menu {
+  }
+  li.dropdown:hover > .dropdown-menu {
     display: block;
-}
+  }
 </style>
 <head>
   <title>HotelLudi</title>
   <%= csrf_meta_tags %>
-
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'bootstrap.min': 'reload' %>
   
   <%= stylesheet_link_tag    'application', media: 'all', 'reset': 'reload' %>
@@ -26,67 +26,68 @@ li.dropdown:hover > .dropdown-menu {
   <%= javascript_include_tag 'application', 'jquery_ujs': 'reload' %>
 
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 </head>
 <body data-spy="scroll" data-offset="0" data-target="#navbar-main">
   <div id="navbar-main">
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <%= image_tag("logo.png")%>
+          </a>
+        </div>
 
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><%= image_tag("logo.png")%></a>
-          </div>
 
-
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="active"><%= link_to "Отели", root_path%></li>
-              <%if @hotel%>
-              <li><%= link_to "Комнаты", hotel_rooms_path(@hotel) %></li>
-              <%end%>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <% if user_signed_in? %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.login %> <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
-                  <li class="divider"></li>
-                  <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-                  <% else %>
-                  <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
-                  <li class="divider"></li>
-                  <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-                  <% end %>
-                </ul>
-              </li>
-            </ul>
-          </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to "Отели", root_path%></li>
+            <%if @hotel%>
+            <li><%= link_to "Комнаты", hotel_rooms_path(@hotel) %></li>
+            <%end%>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.login %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+                <% else %>
+                <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 </div>
-
+<section id="home" class="scrollspy" name="home"></section>
 
 
 
 
 <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+<p class="alert alert-success"><%= notice %></p>
 <% end %>
 <% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
+<p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
 
 
-    <%= yield %>
-  </body>
+<%= yield %>
+</body>
 </html>

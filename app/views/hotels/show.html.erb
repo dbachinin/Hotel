@@ -1,15 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="col-lg-8 col-lg-offset-2">
+<br>
+<h2 class="centered">
+<%= @hotel.name.upcase %>
+</h2>
+<hr>
+<br>
 
-<p>
-  <strong>Name:</strong>
-  <%= @hotel.name %>
-</p>
-
+<%= carousel_for(@hotel.image_urls)%>
+<br>
+<hr>
 <p>
   <strong>Description:</strong>
   <%= raw(@hotel.description) %>
 </p>
-
+</div>
 
 <%= link_to 'Back', hotels_path %>
 <%= link_to 'Rooms', hotel_rooms_path(@hotel) %>

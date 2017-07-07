@@ -1,25 +1,14 @@
-
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
-<style type="text/css">body {
-  padding-top: 70px;
-  background-color: #efeee9;
-}</style>
-
-<p id="notice"><%= notice %></p>
-<script type="text/javascript">
-$('.carousel').on('mouseenter',function(){ $( this ).carousel();})
-  </script>
-
+<div class="col-lg-8 col-lg-offset-2">
 <div id="pricing" class="container" name="pricing">
   <br>
   <div class="row">
     <br>
-    <div class="col-lg-6 col-lg-offset-3">
+    
       <h2 class="centered"><%= @room.name %></h2>
       <hr>
       <br>
       <br>
-      <p><%= @room.description %></p>
+      <p class="centered"><%= @room.description %></p>
       <% price = @room.price.last %>
 
    </div>
@@ -29,6 +18,11 @@ $('.carousel').on('mouseenter',function(){ $( this ).carousel();})
 <br>
 <br>
 <hr>
+<%= link_to 'Back', hotel_rooms_path %>|
+<% if current_user && current_user.id == 1 %>
+<%= link_to 'Prices', ([@hotel, @room,'prices']) %>|
+<% end %>
+<%= link_to 'Booking', {controller: "bookings", action: "new", hotel_id: params[:hotel_id], room_id: params[:id]} %>
 <br>
 
 <%= carousel_for(@room.image_urls)%>
@@ -71,24 +65,3 @@ $('.carousel').on('mouseenter',function(){ $( this ).carousel();})
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-<%= link_to 'Back', hotel_rooms_path %>|
-<% if current_user %>
-<% if current_user.id == 1 %>
-<%= link_to 'Prices', ([@hotel, @room,'prices']) %>|
-<% end %>
-<% end %>
-<%= link_to 'Booking', {controller: "bookings", action: "new", hotel_id: params[:hotel_id], room_id: params[:id]} %>
-
-

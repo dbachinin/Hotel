@@ -1,27 +1,28 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Hotels</h1>
+<div class="col-lg-8 col-lg-offset-2">
+  <div id="registerwrap">
+    <h1>Hotels</h1>
+  </div>
+  <br>
+  <br>
+  <% @hotels.each do |hotel| %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th></th>
-    </tr>
-  </thead>
+  <h2 class="centered"><%= link_to hotel.name.upcase, hotel %></h2>
+  <hr>
+  <br>
 
-  <tbody>
-    <% @hotels.each do |hotel| %>
-      <tr>
-        <td><%= hotel.name %></td>
-        <td><%= hotel.description %></td>
-        <td><%= link_to 'Show', hotel %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <%= carousel_for(hotel.image_urls)%>
+  <br>
+  <hr>
 
-<br>
+  <h3><%= raw(hotel.description) %></h3>
+  <br>
+  <hr>
+  <br>
+
+  <% end %>
+  <br>
+</div>
+
 
 
