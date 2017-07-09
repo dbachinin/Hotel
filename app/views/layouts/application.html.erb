@@ -95,32 +95,7 @@
   <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
           <div class="log-section">
-          <h1>sign up for new Account</h1><br>
-          <%= form_for(:user, url: registration_path(:user)) do |f| %>
-
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-        <%= f.label :login %><br />
-    <%= f.text_field :login, autofocus: true %>
-        <%= f.label :firstname %><br />
-    <%= f.text_field :firstname, autofocus: true %>
-        <%= f.label :lastname %><br />
-    <%= f.text_field :lastname, autofocus: true %>
-        <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-        <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-      <div class="actions">
-    <%= f.submit "Sign up", class: "login loginmodal-submit" %>
-  </div>
-<% end %>
-
-          <div class="login-help">
-           <a href="#">Allready Have an Account</a>
-          </div>
+         <%= render file: "devise/registrations/new2.html.erb"  %>
         </div>
       </div>
       </div>

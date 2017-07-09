@@ -6,8 +6,8 @@
   <br>
   <br>
   <% @hotels.each do |hotel| %>
-
-  <h2 class="centered"><%= link_to hotel.name.upcase, hotel %></h2>
+  <%= link_to hotel do %>
+  <h2 class="centered"><%= hotel.name.upcase %></h2>
   <hr>
   <br>
 
@@ -20,6 +20,7 @@
   <hr>
   <br>
 
+  <% end %>
   <% end %>
   <br>
 </div>
