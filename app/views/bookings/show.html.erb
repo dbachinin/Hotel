@@ -1,31 +1,32 @@
 <div class="col-lg-8 col-lg-offset-2">
 <div class="accordion-inner">
 <p>
-  <strong>Дата заезда</strong>
+  <strong><%=(t :check_in) + ":"%></strong>
   <%= I18n.l Date.parse(@booking.check_in.to_s), format: :short %>
 </p>
 
 <p>
-  <strong>Дата отъезда:</strong>
+  <strong><%=(t :check_out) + ":"%></strong>
   <%= I18n.l Date.parse(@booking.check_out.to_s), format: :short %>
 </p>
 
 <p>
-  <strong>Hotel:</strong>
+  <strong><%=(t :hotel) + ":"%></strong>
   <%= Hotel.find(@booking.hotel_id).name %>
 </p>
 
 <p>
-  <strong>Room:</strong>
+  <strong><%=(t :room) + ":"%></strong>
   <%= Room.find(@booking.room_id).name %>
 </p>
 
 <p>
-  <strong>SubTotal:</strong>
+  <strong><%=(t :subtotal) + ":"%></strong>
   <%= @booking.subtotal %>
 </p>
 </div>
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
 <%= link_to 'Back', bookings_path(params[:room_id] = @booking.room_id) %>
 <%= link_to 'Delete', @booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Ad_services', ad_services_path(id: params[:id]) %>
 </div>

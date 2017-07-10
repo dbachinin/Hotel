@@ -121,6 +121,7 @@ ru:
   check_in: "Заезд"
   check_out: "Отъезд"
   days:       "Дни"
+  subtotal: "Предварительный итог"
   ausure: "Вы серъезно?"
   form:
     login: "Логин"

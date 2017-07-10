@@ -4,8 +4,8 @@ class AdServicesController < ApplicationController
   # GET /ad_services
   # GET /ad_services.json
   def index
-    @booking = 
-    @ad_services = @booking.ad_service.all
+    @booking = Booking.find(params[:id])
+    @ad_services = @booking.ad_services.all
   end
 
   # GET /ad_services/1
