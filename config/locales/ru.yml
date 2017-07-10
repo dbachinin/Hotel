@@ -30,35 +30,115 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ru:
-  hello: "Привет Мир"
-  hotels: Отели
-  rooms: Комнаты
-  booking: Бронирование
+
+  hotels: "Отели"
+  hotel: "Отель"
+  room: "Комната"
+  rooms: "Комнаты"
+  booking: "Бронирование"
   mybookings: "Мои бронирования"
   editprofile: "Мой профиль"
   logout: "Выход"
-  signup: 'Регистрация'
-  login: 'Вход'
-
+  signup: "Регистрация"
+  login: "Вход"
+  back: "Назад"
+  show: "Показать"
+  edit: "Изменить"
+  delete: "Удалить"
+  bcreate: "Бронирование номера создано"
+  bupdate: "Бронирование номера обновлено"
+  bdelete: "Бронирование номера удалено"
+  check_in: "Заезд"
+  check_out: "Отъезд"
+  days:       "Дни"
   form:
-    login: Логин
-    pass: Пароль
+    login: "Логин"
+    pass: "Пароль"
     pass_conf: "Подтверждение пароля"
-    email: E-mail
-    firstname: Имя
-    lastname: Фамилия
-    or: или
+    email: "E-mail"
+    firstname: "Имя"
+    lastname: "Фамилия"
+    or: "или"
     logwithout: "Вход через"
     remme: "Запомни меня"
     signup_head: "Регистрация нового аккаунта"
 
 
+
+
+
+
+
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ru:
+  hotels: "Отели"
+  hotel: "Отель"
+  room: "Комната"
+  rooms: "Комнаты"
+  booking: "Бронирование"
+  mybookings: "Мои бронирования"
+  editprofile: "Мой профиль"
+  logout: "Выход"
+  signup: "Регистрация"
+  login: "Вход"
+  back: "Назад"
+  show: "Показать"
+  edit: "Изменить"
+  delete: "Удалить"
   bcreate: "Бронирование номера создано"
   bupdate: "Бронирование номера обновлено"
   bdelete: "Бронирование номера удалено"
-  
-date:
-   formats:
-     default: "%Y-%m-%d"
-     short: "%b %d"
-     long: "%B %d, %Y"
+  check_in: "Заезд"
+  check_out: "Отъезд"
+  days:       "Дни"
+  ausure: "Вы серъезно?"
+  form:
+    login: "Логин"
+    pass: "Пароль"
+    pass_conf: "Подтверждение пароля"
+    email: "E-mail"
+    firstname: "Имя"
+    lastname: "Фамилия"
+    or: "или"
+    logvia: "Вход через"
+    remme: "Запомни меня"
+    signup_head: "Регистрация нового аккаунта"
+    uname: "Ваше имя или email"
+
+
+
+
+
+
+
+

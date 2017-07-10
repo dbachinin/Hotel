@@ -1,30 +1,30 @@
            <div class="row">
             <div class="col-md-12">
-              Login via
+              <%=t 'form.logvia' %>
               <div class="social-buttons">
                 <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
                 <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
               </div>
-              or
+              <%= t 'form.or' %>
               
                 <%= form_for(:user, url: session_path(:user)) do |f| %>
                 <div class="form-group">
                   <%= f.label :login, class: "sr-only" %> <br />
-                  <%= f.text_field :login, placeholder: "You email or loginame", autofocus: true, class: "form-control"%>
+                  <%= f.text_field :login, placeholder: (t 'form.uname'), autofocus: true, class: "form-control"%>
                 </div>
                 <div class="form-group">
                   <%= f.label :password, class: "sr-only", for: "InputPassword" %><br />
-                  <%= f.password_field :password, autocomplete: "off", id: "InputPassword2", class: "form-control" %>
+                  <%= f.password_field :password, placeholder: (t 'form.pass'), autocomplete: "off", id: "InputPassword2", class: "form-control" %>
                 </div>
                 <div class="check_box">
                   <label>
                     <%= f.check_box :remember_me %>
-                    <%= f.label :remember_me %>
+                    <%= f.label (t 'form.remme') %>
                   </label>
                 </div>
                 <div class="actions">
-                  <%= f.submit "Log in", class: "btn btn-primary btn-block" %>
-                  <a> or </a><br><%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-block" %>
+                  <%= f.submit (t 'form.login'), class: "btn btn-primary btn-block" %>
+                  <a> <%= t 'form.or'%> </a><br><%= link_to (t 'signup'), new_user_registration_path, class: "btn btn-primary btn-block" %>
                 </div>
                 <% end %>
               </form>

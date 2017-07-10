@@ -1,17 +1,18 @@
-
-<h1>My bookings</h1>
-
-<table>
+<div class="col-lg-8 col-lg-offset-2">
+  <div id="registerwrap">
+<h1><%= t 'mybookings' %></h1>
+</div>
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Check in</th>
-      <th>Check out</th>
-      <th>Hotel</th>
-      <th>Room</th>
+      <th><%= t :check_in%></th>
+      <th><%= t :check_out%></th>
+      <th><%= t :hotel%></th>
+      <th><%= t :room%></th>
       <% if current_user.id == 1 %>
       <th>Username</th>
       <%end%>
-      <th>Days</th>
+      <th><%= t :days%></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +20,7 @@
   <tbody>
     <% @bookings.each do |booking| %>
       <tr>
-        <td><%= Date.parse(booking.check_in.to_s) %></td>
+        <td><%=l Date.parse(booking.check_in.to_s), form: :short %></td>
         <td><%= Date.parse(booking.check_out.to_s) %></td>
         <td><%= Hotel.find(booking.hotel_id).name %></td>
         <td><%= Room.find(booking.room_id).name %></td>
@@ -27,12 +28,12 @@
         <td><%= User.find(booking.user_id).email %></td>
         <%end%>
         <td><%= (Date.parse(booking.check_out.to_s) - Date.parse(booking.check_in.to_s)).to_i %></td>
-        <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to (t :show), booking, class: "btn btn-default" %></td>
+        <td><%= button_to (t :edit), edit_booking_path(booking), class: "btn btn-default" %></td>
+        <td><%= button_to (t :delete), booking, method: :delete, data: { confirm: (t 'ausure') }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+</div>

@@ -29,31 +29,40 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
-  rooms: Rooms
-  hotels: Hotels
+--- 
+en: 
+  back: Back
+  bcreate: "Booking room #{@room.name} was successfully created"
+  bdelete: "Booking room #{@room.name} was successfully delete"
   booking: Booking
-  mybookings: 'My bookings'
+  bupdate: "Booking room #{@room.name} was successfully update"
+  check_in: "Check in"
+  check_out: "Check out"
+  days: Days
+  delete: Delete
+  edit: Edit
   editprofile: "Edit Profile"
-  logout: 'Log Out'
-  signup: "Sidn Up"
+  ausure: 'Are you sure?'
+  hello: "Hello world"
+  hotel: Hotel
+  hotels: Hotels
   login: "Log in"
-
-
-  form:
-    login: Login
-    pass: Password
-    pass_conf: "Pass. confirmation"
+  logout: "Log Out"
+  mybookings: "My bookings"
+  room: Room
+  rooms: Rooms
+  show: Show
+  signup: "Sidn Up"
+  form: 
     email: E-mail
     firstname: Firstname
     lastname: Lastname
-    or: or
+    login: Login
     logvia: "Login via"
+    or: or
+    pass: Password
+    pass_conf: "Pass. confirmation"
     remme: "Remmember me"
     signup_head: "sign up for new Account"
+    uname: "You email or loginame"
 
-
-  bcreate: "Booking room #{@room.name} was successfully created"
-  bupdate: "Booking room #{@room.name} was successfully update"
-  bdelete: "Booking room #{@room.name} was successfully delete"

@@ -1,3 +1,5 @@
+<div class="col-lg-8 col-lg-offset-2">
+<div class="accordion-inner">
 <p>
   <strong>Дата заезда</strong>
   <%= I18n.l Date.parse(@booking.check_in.to_s), format: :short %>
@@ -22,7 +24,8 @@
   <strong>SubTotal:</strong>
   <%= @booking.subtotal %>
 </p>
-
+</div>
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
 <%= link_to 'Back', bookings_path(params[:room_id] = @booking.room_id) %>
 <%= link_to 'Delete', @booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>

@@ -1,17 +1,18 @@
 
               <h1><%= t 'form.signup_head' %></h1><br />
               <%= form_for(:user, url: registration_path(:user)) do |f| %>
+              <div class="col-lg-12 col-lg-offset-1">
+              <%= f.email_field :email, placeholder: (I18n.t 'form.email'), autofocus: true, class: "form-control"  %>
+              
+              <br>
               <div class="input-group">
-              <%= f.email_field :email, placeholder: (I18n.t 'form.email'), autofocus: true %>
+              <%= f.text_field :login, placeholder: (I18n.t 'form.login'),autofocus: true, class: "form-control"  %>
               </div>
               <div class="input-group">
-              <%= f.text_field :login, placeholder: (I18n.t 'form.login'),autofocus: true %>
+              <%= f.text_field :firstname,placeholder: (I18n.t 'form.firstname'), autofocus: true, class: "form-control"  %>
               </div>
               <div class="input-group">
-              <%= f.text_field :firstname,placeholder: (I18n.t 'form.firstname'), autofocus: true %>
-              </div>
-              <div class="input-group">
-              <%= f.text_field :lastname,placeholder: (I18n.t 'form.lastname'), autofocus: true %>
+              <%= f.text_field :lastname,placeholder: (I18n.t 'form.lastname'), autofocus: true, class: "form-control"  %>
               </div>
               <div class="input-group">
               <%= f.label (I18n.t 'form.pass') %>
@@ -22,7 +23,9 @@
               <%= f.label (I18n.t 'form.pass_conf') %>
               <%= f.password_field :password_confirmation, autocomplete: "off" %>
               </div>
+
               <div class="actions">
                 <%= f.submit (I18n.t 'signup'), class: "login loginmodal-submit" %>
               </div>
               <% end %>
+              </div>
