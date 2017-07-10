@@ -31,3 +31,34 @@
 
 ru:
   hello: "Привет Мир"
+  hotels: Отели
+  rooms: Комнаты
+  booking: Бронирование
+  mybookings: "Мои бронирования"
+  editprofile: "Мой профиль"
+  logout: "Выход"
+  signup: 'Регистрация'
+  login: 'Вход'
+
+  form:
+    login: Логин
+    pass: Пароль
+    pass_conf: "Подтверждение пароля"
+    email: E-mail
+    firstname: Имя
+    lastname: Фамилия
+    or: или
+    logwithout: "Вход через"
+    remme: "Запомни меня"
+    signup_head: "Регистрация нового аккаунта"
+
+
+  bcreate: "Бронирование номера создано"
+  bupdate: "Бронирование номера обновлено"
+  bdelete: "Бронирование номера удалено"
+  
+date:
+   formats:
+     default: "%Y-%m-%d"
+     short: "%b %d"
+     long: "%B %d, %Y"

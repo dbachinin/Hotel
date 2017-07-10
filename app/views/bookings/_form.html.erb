@@ -46,13 +46,12 @@
 <div class="price">
 
 </div>
-<%= form.hidden_field :hotel_id, value: params[:hotel_id], id: :booking_hotel_id if params[:room_id] %>
+<%= form.hidden_field :hotel_id, value: params[:hotel_id], id: :booking_hotel_id if params[:hotel_id] %>
 
 
-<%= form.hidden_field :room_id, value: params[:room_id], id: :room %>
+<%= form.hidden_field :room_id, value: params[:room_id], id: :room if params[:room_id] %>
+<%= form.hidden_field :room_id, value: @booking.room_id, id: :room if params[:room_id] == nil and @room_id == nil%>
 <%= form.hidden_field :booked, id: :booking_booked %>
-
-<%= form.hidden_field :room_id, value: @room_id, id: :room unless params[:room_id] %>
 
 <br>
 <hr>

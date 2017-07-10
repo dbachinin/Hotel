@@ -31,3 +31,29 @@
 
 en:
   hello: "Hello world"
+  rooms: Rooms
+  hotels: Hotels
+  booking: Booking
+  mybookings: 'My bookings'
+  editprofile: "Edit Profile"
+  logout: 'Log Out'
+  signup: "Sidn Up"
+  login: "Log in"
+
+
+  form:
+    login: Login
+    pass: Password
+    pass_conf: "Pass. confirmation"
+    email: E-mail
+    firstname: Firstname
+    lastname: Lastname
+    or: or
+    logvia: "Login via"
+    remme: "Remmember me"
+    signup_head: "sign up for new Account"
+
+
+  bcreate: "Booking room #{@room.name} was successfully created"
+  bupdate: "Booking room #{@room.name} was successfully update"
+  bdelete: "Booking room #{@room.name} was successfully delete"

@@ -1,36 +1,28 @@
 
-              <h1>sign up for new Account</h1><br />
+              <h1><%= t 'form.signup_head' %></h1><br />
               <%= form_for(:user, url: registration_path(:user)) do |f| %>
               <div class="input-group">
-              <%= f.label :email %>
-              <%= f.email_field :email, autofocus: true %>
+              <%= f.email_field :email, placeholder: (I18n.t 'form.email'), autofocus: true %>
               </div>
               <div class="input-group">
-              <%= f.label :login %>
-              <%= f.text_field :login, autofocus: true %>
+              <%= f.text_field :login, placeholder: (I18n.t 'form.login'),autofocus: true %>
               </div>
               <div class="input-group">
-              <%= f.label :firstname %>
-              <%= f.text_field :firstname, autofocus: true %>
+              <%= f.text_field :firstname,placeholder: (I18n.t 'form.firstname'), autofocus: true %>
               </div>
               <div class="input-group">
-              <%= f.label :lastname %>
-              <%= f.text_field :lastname, autofocus: true %>
+              <%= f.text_field :lastname,placeholder: (I18n.t 'form.lastname'), autofocus: true %>
               </div>
               <div class="input-group">
-              <%= f.label :password %>
+              <%= f.label (I18n.t 'form.pass') %>
               <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %>
               <%= f.password_field :password, autocomplete: "off" %>
-              <%= f.label :password_confirmation %>
+              <%= f.label (I18n.t 'form.pass_conf') %>
               <%= f.password_field :password_confirmation, autocomplete: "off" %>
               </div>
               <div class="actions">
-                <%= f.submit "Sign up", class: "login loginmodal-submit" %>
+                <%= f.submit (I18n.t 'signup'), class: "login loginmodal-submit" %>
               </div>
               <% end %>
-
-              <div class="login-help">
-               <a href="#">Allready Have an Account</a>
-             </div>

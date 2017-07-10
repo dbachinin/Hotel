@@ -30,6 +30,7 @@ class BookingsController < ApplicationController
   # GET /bookings/1
   # GET /bookings/1.json
   def show
+    @room_id = @booking.room_id
   end
 
   # GET /bookings/new
@@ -51,6 +52,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1/edit
   def edit
+    @room = @booking.room_id
     # @subprice = price_subtotal(@booking.room_id,Date.parse(@booking.check_in).to_s,Date.parse(@booking.check_out).to_s)
   end
 
@@ -63,7 +65,7 @@ class BookingsController < ApplicationController
     @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out)
     if @booking.save
       respond_to do |format|
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        format.html { redirect_to @booking, notice: (t 'bcreate') }
         format.json { render :show, status: :created, location: @booking }
       end
     else
@@ -79,7 +81,7 @@ end
   def update
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+        format.html { redirect_to @booking, notice: (t 'bupdate') }
         format.json { render :show, status: :ok, location: @booking }
       else
         format.html { render :edit }
@@ -93,7 +95,7 @@ end
   def destroy
     @booking.destroy
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to bookings_url, notice: (t 'bdelete') }
       format.json { head :no_content }
     end
   end

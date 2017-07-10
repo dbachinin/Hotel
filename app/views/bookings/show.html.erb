@@ -1,11 +1,11 @@
 <p>
   <strong>Дата заезда</strong>
-  <%= Date.parse(@booking.check_in.to_s).strftime("%B %d, %Y, %A") %>
+  <%= I18n.l Date.parse(@booking.check_in.to_s), format: :short %>
 </p>
 
 <p>
   <strong>Дата отъезда:</strong>
-  <%= Date.parse(@booking.check_out.to_s).strftime("%B %d, %Y, %A") %>
+  <%= I18n.l Date.parse(@booking.check_out.to_s), format: :short %>
 </p>
 
 <p>
@@ -24,5 +24,5 @@
 </p>
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= link_to 'Back', bookings_path %>
+<%= link_to 'Back', bookings_path(params[:room_id] = @booking.room_id) %>
 <%= link_to 'Delete', @booking, method: :delete, data: { confirm: 'Are you sure?' } %>
