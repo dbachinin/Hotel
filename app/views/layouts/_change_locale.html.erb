@@ -1,3 +1,3 @@
 <% pathh = request.original_url.split('/') %>
-<li><%= link_to 'Русский', "http://ru.#{pathh[2] + request.env['PATH_INFO']}" %></li>
-<li><%= link_to 'English', "http://en.#{pathh[2] + request.env['PATH_INFO']}" %></li> 
+<li><%= link_to 'Русский', "http://ru.localhost:3000#{request.env['PATH_INFO']}" %></li> 
+<li><%= link_to 'English', "http://en.localhost:3000#{request.env['PATH_INFO']}" %></li> 
