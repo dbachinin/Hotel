@@ -1,5 +1,5 @@
 class Price < ApplicationRecord
-	belongs_to :room, polymorphic: true
+	belongs_to :room
 	has_many :taryph
 
 end

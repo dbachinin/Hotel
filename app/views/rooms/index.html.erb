@@ -13,7 +13,7 @@
   </div>
   <div class="row">
     <% @rooms.each do |room| %>
-    <%room.price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today}%>
+    <%room.price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) <= Date.today and Date.parse(i.edate.to_s) >= Date.today}%>
     <div class="col-lg-3">
       <div class="pricing-option">
         <div class="pricing-top">
