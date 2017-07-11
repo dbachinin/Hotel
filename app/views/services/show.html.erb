@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @service.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @service.price %>
+</p>
+
+<p>
+  <strong>Enable:</strong>
+  <%= @service.enable %>
+</p>
+
+<%= link_to 'Edit', edit_booking_service_path([@booking,@service]) %> |
+<%= link_to 'Back', booking_services_path %>

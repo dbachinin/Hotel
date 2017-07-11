@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Services</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Enable</th>
+      <%if current_user.id == 1 %>
+      <th colspan="3"></th>
+      <%end%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <td><%= service.name %></td>
+        <td><%= service.price %></td>
+        <td><%= service.enable %></td>
+        <%if current_user.id == 1 %>
+        <td><%= link_to 'Show', booking_service_path(id: service.id) %></td>
+        <td><%= link_to 'Edit', edit_booking_service_path(id: service.id) %></td>
+        <td><%= link_to 'Destroy', [@booking,service], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%if current_user.id == 1 %>
+<%= link_to 'New Service', new_booking_service_path %>
+<%end%>

@@ -1,5 +1,5 @@
 class Booking < ApplicationRecord
-	# belongs_to :ad_service
+	has_many :services
 	belongs_to :user
 	with_options if: :employ?, on: :create do |room| 
 		room.validates :check_in, presence: true, if: :employed_room

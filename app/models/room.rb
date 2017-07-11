@@ -1,6 +1,6 @@
 class Room < ApplicationRecord
 	belongs_to :hotel
-	has_many :price
+	has_one :price, as: :room
 	def image_urls
 		@files = []
 		dir = 'room' + self.id.to_s+'/'

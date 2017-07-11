@@ -2,10 +2,10 @@
 
 one:
   name: MyString
-  price: MyString
+  price: 1.5
   enable: false
 
 two:
   name: MyString
-  price: MyString
+  price: 1.5
   enable: false
