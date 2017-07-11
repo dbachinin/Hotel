@@ -40,4 +40,4 @@
   # $(document).ready ->
   # $('input[class="daterange"]').daterangepicker()
   # return
-  
+$('.selectpicker').selectpicker 'destroy'

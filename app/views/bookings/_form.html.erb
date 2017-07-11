@@ -1,5 +1,6 @@
 
 <%= javascript_tag do %>
+
       var date = new Date();
       var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
       disa = '<%= @disa.to_json %>';
@@ -20,7 +21,6 @@
 });
 
 }).call(this);
-
 
 
 <% end %>
@@ -55,15 +55,18 @@
 
 <br>
 <hr>
-
-<%= form.select :ad_service, Service.all.where(enable: :true).collect {|p| [ p.name, p.id ] }, {}, multiple: true%>
-
-<div class="actions col-lg-2">
-  <%= form.submit "Забронировать", class: "btn btn-primary btn-block" %>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#selectservice').selectpicker();
+}); </script>
+<%= form.select :ad_service, Service.all.where(enable: :true).collect {|p| p.name }, {}, multiple: true, class: "form-control", id: :selectservice%>
+<br>
+<hr>
+<div class="actions col-lg-3">
+  <%= form.submit (t :booking), class: "btn btn-primary btn-block" %>
 </div>
 <% end %>
 <%= javascript_tag do %>
-
 $('.input-sm').on('keyup keypress blur change', function(){
 var tmp = null;
 $.ajax({

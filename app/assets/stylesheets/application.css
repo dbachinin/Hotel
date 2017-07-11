@@ -16,6 +16,7 @@
  *= require_tree .
  *= require_self
  *= require font-awesome
+ *= require bootstrap-select
  */
 .blocktext {
     margin-left: auto;
