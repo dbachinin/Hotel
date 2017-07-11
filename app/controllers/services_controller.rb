@@ -1,11 +1,10 @@
 class ServicesController < ApplicationController
-  before_action :set_service, only: [:show, :edit, :update, :destroy, :booking_id]
+  before_action :set_service, only: [:show, :edit, :update, :destroy]
 
   # GET /services
   # GET /services.json
   def index
-    @booking = Booking.find(params[:booking_id])
-    @services = @booking.services.all
+    @services = Service.all
   end
 
   # GET /services/1
@@ -15,8 +14,8 @@ class ServicesController < ApplicationController
 
   # GET /services/new
   def new
-    @booking = Booking.find(params[:booking_id])
-    @service = @booking.services.build
+    @service = Service.new
+    # @price = @service.prices.build
   end
 
   # GET /services/1/edit
@@ -26,12 +25,11 @@ class ServicesController < ApplicationController
   # POST /services
   # POST /services.json
   def create
-    @booking = Booking.find(params[:booking_id])
-    @service = @booking.services.new(service_params)
-
+    @service = Service.new(service_params)
+    # @price = @service.prices.build
     respond_to do |format|
       if @service.save
-        format.html { redirect_to [@booking,@service], notice: 'Service was successfully created.' }
+        format.html { redirect_to @service, notice: 'Service was successfully created.' }
         format.json { render :show, status: :created, location: @service }
       else
         format.html { render :new }
@@ -45,7 +43,7 @@ class ServicesController < ApplicationController
   def update
     respond_to do |format|
       if @service.update(service_params)
-        format.html { redirect_to (booking_service_path), notice: 'Service was successfully updated.' }
+        format.html { redirect_to @service, notice: 'Service was successfully updated.' }
         format.json { render :show, status: :ok, location: @service }
       else
         format.html { render :edit }
@@ -59,7 +57,7 @@ class ServicesController < ApplicationController
   def destroy
     @service.destroy
     respond_to do |format|
-      format.html { redirect_to (booking_services_path), notice: 'Service was successfully destroyed.' }
+      format.html { redirect_to @service, notice: 'Service was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -72,6 +70,6 @@ class ServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_params
-      params.permit(:name, :price, :enable, :booking_id)
+      params.permit(:name, :price, :enable)
     end
 end

@@ -56,6 +56,8 @@
 <br>
 <hr>
 
+<%= form.select :ad_service, Service.all.where(enable: :true).collect {|p| [ p.name, p.id ] }, {}, multiple: true%>
+
 <div class="actions col-lg-2">
   <%= form.submit "Забронировать", class: "btn btn-primary btn-block" %>
 </div>

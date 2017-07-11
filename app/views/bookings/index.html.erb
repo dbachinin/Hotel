@@ -28,7 +28,7 @@
         <td><%= User.find(booking.user_id).email %></td>
         <%end%>
         <td><%= (Date.parse(booking.check_out.to_s) - Date.parse(booking.check_in.to_s)).to_i %></td>
-        <td><%= button_to (t :show), booking, class: "btn btn-default" %></td>
+        <td><%= button_to (t :show), booking, method: :get, class: "btn btn-default" %></td>
         <td><%= button_to (t :edit), edit_booking_path(booking), class: "btn btn-default" %></td>
         <td><%= button_to (t :delete), booking, method: :delete, data: { confirm: (t 'ausure') }, class: "btn btn-danger" %></td>
       </tr>

@@ -1,0 +1,3 @@
+<%= form_with(booking) do |f| %>
+<%= collection_select(:add_service, :service_id, Service.all.where(enable: :true), :id, :name, :price) %>
+<% end %>

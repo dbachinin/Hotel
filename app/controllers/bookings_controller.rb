@@ -62,7 +62,8 @@ class BookingsController < ApplicationController
     @booking = current_user.bookings.build(booking_params)
     @hotel = Hotel.find(@booking.hotel_id)
     @room = Room.find(@booking.room_id)
-    @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out)
+    @booking.ad_service.reject! { |c| c.empty? }
+    @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out) + @booking.ad_service.inject(0){|sum, x| sum + Service.find(x).price}
     if @booking.save
       respond_to do |format|
         format.html { redirect_to @booking, notice: (t 'bcreate') }
@@ -108,6 +109,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:check_in, :check_out, :hotel_id, :room_id, :booked, :subtotal)
+      params.require(:booking).permit(:check_in, :check_out, :hotel_id, :room_id, :booked, :subtotal, ad_service: [])
     end
 end

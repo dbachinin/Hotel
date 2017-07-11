@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   
   
   devise_for :users
-  resources :bookings do
-    resources :services
-  end
+  resources :bookings
+  resources :services
+  
   resources :hotels, only: [:show, :index] do
   	resources :rooms, only: [:show, :index] do
   		resources :prices, shallow: true do

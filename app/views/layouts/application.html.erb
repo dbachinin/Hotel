@@ -71,6 +71,9 @@
               <ul id="login-dp" class="dropdown-menu">
                 <li><%= link_to (t :mybookings), bookings_path, class: 'navbar-link' %></li>
                 <li><%= link_to (t :editprofile), edit_user_registration_path, class: 'navbar-link' %></li>
+                <% if current_user.id == 1%>
+                <li><%= link_to 'Ad_services', services_path %></li>
+                <% end %>
                 <li class="divider"></li>
                 <li><%= link_to (t :logout), destroy_user_session_path, method: :delete, class: 'navbar-link'  %></li>
                 <% else %>

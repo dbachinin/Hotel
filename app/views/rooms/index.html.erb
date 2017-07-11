@@ -13,14 +13,14 @@
   </div>
   <div class="row">
     <% @rooms.each do |room| %>
-    <%room.price.last.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today}%>
+    <%room.price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today}%>
     <div class="col-lg-3">
       <div class="pricing-option">
         <div class="pricing-top">
           <span class="pricing-edition">сейчас</span>
           <span class="price">
             <small style="bottom: 25px;left: 5px;">₽</small>
-            <span class="price-amount"><%= room.price.last.price+@index %></span>
+            <span class="price-amount"><%= room.price.price+@index %></span>
             <small style="left: 0px;">/д</small>
           </span>
         </div>

@@ -11,7 +11,7 @@ module SubtotalHelper
 		attr_accessor :room_id, :check_in, :check_out
 
 		def calc_subtotal
-			tar = Room.find(room_id).price.last.taryph
+			tar = Room.find(room_id).price.taryph
 			@cena ||=0
 			zaezd = Date.parse(check_in.to_s)
 			otezd = Date.parse(check_out.to_s)
@@ -25,7 +25,7 @@ module SubtotalHelper
 			# p @tar
 
 			@tar.each do |i|
-				cena = Room.find(room_id).price.last.price + Taryph.find(i).index
+				cena = Room.find(room_id).price.price + Taryph.find(i).index
 				nachalo_perioda = Date.parse(tar.find(i).udate.to_s)
 				conec_perioda = Date.parse(tar.find(i).edate.to_s)
 
