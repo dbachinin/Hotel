@@ -1,5 +1,10 @@
 <div class="col-lg-8 col-lg-offset-2">
 <div class="accordion-inner">
+<hr>
+<br>
+<h2><%= (t :accomod).upcase %></h2>
+<hr>
+<br>
 <p>
   <strong><%=(t :check_in) + ":"%></strong>
   <%= I18n.l Date.parse(@booking.check_in.to_s), format: :short %>
@@ -15,6 +20,7 @@
   <%= Hotel.find(@booking.hotel_id).name %>
 </p>
 
+
 <p>
   <strong><%=(t :room) + ":"%></strong>
   <%= Room.find(@booking.room_id).name %>
@@ -22,10 +28,27 @@
 
 <p>
   <strong><%=(t :subtotal) + ":"%></strong>
-  <%= @booking.subtotal %>
+  <%= price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out) %>
 </p>
+
+<hr>
+<h2><%= (t :adservices).upcase %></h2>
+<hr>
+<% Service.find(@booking.ad_service).each do |service| %>
+ <strong><%=(t :adservice) + ":"%></strong>
+ <%= (service.name) + ":" + (service.price.to_s) + " ₽" %>
+ <br>
+ <%end%>
+
+<hr>
+<h3>
+  <strong><%=(t :subtotal) + ":"%></strong>
+  <%= @booking.subtotal.to_s + " ₽"%>
+</h3>
+
+
 </div>
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= link_to 'Back', bookings_path(params[:room_id] = @booking.room_id) %>
-<%= link_to 'Delete', @booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to (t :edit), edit_booking_path(@booking) %> |
+<%= link_to (t :back), bookings_path(params[:room_id] = @booking.room_id) %>
+<%= link_to (t :delete), @booking, method: :delete, data: { confirm: (t :ausure) } %>
 </div>

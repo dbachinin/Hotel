@@ -37,7 +37,11 @@
     price.taryph.each do |i| 
       per = i.udate.to_s + "<->" + i.edate.to_s
       cen = price.price+i.index
+      if I18n.locale == :ru
       month = ["Январь","Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+      else
+      month = ["January","February", "March", "April", "May", "Jun", "July", "Agust", "September", "Oktember", "November", "December"]
+      end
       %>
       <div class="col-lg-3">
         <div class="pricing-option">

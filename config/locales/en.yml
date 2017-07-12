@@ -49,6 +49,9 @@ en:
   login: "Log in"
   logout: "Log Out"
   mybookings: "My bookings"
+  adservices: "Advanced services"
+  adservice:  "Advanced service"
+  accomod:    "Hotel accommodation"
   subtotal: "Subtotal"
   room: Room
   rooms: Rooms
