@@ -1,28 +1,83 @@
-<div class="col-lg-8 col-lg-offset-2">
-  <div id="registerwrap">
-    <h1><%= (t 'hotels') %></h1>
+
+<br>
+<br>
+<div id="registerwrap">
+  <h1><%= (t 'hotels') %></h1>
+</div>
+<br>
+<br>
+
+<% @hotels.each do |hotel| %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <%= link_to hotel_rooms_path(hotel) do %>
+      <h2 class="centered"><%= hotel.name.upcase %></h2>
+      <hr>
+      <br>
+
+      <%= carousel_for(hotel.image_urls)%>
+      <br>
+      <hr>
+      <div class="accordion" id="accordion<%= hotel.id %>">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="centered accordion-toggle" data-toggle="collapse" data-parent="#accordion<%= hotel.id %>" href="#collapse<%= hotel.id %>">
+              <%= hotel.name.upcase %>
+            </a>
+          </div><!-- /accordion-heading -->
+          <br>
+          <div id="collapse<%= hotel.id %>" class="accordion-body collapse in">
+            <div class="accordion-inner">
+              <%= raw(hotel.description) %>
+            </h3>
+          </div><!-- /accordion-inner -->
+        </div><!-- /collapse -->
+      </div><!-- /accordion-group -->
+      <br>
+
+
+
+      <br>
+      <hr>
+      <br>
+
+      <% end %>
+    </div>
   </div>
-  <br>
-  <br>
-  <% @hotels.each do |hotel| %>
-  <%= link_to hotel do %>
-  <h2 class="centered"><%= hotel.name.upcase %></h2>
-  <hr>
-  <br>
+</div>
+</div>
+<% @hotel = hotel %>
+<% @rooms = hotel.rooms.all %>
+<div id="pricing" class="container" name="pricing">
+  <div id="registerwrap">
+    <h1 class="centered">КОМНАТЫ В <br> 
 
-  <%= carousel_for(hotel.image_urls)%>
-  <br>
-  <hr>
+      <div class="accordion" id="accordion2<%= hotel.id %>">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="centered accordion-toggle" data-toggle="collapse" data-parent="#accordion2<%= hotel.id %>" href="#collapse2<%= hotel.id %>">
+              <%= @hotel.name.upcase %>
+            </a>
+          </div><!-- /accordion-heading -->
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div id="collapse2<%= hotel.id %>" class="accordion-body collapse">
+    <div class="accordion-inner">
+      <br>
+      <br>
 
-  <h3><%= raw(hotel.description) %></h3>
-  <br>
-  <hr>
-  <br>
 
-  <% end %>
-  <% end %>
-  <br>
+      <%= render file: "#{Rails.root}/app/views/rooms/_rooms.html.erb" %>
+    </div>
+  </h3>
+</div><!-- /accordion-inner -->
+</div><!-- /collapse -->
+</div><!-- /accordion-group -->
 </div>
 
+<% end %>
 
 

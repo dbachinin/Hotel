@@ -24,7 +24,7 @@
                 </div>
                 <div class="actions">
                   <%= f.submit (t 'form.login'), class: "btn btn-primary btn-block" %>
-                  <a> <%= t 'form.or'%> </a><br><%= link_to (t 'signup'), new_user_registration_path, class: "btn btn-primary btn-block" %>
+                  <a><%= t 'form.or'%> </a><br><a class= "btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#signup-modal"></span> <%= t :signup%></a>
                 </div>
                 <% end %>
               </form>

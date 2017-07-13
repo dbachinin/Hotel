@@ -3,56 +3,8 @@
       <h1 class="centered">КОМНАТЫ В <br> <%= @hotel.name.upcase %></h1>
       </div>
   <br>
-  <div class="row">
-    <br>
-    <div class="col-lg-6 col-lg-offset-3">
-      <hr>
-      <br>
-      <br>
-    </div>
-  </div>
-  <div class="row">
-    <% @rooms.each do |room| %>
-    <%room.price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) <= Date.today and Date.parse(i.edate.to_s) >= Date.today}%>
-    <div class="col-lg-3">
-      <div class="pricing-option">
-        <div class="pricing-top">
-          <span class="pricing-edition">сейчас</span>
-          <span class="price">
-            <small style="bottom: 25px;left: 5px;">₽</small>
-            <span class="price-amount"><%= room.price.price+@index %></span>
-            <small style="left: 0px;">/д</small>
-          </span>
-        </div>
-        <ul>
-          <li>
-          Номер
-            <strong><%= room.name %></strong>
-            
-          </li>
-          <li>
-            
-            <strong><%= room.description %></strong>
-            
-          </li>
-          <li>
-            <strong><%= room.bed %></strong>
-            Кровати
-          </li>
-          <% if room.lux %>
-          <li>
-            <i class="fa fa-diamond" aria-hidden="true"></i>
-            *
-          </li>
-          <%end%>
-        </ul>
-        <a class="pricing-signup"<%= link_to 'Смотреть', ([@hotel, room]) %></a>
-      </div>
-    </div>
-
-
-
-    <%end%>
+    <div class="row">
+  <%= render 'rooms' %>
   </div>
 
 </div>

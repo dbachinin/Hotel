@@ -1,73 +1,117 @@
-<div class="col-lg-8 col-lg-offset-2">
-<div id="pricing" class="container" name="pricing">
+<div class="col-lg-6 col-lg-offset-3">
+
   <br>
   <div class="row">
     <br>
-    
-      <h2 class="centered"><%= @room.name %></h2>
-      <hr>
-      <br>
-      <br>
-      <p class="centered"><%= @room.description %></p>
-      <% price = @room.price %>
 
-   </div>
-  </div>
+    <h2 class="centered"><%= @room.name %></h2>
+    <hr>
+    <br>
+    <br>
 
+    <% price = @room.price %>
+  
+    <% if current_user && current_user.id == 1 %>
+    <%= link_to 'Back', hotel_rooms_path %>|
 
-<br>
-<br>
-<hr>
-<% if current_user && current_user.id == 1 %>
-<%= link_to 'Back', hotel_rooms_path %>|
+    <%= link_to 'Prices', ([@hotel, @room,'prices']) %>|
 
-<%= link_to 'Prices', ([@hotel, @room,'prices']) %>|
+    <%= link_to 'Booking', {controller: "bookings", action: "new", hotel_id: params[:hotel_id], room_id: params[:id]} %>
+    <% end %>
+    <br>
 
-<%= link_to 'Booking', {controller: "bookings", action: "new", hotel_id: params[:hotel_id], room_id: params[:id]} %>
-<% end %>
-<br>
-
-<%= carousel_for(@room.image_urls)%>
-<br>
-<hr>
-<br>
-
-  <div class="row">
-    <% 
-    price.taryph.each do |i| 
-      per = i.udate.to_s + "<->" + i.edate.to_s
-      cen = price.price+i.index
-      if I18n.locale == :ru
-      month = ["Январь","Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
-      else
-      month = ["January","February", "March", "April", "May", "Jun", "July", "Agust", "September", "Oktember", "November", "December"]
-      end
-      %>
-      <div class="col-lg-3">
-        <div class="pricing-option">
-          <div class="pricing-top">
-          <% if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) > Date.today  %>
-            <span class="special-label">ЦЕНА СЕЙЧАС!</span>
-            <%end%>
+    <%= carousel_for(@room.image_urls)%>
+    <br>
+    <hr>
+    <br>
+    <div class="accordion" id="accordion2">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= @room.id %>">
+            <%= @room.description %>
             
-            <span class="pricing-edition"><%=month[Date.parse(i.udate.to_s).month - 1]%></span>
-            <span class="price">
-              <small style="bottom: 25px;left: 5px;">₽</small>
+          </a>
+        </div><!-- /accordion-heading -->
+        <br>
+        <div id="collapse<%= @room.id %>"" class="accordion-body collapse">
+          <div class="accordion-inner">
 
-              <span class="price-amount"><%= cen %></span>
-              <small style="left: 0px;">/д</small>
-            </span>
+
+            <br>
+            <hr>
+
+              <div class="col-offset row">
+                <% 
+                price.taryph.each do |i| 
+                  per = i.udate.to_s + "<->" + i.edate.to_s
+                  cen = price.price+i.index
+                  if I18n.locale == :ru
+                    month = ["Январь","Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+                  else
+                    month = ["January","February", "March", "April", "May", "Jun", "July", "Agust", "September", "Oktember", "November", "December"]
+                  end
+                  %>
+
+                  <div class="col-sm-6 col-lg-4">
+                    <div class="pricing-option">
+                      <div class="pricing-top">
+                        <% if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) > Date.today  %>
+                        <span class="special-label">ЦЕНА СЕЙЧАС!</span>
+                        <%end%>
+
+                        <span class="pricing-edition"><%=month[Date.parse(i.udate.to_s).month - 1]%></span>
+                        <span class="price">
+                          <small style="bottom: 25px;left: 5px;">₽</small>
+
+                          <span class="price-amount"><%= cen %></span>
+                          <small style="left: 0px;">/д</small>
+                        </span>
+                      </div>
+                      <ul>
+                        <li>
+                          <strong><%= per %></strong>
+                        </li>
+                      </ul>
+
+                    </div>
+
+                  </div>
+                  <%end%>
+                </div><!-- /accordion-inner -->
+              </div><!-- /collapse -->
+            </div><!-- /accordion-group -->
+
+
+          <style type="text/css">
+            body {
+              background-image: url(<%= Dir["room"+ @room.id.to_s+"/*"].sample%>;)
+              background-repeat: repeat-x repeat-y;
+            }
+          </style>
+
+          <div id="registerwrap">
+            <h1 class="centered">Бронирование номера <%= @room.name.upcase %>
+              <br>
+              в <%= @hotel.name %>
+            </h1>
           </div>
-          <ul>
-            <li>
-            <strong><%= per %></strong>
-            </li>
-        </ul>
+          <% price = Price.where(room_id: params[:room_id]).last %>
 
+          <div class="pricing-option">
+            <div class="pricing-top">
+              <span class="pricing-edition"><%= t :summ%></span>
+              <span class="price">
+
+                <span class="price-amount">
+                  <div id="subprice"></div>
+                </span>
+              </span>
+
+            </div>
+
+            <%= render file: "#{Rails.root}/app/views/bookings/form2.html.erb" %>
           </div>
-
+        </div>
       </div>
-      <%end%>
     </div>
   </div>
-</div>

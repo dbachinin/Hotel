@@ -1,9 +1,9 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
- # respond_to :json
+  respond_to :pdf
 
-  include SubtotalHelper
+ include SubtotalHelper
   # GET /bookings
   # GET /bookings.json
   def index
@@ -31,6 +31,12 @@ class BookingsController < ApplicationController
   # GET /bookings/1.json
   def show
     @room_id = @booking.room_id
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file"
+      end
+    end
   end
 
   # GET /bookings/new
@@ -75,7 +81,7 @@ class BookingsController < ApplicationController
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
-end
+  end
 
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
@@ -111,4 +117,4 @@ end
     def booking_params
       params.require(:booking).permit(:check_in, :check_out, :hotel_id, :room_id, :booked, :subtotal, :discount, :ad_service => [])
     end
-end
+  end

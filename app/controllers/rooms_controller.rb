@@ -13,6 +13,9 @@ class RoomsController < ApplicationController
   def show
     @hotel = Hotel.find(params[:hotel_id])
     @room = @hotel.rooms.find(params[:id])
+    @booking = current_user.bookings.build
+    @disa = @booking.search_full_employ(@room.id)
+    @disa.uniq!
   end
 
   # GET /rooms/new

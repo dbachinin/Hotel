@@ -1,0 +1,46 @@
+
+    <% @rooms.each do |room| %>
+    <%room.price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) <= Date.today and Date.parse(i.edate.to_s) >= Date.today}%>
+    <div class="col-lg-3">
+      <div class="pricing-option">
+        <div class="pricing-top">
+          <span class="pricing-edition">сейчас</span>
+          <span class="price">
+            <small style="bottom: 25px;left: 5px;">₽</small>
+            <span class="price-amount"><%= room.price.price+@index %></span>
+            <small style="left: 0px;">/д</small>
+          </span>
+        </div>
+        <ul>
+          <li>
+          Номер
+            <strong><%= room.name %></strong>
+            
+          </li>
+          <li>
+            
+            <strong><%= room.description %></strong>
+            
+          </li>
+          <li>
+            <strong><%= room.bed %></strong>
+            Кровати
+          </li>
+          <% if room.lux %>
+          <li>
+            <i class="fa fa-diamond" aria-hidden="true"></i>
+            *
+          </li>
+          <%end%>
+        </ul>
+        <% if current_user %>
+        <a class="pricing-signup"<%= link_to 'Смотреть', ([@hotel, room]) %></a>
+        <%else%>
+        <a class="pricing-signup" href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> <%= t :login%></a>
+        <%end%>
+      </div>
+    </div>
+
+
+
+    <%end%>
