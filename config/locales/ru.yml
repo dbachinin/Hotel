@@ -110,6 +110,9 @@ ru:
   adservices: "Дополнительные услуги"
   adservice:  "Дополнительная услуга"
   accomod:    "Проживание в гостинице"
+  total:  "Всего"
+  client: "Клиент"
+  subtotal: "Даты отъезда и приезда совпадают!"
   editprofile: "Мой профиль"
   logout: "Выход"
   signup: "Регистрация"
@@ -124,7 +127,7 @@ ru:
   check_in: "Заезд"
   check_out: "Отъезд"
   days:       "Дни"
-  subtotal: "Предварительный итог"
+  subtotall: "Предварительный итог"
   ausure: "Вы серъезно?"
   form:
     login: "Логин"

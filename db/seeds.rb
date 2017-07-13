@@ -77,3 +77,14 @@ Taryph.create([
     {udate: "2017-09-15",edate: "2017-10-01", index: 1500.0, price_id: 2},
     {udate: "2017-10-01",edate: "2017-11-30", index: 0.0, price_id: 2},
     ])
+Service.create([
+    {name: "Встреча на Ж/Д вокзале", price: "1000", enable: true},
+    {name: "Встреча в Аэропорту", price: "1000", enable: true},
+    {name: "Экскурся в Олимпийский Парк", price: "1000", enable: true},
+    {name: "Экскурсия на Красную Поляну", price: "1000", enable: true},
+    {name: "Экскурсия на гору Ахун", price: "1000", enable: true},
+    {name: "Посещение Океанариума", price: "1000", enable: true},
+    {name: "Экскурсия в Парк \"Ривьера\"", price: "1000", enable: true},
+    {name: "Ночной Сочи", price: "1000", enable: true},
+    {name: "Стирка", price: "1000", enable: true},
+    ])

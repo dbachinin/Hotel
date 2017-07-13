@@ -2,9 +2,13 @@
 <div class="accordion-inner">
 <hr>
 <br>
-<h2><%= (t :accomod).upcase %></h2>
+<h2><%= ((t :accomod) + ": " + (Hotel.find(@booking.hotel_id).name)).upcase %></h2>
 <hr>
 <br>
+
+<p>
+<strong><%= t :client%></strong>
+<%= User.find(@booking.user_id).firstname + " " + User.find(@booking.user_id).lastname %>
 <p>
   <strong><%=(t :check_in) + ":"%></strong>
   <%= I18n.l Date.parse(@booking.check_in.to_s), format: :short %>
@@ -27,13 +31,13 @@
 </p>
 
 <p>
-  <strong><%=(t :subtotal) + ":"%></strong>
+  <strong><%=(t :subtotall) + ":"%></strong>
   <%= price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out) %>
 </p>
 
 <hr>
-<h2><%= (t :adservices).upcase %></h2>
-<hr>
+<h3><%= (t :adservices) %></h3>
+
 <% Service.find(@booking.ad_service).each do |service| %>
  <strong><%=(t :adservice) + ":"%></strong>
  <%= (service.name) + ":" + (service.price.to_s) + " ₽" %>
@@ -42,7 +46,7 @@
 
 <hr>
 <h3>
-  <strong><%=(t :subtotal) + ":"%></strong>
+  <strong><%=(t :total) + ":"%></strong>
   <%= @booking.subtotal.to_s + " ₽"%>
 </h3>
 

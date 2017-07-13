@@ -109,6 +109,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:check_in, :check_out, :hotel_id, :room_id, :booked, :subtotal, ad_service: [])
+      params.require(:booking).permit(:check_in, :check_out, :hotel_id, :room_id, :booked, :subtotal, :discount, :ad_service => [])
     end
 end

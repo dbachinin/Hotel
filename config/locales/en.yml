@@ -46,13 +46,16 @@ en:
   hello: "Hello world"
   hotel: Hotel
   hotels: Hotels
+  subtotal: "The dates departures and arrival are coincide!"
   login: "Log in"
   logout: "Log Out"
   mybookings: "My bookings"
   adservices: "Advanced services"
   adservice:  "Advanced service"
   accomod:    "Hotel accommodation"
-  subtotal: "Subtotal"
+  total:  "Total"
+  client: "Client"
+  subtotall: "Subtotal"
   room: Room
   rooms: Rooms
   show: Show
