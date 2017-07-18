@@ -1,10 +1,10 @@
 module SubtotalHelper
-	def price_subtotal(room_id,check_in, check_out)
+	def price_subtotal(room_id,check_in,check_out)
 		Subtotal.new(room_id,check_in, check_out).calc_subtotal
 	end
 
 	class Subtotal
-		def initialize(room_id,check_in, check_out)
+		def initialize(room_id,check_in,check_out)
 			@room_id, @check_in, @check_out = room_id, check_in, check_out
 		end
 

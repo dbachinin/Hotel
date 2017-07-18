@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   
   
   devise_for :users
-  resources :bookings
+  resources :bookings do
+  	collection do
+  		get 'download_pdf'
+  	end
+  end
   resources :services
   
   resources :hotels, only: [:show, :index] do

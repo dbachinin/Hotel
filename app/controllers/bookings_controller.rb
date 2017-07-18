@@ -1,8 +1,8 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  respond_to :pdf
-
+  #respond_to :pdf
+  # require 'app/pdfs/BookingReports'
  include SubtotalHelper
   # GET /bookings
   # GET /bookings.json
@@ -31,13 +31,21 @@ class BookingsController < ApplicationController
   # GET /bookings/1.json
   def show
     @room_id = @booking.room_id
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: "file"
-      end
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+    #     pdf = BookingReports.new(@booking)
+    #     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+    #   end
+    # end
   end
+
+def download_pdf
+  define_params = params
+  @booking = (define_params[:booking])
+  pdf = BookingReports.new(@booking).to_pdf
+  send_data pdf, :type => 'application/pdf', :filename => "report.pdf"
+end
 
   # GET /bookings/new
   def new

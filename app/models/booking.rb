@@ -1,4 +1,5 @@
 class Booking < ApplicationRecord
+	before_create :rand_id
 	has_many :services, dependent: :destroy
 	belongs_to :user
 	with_options if: :employ?, on: :create do |room| 
@@ -32,6 +33,12 @@ class Booking < ApplicationRecord
 		# cen = price + Taryph.find(@tar).index if (check_in - Taryph.find(@tar).edate).to_i > (check_in - check_out).to_i
 		
 		private
+		def rand_id
+			begin
+				self.id = SecureRandom.random_number(1_000_000)
+			end while Booking.where(id: self.id).exists?
+		end
+
 		def employed_room
 			Booking.where(room_id: self.room_id).each do |i|
 				if Date.parse(i.check_out.to_s) <= Date.parse(self.check_out.to_s) && Date.parse(i.check_in.to_s) >= Date.parse(self.check_in.to_s)

@@ -41,7 +41,8 @@ gem 'normalize-rails'
 gem 'font-awesome-rails'
 gem 'rails-i18n'
 gem 'geocoder'
-gem 'wkhtmltopdf-binary'
+gem 'prawn'
+gem 'prawn-table'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
