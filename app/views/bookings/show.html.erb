@@ -55,5 +55,5 @@
 <%= link_to (t :edit), edit_booking_path(@booking) %> |
 <%= link_to (t :back), bookings_path(params[:room_id] = @booking.room_id) %>
 <%= link_to (t :delete), @booking, method: :delete, data: { confirm: (t :ausure) } %>
-<%= link_to 'Download_PDF', download_pdf_bookings_path(booking: @booking.id) %>
+<%= link_to 'Download_PDF', download_pdf_bookings_path(booking: @booking.id), target: :_blank %>
 </div>

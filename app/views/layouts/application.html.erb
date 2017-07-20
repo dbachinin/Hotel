@@ -49,21 +49,14 @@
         </div>
 
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <% if request.original_fullpath == "/" or  (@booking and params[:room_id] == nil)%> 
-            <li class="active"><%= link_to (t :hotels), root_path%></li>
-            <% elsif request.original_url.split('/').last == "rooms"%>
-            <li><%= link_to (t :hotels), root_path%></li>
-            <li class="active"><%= link_to (t :rooms), hotel_rooms_path(@hotel) %></li>
-            <% elsif (@room and @hotel) or (params[:room_id] and params[:hotel_id]) and request.original_url.split('/').last != "prices"%>
-            <li><%= link_to (t :hotels), root_path%></li>
-            <li><%= link_to (t :rooms), hotel_rooms_path(@hotel) %></li>
-            <li><%= link_to (t :booking), {controller: "bookings", action: "new", hotel_id: params[:hotel_id], room_id: params[:id]} %></li>
-            <%elsif (@hotel and params[:room_id] == nil)%>
-            <li><%= link_to (t :hotels), root_path%></li>
-            <li><%= link_to (t :rooms), hotel_rooms_path(@hotel) %></li>
-
+            <% Hotel.all.each do |hotel|
+              if hotel.id == Hotel.first.id %>
+            <li class="active"><a href="#hotel<%= hotel.id%>" class="smoothScroll"><%= hotel.name%></a></li>
+            <%else%>
+            <li><a href="#hotel<%= hotel.id%>" class="smoothScroll"><%= hotel.name%></a></li>
+            <%end%>
             <%end%>
           </ul>
           <ul class="nav navbar-nav navbar-right">

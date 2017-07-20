@@ -17,34 +17,23 @@ class BookingsController < ApplicationController
   end
   def subprice
     @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s)
-    # render do
-    #   subprice.js.erb {}
-    # end
+
     p @subprice
-    # respond_to do |format|
-    #   format.html
-    #   format.js 
-    # end
+
 
   end
   # GET /bookings/1
   # GET /bookings/1.json
   def show
     @room_id = @booking.room_id
-    # respond_to do |format|
-    #   format.html
-    #   format.pdf do
-    #     pdf = BookingReports.new(@booking)
-    #     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
-    #   end
-    # end
+
   end
 
 def download_pdf
   define_params = params
   @booking = (define_params[:booking])
-  pdf = BookingReports.new(@booking).to_pdf
-  send_data pdf, :type => 'application/pdf', :filename => "report.pdf"
+  pdf = BookingReports.new(request.original_url,@booking).to_pdf
+  send_data pdf, :type => 'application/pdf', :filename => "performe_#{@booking}.pdf"
 end
 
   # GET /bookings/new
