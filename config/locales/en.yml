@@ -32,21 +32,21 @@
 --- 
 en: 
   pric: "Price"
-  back: Back
+  back: "Back"
   bcreate: "Booking room #{@room.name} was successfully created"
   bdelete: "Booking room #{@room.name} was successfully delete"
-  booking: Booking
+  booking: "Booking"
   bupdate: "Booking room #{@room.name} was successfully update"
   check_in: "Check in"
   check_out: "Check out"
-  days: Days
-  delete: Delete
-  edit: Edit
+  days: "Days"
+  delete: "Delete"
+  edit: "Edit"
   editprofile: "Edit Profile"
   ausure: 'Are you sure?'
   hello: "Hello world"
-  hotel: Hotel
-  hotels: Hotels
+  hotel: "Hotel"
+  hotels: "Hotels"
   subtotal: "The dates departures and arrival are coincide!"
   login: "Log in"
   logout: "Log Out"
@@ -59,21 +59,21 @@ en:
   total:  "Total"
   client: "Client"
   subtotall: "Subtotal"
-  room: Room
-  rooms: Rooms
-  show: Show
+  room: "Room"
+  rooms: "Rooms"
+  show: "Show"
   signup: "Sidn Up"
   prices: "Prices"
 
   taryphs: "Taryps"
   form: 
-    email: E-mail
-    firstname: Firstname
-    lastname: Lastname
-    login: Login
+    email: "E-mail"
+    firstname: "Firstname"
+    lastname: "Lastname"
+    login: "Login"
     logvia: "Login via"
     or: or
-    pass: Password
+    pass: "Password"
     pass_conf: "Pass. confirmation"
     remme: "Remmember me"
     signup_head: "sign up for new Account"

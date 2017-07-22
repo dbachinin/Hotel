@@ -15,10 +15,10 @@
   }
 </style>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="<%= t :sitedesk%>">
-<meta name="author" content="dbachinin">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="<%= t :sitedesk%>">
+  <meta name="author" content="dbachinin">
   <title>HotelLudi</title>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
@@ -40,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-           <% if request.original_fullpath == "/"%>
+          <% if request.original_fullpath == "/"%>
           <a class="navbar-brand smoothScroll active" href="#home">
             <%= image_tag("logo.png")%>
           </a>
@@ -61,7 +61,7 @@
             <%end%>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          <%= render file: 'layouts/_change_locale.html.erb' %>
+            <%= render file: 'layouts/_change_locale.html.erb' %>
             <% if user_signed_in? %>
 
             <li class="dropdown">
@@ -83,20 +83,15 @@
                 <li><%= link_to (t :logout), destroy_user_session_path, method: :delete, class: 'navbar-link'  %></li>
                 <% else %>
                 <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> <%= t :login%></a></li>
-
-
                 <% end %>
-                
               </div>
             </div>
           </div>
         </div>
       </nav>
     </div>
-
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
-
         <div class="log-section">
           <ul class="nav nav-tabs final-login">
             <li class="active"><a data-toggle="tab" href="#sectionA"><span class="glyphicon glyphicon-log-in"></span> <%= t :login%></a></li>
@@ -106,34 +101,29 @@
             <div id="sectionA" class="tab-pane fade in active">
               <div class="innter-form">
                 <%= render file: "devise/sessions/new2.html.erb"  %>
-             </div>
-             </div>
-             <div id="sectionB" class="tab-pane fade">
-              <div class="innter-form">
-               <%= render file: "devise/registrations/new2.html.erb"  %>
-                
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            <div id="sectionB" class="tab-pane fade">
+              <div class="innter-form">
+               <%= render file: "devise/registrations/new2.html.erb"  %>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
 
 
-        
+ <% if notice %>
+ <p class="alert alert-success"><%= notice %></p>
+ <% end %>
+ <% if alert %>
+ <p class="alert alert-danger"><%= alert %></p>
+ <% end %>
 
 
 
-  <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-
-
-
-  <%= yield %>
+ <%= yield %>
 </body>
 </html>
