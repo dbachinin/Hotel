@@ -16,7 +16,9 @@ class BookingsController < ApplicationController
     #@room = Room.find(params[:room_id])
   end
   def subprice
-    @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s)
+
+    @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s) #+ params[:ad_service].inject(0){|sum, x| sum + Service.find(x).price}
+    p params[:ad_service]    
 
     p @subprice
 

@@ -12,16 +12,16 @@
   </thead>
 
   <tbody>
-    <% @prices.each do |price| %>
+
       <tr>
-      <% price.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today} %>
-        <td><%= price.price.to_s + ": now price "%><strong><%= price.price+@index %></strong></td>
-        <td><%= price.description %></td>
-        <td><%= link_to 'Show', price_path(:id => price.id) %></td>
-        <td><%= link_to 'Edit', edit_price_path(:id => price.id) %></td>
-        <td><%= link_to 'Destroy', (price), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% @prices.taryph.each {|i| @index = i.index if Date.parse(i.udate.to_s) < Date.today and Date.parse(i.edate.to_s) < Date.today} %>
+        <td><%= @prices.price.to_s + ": now price "%><strong><%= @prices.price+@index %></strong></td>
+        <td><%= @prices.description %></td>
+        <td><%= link_to 'Show', price_path(:id => @prices.id) %></td>
+        <td><%= link_to 'Edit', edit_price_path(:id => @prices.id) %></td>
+        <td><%= link_to 'Destroy', (@prices), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+
   </tbody>
 </table>
 
@@ -29,4 +29,4 @@
 
 <%= link_to 'New Price', new_hotel_room_price_path %>|
 <%= link_to 'Back', hotel_room_path(id: params[:room_id]) %>
-<%= link_to 'Taryph', price_taryphs_path(:price_id => @rooms.price.last) %>
+<%= link_to 'Taryph', price_taryphs_path(:price_id => @rooms.price) %>

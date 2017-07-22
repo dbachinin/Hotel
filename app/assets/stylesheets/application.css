@@ -11,7 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
  *= require normalize-rails
- *= require reset
  *= require bootstrap-datepicker3
  *= require_tree .
  *= require_self
@@ -159,7 +158,7 @@ p {
 /* ========== WRAP Configuration ========== */
 
 #headerwrap {
-	background: url(../img/header_bg.jpg) no-repeat center top;
+	background: url(header_bg.jpg) no-repeat center top;
 	margin-top: -50px;
 	padding-top:120px;
 	text-align:center;
@@ -203,7 +202,7 @@ p {
 }
 
 #section01 {
-	background: url(../img/section01.jpg) no-repeat center top;
+	/*background: url(../img/section01.jpg) no-repeat center top;*/
 	padding-top:80px;
 	text-align:center;
 	background-attachment: relative;
@@ -588,7 +587,7 @@ licon {
     display: block;
     font-size: 25px;
     letter-spacing: 8px;
-    padding-bottom: 50px;
+    /*padding-bottom: 50px;*/
 }
 
 .pricing-option .price {

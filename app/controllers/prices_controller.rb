@@ -7,7 +7,7 @@ class PricesController < ApplicationController
     if current_user.id == 1
     @hotel = Hotel.find(params[:hotel_id])
     @rooms = @hotel.rooms.find(params[:room_id])
-    @prices = @rooms.price.all
+    @prices = @rooms.price
   else
     redirect_to hotel_rooms_path(Hotel.find(params[:hotel_id]).id), alert: 'You havent access'
   end

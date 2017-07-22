@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale.to_s%>">
 <style>
   body {
     margin: 30px 0px;
@@ -23,9 +23,6 @@
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'bootstrap.min': 'reload' %>
-  
-  <%= stylesheet_link_tag    'application', media: 'all', 'reset': 'reload' %>
-  
   <%= javascript_include_tag 'application', 'jquery': 'reload' %>
   <%= javascript_include_tag 'application', 'jquery_ujs': 'reload' %>
 
@@ -43,20 +40,24 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">
+           <% if request.original_fullpath == "/"%>
+          <a class="navbar-brand smoothScroll active" href="#home">
             <%= image_tag("logo.png")%>
           </a>
+          <%else%>
+          <a class="navbar-brand smoothScroll" href="/">
+            <%= image_tag("logo.png")%>
+          </a>
+          <%end%>
         </div>
 
 
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <% Hotel.all.each do |hotel|
-              if hotel.id == Hotel.first.id %>
-            <li class="active"><a href="#hotel<%= hotel.id%>" class="smoothScroll"><%= hotel.name%></a></li>
-            <%else%>
+            <% Hotel.all.each do |hotel| %>
+
             <li><a href="#hotel<%= hotel.id%>" class="smoothScroll"><%= hotel.name%></a></li>
-            <%end%>
+            
             <%end%>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -68,8 +69,15 @@
               <ul id="login-dp" class="dropdown-menu">
                 <li><%= link_to (t :mybookings), bookings_path, class: 'navbar-link' %></li>
                 <li><%= link_to (t :editprofile), edit_user_registration_path, class: 'navbar-link' %></li>
+
                 <% if current_user.id == 1%>
                 <li><%= link_to 'Ad_services', services_path %></li>
+                <% if @room%>
+                <li><%= link_to (t :prices), ([@hotel, @room,'prices']), class: 'navbar-link' %></li>
+                <%end%>                
+                <%if [@hotel,@room,@price] && @prices %>
+                <li><%= link_to (t :taryphs), price_taryphs_path(@price||@prices), class: 'navbar-link' %></li>
+                <%end%>
                 <% end %>
                 <li class="divider"></li>
                 <li><%= link_to (t :logout), destroy_user_session_path, method: :delete, class: 'navbar-link'  %></li>
@@ -102,11 +110,6 @@
       </div>
     </div>
   </div>
-
-
-  <section id="home" class="scrollspy" name="home"></section>
-
-
 
 
   <% if notice %>

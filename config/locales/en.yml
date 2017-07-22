@@ -62,6 +62,8 @@ en:
   rooms: Rooms
   show: Show
   signup: "Sidn Up"
+  prices: "Prices"
+  taryphs: "Taryps"
   form: 
     email: E-mail
     firstname: Firstname

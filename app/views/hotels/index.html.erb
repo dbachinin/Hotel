@@ -1,55 +1,96 @@
 
+<% onas = '<p><span style="color: #000000;">Сеть отелей &ldquo;Люди&rdquo; воплощает&nbsp;мечты об отдыхе, и приятном время препровождении, в самом южном и теплом курорте России!</span><br /> <span style="color: #000000;"> Мы предоставляем нашим клиентам ряд эксклюзивных услуг, от активного отдыха высоко в горах, до &mdash; тихого семейного время провождения на пляже города Сочи.</span></p>
+<p><span style="color: #000000;">Наши гостиницы предоставляют идеальный уровень комфорта на любой кошелек, и тем не менее дают возможность насладиться современным комфортом.</span></p>
+<p><span style="color: #000000;">У нас Вы сможете не только путешествовать по курортным городским кварталам, осматривая достопримечательности города Адлер, но и наслаждаться тишиной и уютом в райском горном &nbsp;хвойном лесу, среди вековых кипарисов.</span></p>
+<p><span style="color: #000000;">Мы предоставляем трансфер от аэропорта, и до любой точки необъятного Сочи.</span></p>
+<p><span style="color: #000000;">Познакомившись с нами,&nbsp;Вы больше не будете задаваться&nbsp;вопросом в каких отелях Сочи лучше остановиться. И мы прилагаем все усилия, что бы эта поездка запомнилась Вам.</span></p>
+<p><span style="color: #000000;">Например, остановившись в гостевом доме &ldquo;Версаль 2&rdquo;, в котором любят останавливаться звёзды российского шоу-бизнеса и находящийся в пятидесяти метрах от пляжа Черного моря, Вы сможете&nbsp;окунуться в ночную жизнь курортного города, бурлящую в шаговой доступности.</span></p>
+<p><span style="color: #000000;">А оказавшись в эко-отеле &ldquo;Кипарисовая усадьба&rdquo;, познаете вкус отдыха на природе, в стороне от суеты.</span></p>
+<p><span style="color: #000000;">Горнолыжные трассы Красной Поляны, погрузят Вас в спортивный азарт.</span></p>
+<p><span style="color: #000000;">С нашим пестрым спектром услуг, вы ощутите все разнообразие туризма города Сочи.</span></p>'
+%>
+  <section id="home" class="scrollspy" name="home"></section>
+<div class='headerwrap'>
+  <div class="container">
+    <div class="col-lg-8">
+      <h1>СЕТЬ ОТЕЛЕЙ "ЛЮДИ"</h1>
+      <p class="hidden-xs">Сочи отдых все дела.</p>
+    </div><!-- col-lg-4 -->
+
+  </div><!-- container -->
+</div><!-- headerwrap -->
+<div class="container">
+  <div class="row">
+    <br>
+    <div class="col-lg-8">
+      <h2>CREATE THE BEST PRESENTATION PAGE FOR YOUR APP. A NEW EXPERIENCE FOR YOUR USERS.</h2>
+    </div>
+    <div class="col-lg-4">
+    </div>
+  </div><!-- row -->
+</div> <!-- /container -->
+<div class="container">
+  <div class="row">
+    <br>
+    <br>
+    <div class="col-lg-6 col-lg-offset-3">
+      <%= raw(onas) %>
+    </div>
+  </div>
+</div>
 <br>
 <br>
 <div id="registerwrap">
   <h1><%= (t 'hotels') %></h1>
 </div>
+
 <br>
+
 <br>
 <div id="section01">
 
-<% @hotels.each do |hotel| %>
-<div class="container">
-  <div class="row">
-  <br>
-  <br>
-  <section id="hotel<%= hotel.id%>" class="scrollspy" name="hotel<%= hotel.id%>"></section>
-    <div class="col-lg-6 col-lg-offset-3">
-      <%= link_to hotel_rooms_path(hotel) do %>
-      <h2 class="centered"><%= hotel.name.upcase %></h2>
-      <hr>
+  <% @hotels.each do |hotel| %>
+  <div class="container">
+    <div class="row">
       <br>
-
-      <%= carousel_for(hotel.image_urls)%>
       <br>
-      <hr>
-      <div class="accordion" id="accordion<%= hotel.id %>">
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="centered accordion-toggle" data-toggle="collapse" data-parent="#accordion<%= hotel.id %>" href="#collapse<%= hotel.id %>">
-              <%= hotel.name.upcase %>
-            </a>
-          </div><!-- /accordion-heading -->
-          <br>
-          <div id="collapse<%= hotel.id %>" class="accordion-body collapse in">
-            <div class="accordion-inner">
-              <%= raw(hotel.description) %>
-            </h3>
-          </div><!-- /accordion-inner -->
-        </div><!-- /collapse -->
-      </div><!-- /accordion-group -->
-      <br>
+      <section id="hotel<%= hotel.id%>" class="scrollspy" name="hotel<%= hotel.id%>"></section>
+      <div class="col-lg-6 col-lg-offset-3">
+        <%= link_to hotel_rooms_path(hotel) do %>
+        <h2 class="centered"><%= hotel.name.upcase %></h2>
+        <hr>
+        <br>
+
+        <%= carousel_for(hotel.image_urls)%>
+        <br>
+        <hr>
+        <div class="accordion" id="accordion<%= hotel.id %>">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="centered accordion-toggle" data-toggle="collapse" data-parent="#accordion<%= hotel.id %>" href="#collapse<%= hotel.id %>">
+                <%= hotel.name.upcase %>
+              </a>
+            </div><!-- /accordion-heading -->
+            <br>
+            <div id="collapse<%= hotel.id %>" class="accordion-body collapse in">
+              <div class="accordion-inner">
+                <%= raw(hotel.description) %>
+              </h3>
+            </div><!-- /accordion-inner -->
+          </div><!-- /collapse -->
+        </div><!-- /accordion-group -->
+        <br>
 
 
 
-      <br>
-      <hr>
-      <br>
+        <br>
+        <hr>
+        <br>
 
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 </div>
 <% @hotel = hotel %>
 <% @rooms = hotel.rooms.all %>

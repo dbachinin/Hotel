@@ -51,6 +51,8 @@ ru:
   check_in: "Заезд"
   check_out: "Отъезд"
   days:       "Дни"
+  prices: "Цены"
+  taryphs: "Тарифная сетка"
   form:
     login: "Логин"
     pass: "Пароль"
