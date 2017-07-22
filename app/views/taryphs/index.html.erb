@@ -1,6 +1,7 @@
 <h1>Taryphs</h1>
-<%= Price.find(params[:price_id]).price %>
-<table>
+<%= t :price %>
+<%= Room.find(@price.room_id).name%>
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th>Udate</th>
@@ -16,9 +17,9 @@
         <td><%= taryph.udate %></td>
         <td><%= taryph.edate %></td>
         <td><%= taryph.index %></td>
-        <td><%= link_to 'Show', taryph %></td>
-        <td><%= link_to 'Edit', edit_taryph_path(taryph) %></td>
-        <td><%= link_to 'Destroy', taryph, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', taryph,class: "btn btn-default" %></td>
+        <td><%= link_to 'Edit', edit_taryph_path(taryph), class: "btn btn-default" %></td>
+        <td><%= link_to 'Destroy', taryph, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

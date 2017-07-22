@@ -31,6 +31,7 @@
 
 --- 
 en: 
+  pric: "Price"
   back: Back
   bcreate: "Booking room #{@room.name} was successfully created"
   bdelete: "Booking room #{@room.name} was successfully delete"
@@ -63,6 +64,7 @@ en:
   show: Show
   signup: "Sidn Up"
   prices: "Prices"
+
   taryphs: "Taryps"
   form: 
     email: E-mail

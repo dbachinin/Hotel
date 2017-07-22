@@ -82,7 +82,6 @@
                 <li class="divider"></li>
                 <li><%= link_to (t :logout), destroy_user_session_path, method: :delete, class: 'navbar-link'  %></li>
                 <% else %>
-                <li><a href="#" data-toggle="modal" data-target="#signup-modal"><span class="glyphicon glyphicon-user"></span> <%= t :signup%></a></li>
                 <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> <%= t :login%></a></li>
 
 
@@ -95,21 +94,35 @@
       </nav>
     </div>
 
-    <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
-        <div class="log-section">
-         <%= render file: "devise/registrations/new2.html.erb"  %>
-       </div>
-     </div>
-   </div>
 
-   <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-      <div class="log-section">
-        <%= render file: "devise/sessions/new2.html.erb"  %>
+        <div class="log-section">
+          <ul class="nav nav-tabs final-login">
+            <li class="active"><a data-toggle="tab" href="#sectionA"><span class="glyphicon glyphicon-log-in"></span> <%= t :login%></a></li>
+            <li><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-user"></span> <%= t :signup%></a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="sectionA" class="tab-pane fade in active">
+              <div class="innter-form">
+                <%= render file: "devise/sessions/new2.html.erb"  %>
+             </div>
+             </div>
+             <div id="sectionB" class="tab-pane fade">
+              <div class="innter-form">
+               <%= render file: "devise/registrations/new2.html.erb"  %>
+                
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+
+        
+
 
 
   <% if notice %>

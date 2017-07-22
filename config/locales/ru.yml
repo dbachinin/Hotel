@@ -30,7 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ru:
-
+  price: "Цена"
   hotels: "Отели"
   hotel: "Отель"
   room: "Комната"
@@ -52,6 +52,7 @@ ru:
   check_out: "Отъезд"
   days:       "Дни"
   prices: "Цены"
+
   taryphs: "Тарифная сетка"
   form:
     login: "Логин"
