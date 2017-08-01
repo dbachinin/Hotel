@@ -2,7 +2,8 @@ class User < ApplicationRecord
   after_initialize :create_login, if: :new_record?
   # after_initialize :login_in_login, if: :new_record?
 	has_many :bookings
-	validates :login, presence: true, uniqueness: {case_sensitive: false}
+	validates :login, :email, presence: true, uniqueness: {case_sensitive: false}
+
 	validates_format_of :login, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -15,9 +16,10 @@ class User < ApplicationRecord
       email = self.email.split(/@/)
       login_taken = User.where(login: email[0]).first
       unless login_taken
-        self.login = email[0]
+        self.login = email[0] 
       else    
-        self.login = self.email
+        self.login = self.email unless email[1]
+        self.login = email[0] + SecureRandom.random_number(1_000_000).to_s if email[1]
       end   
     end     
   end
@@ -38,14 +40,16 @@ class User < ApplicationRecord
   # def login
   # 	@login || self.login || self.email
   # end
-    def self.find_for_database_authentication(warden_conditions)
-      conditions = warden_conditions.dup
-      conditions[:email].downcase! if conditions[:email]
-where(conditions.to_h).first
-      if login = conditions.delete(:login)
-        where(conditions.to_h).where(["lower(login) = :value OR lower(email) = :value", { value: login.downcase }]).first
-      elsif conditions.has_key?(:login) || conditions.has_key?(:email)
-        where(conditions.to_h).first
-      end
-    end
+
+
+#     def self.find_for_database_authentication(warden_conditions)
+#       conditions = warden_conditions.dup
+#       conditions[:email].downcase! if conditions[:email]
+# where(conditions.to_h).first
+#       if login = conditions.delete(:login)
+#         where(conditions.to_h).where(["lower(login) = :value OR lower(email) = :value", { value: login.downcase }]).first
+#       elsif conditions.has_key?(:login) || conditions.has_key?(:email)
+#         where(conditions.to_h).first
+#       end
+#     end
 end
