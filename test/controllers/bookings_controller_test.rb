@@ -1,11 +1,15 @@
 require 'test_helper'
 
 class BookingsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
+    sign_in users(:dbachinin)
     @booking = bookings(:one)
   end
 
   test "should get index" do
+
     get bookings_url
     assert_response :success
   end

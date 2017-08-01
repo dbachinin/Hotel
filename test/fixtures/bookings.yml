@@ -6,10 +6,12 @@ one:
   hotel_id: 1
   room_id: 1
   booked: false
+  user_id: 1
 
 two:
   check_in: 2017-06-16 08:03:39
   check_out: 2017-06-16 08:03:39
-  hotel_id: 1
+  hotel_id: 2
   room_id: 1
   booked: false
+  user_id: 1

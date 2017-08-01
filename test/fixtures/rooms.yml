@@ -3,11 +3,11 @@
 one:
   name: MyString
   description: MyText
-  bad: 1
+  bed: 1
   lux: false
 
 two:
   name: MyString
   description: MyText
-  bad: 1
+  bed: 1
   lux: false
