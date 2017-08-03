@@ -35,7 +35,7 @@ ru:
   taryphs: "Тарифы"
   prices: "Цены"
   price: "Цена"
-  hotels: "Отели"
+  hotels: "Наши Отели"
   hotel: "Отель"
   room: "Комната"
   rooms: "Комнаты"
@@ -65,6 +65,9 @@ ru:
   days:       "Дни"
   subtotall: "Предварительный итог"
   ausure: "Вы серъезно?"
+  apartment: "Номер"
+  apartments: "Номера"
+  apartmentsin: "Номера в"
   form:
     login: "Логин"
     pass: "Пароль"

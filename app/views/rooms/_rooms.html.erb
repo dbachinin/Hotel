@@ -13,23 +13,34 @@
         </div>
         <ul>
           <li>
-          Номер
+          <%= (t :apartment).to_s + ":"%>
             <strong><%= room.name %></strong>
             
           </li>
           <li>
             
             <strong><%= room.description %></strong>
+
+            <% if room.description.length <= 25 %>
+            <br>
+            <br>
+            <%end%>
             
           </li>
           <li>
-            <strong><%= room.bed %></strong>
-            Кровати
+            <% room.bed.times do %>
+            <i class="fa fa-bed" aria-hidden="true"></i>
+            <%end%>
           </li>
+
           <% if room.lux %>
           <li>
             <i class="fa fa-diamond" aria-hidden="true"></i>
             *
+          </li>
+          <%else%>
+          <li>
+          <i aria-hidden="true"><br/> </i>
           </li>
           <%end%>
         </ul>

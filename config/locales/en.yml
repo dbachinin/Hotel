@@ -46,7 +46,7 @@ en:
   ausure: 'Are you sure?'
   hello: "Hello world"
   hotel: "Hotel"
-  hotels: "Hotels"
+  hotels: "Ours Hotels"
   subtotal: "The dates departures and arrival are coincide!"
   login: "Log in"
   logout: "Log Out"
@@ -64,6 +64,9 @@ en:
   show: "Show"
   signup: "Sidn Up"
   prices: "Prices"
+  apartment: "Apartment"
+  apartments: "Apartments"
+  apartmentsin: "Apartments in"
 
   taryphs: "Taryps"
   form: 

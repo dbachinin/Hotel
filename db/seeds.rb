@@ -40,11 +40,11 @@ Hotel.create([
 </div>'}
 ])
 Room.create([
-    { name: "Трехместный стандарт",description: "Трехместный номер с двумя кроватями",bed: 3,lux: false,hotel_id: 1},
-    { name: "Двухместный делюкс",description: "Двухместный делюкс с одной двуспальной кроватью",bed: 2,lux: true,hotel_id: 1},
-    { name: "Двухместный делюкс",description: "Двухместный делюкс с двумя односпальными кроватями",bed: 4,lux: true,hotel_id: 1},
-    { name: "Трехместный люкс",description: "Трехместный номер люкс",bed: 3,lux: true,hotel_id: 1},
-    { name: "Четырехместный номер",description: "Четырехместный двухкомнатный номер",bed: 4,lux: true,hotel_id: 1}
+    { name: "Трехместный стандарт",description: "Трехместный номер с двумя кроватями",bed: 2,lux: false,hotel_id: 1},
+    { name: "Двухместный делюкс",description: "Двухместный делюкс с одной двуспальной кроватью",bed: 1,lux: true,hotel_id: 1},
+    { name: "Двухместный делюкс",description: "Двухместный делюкс с двумя односпальными кроватями",bed: 2,lux: true,hotel_id: 1},
+    { name: "Трехместный люкс",description: "Трехместный номер люкс",bed: 2,lux: true,hotel_id: 1},
+    { name: "Четырехместный номер",description: "Четырехместный двухкомнатный номер",bed: 2,lux: true,hotel_id: 1}
     ])
 Price.create([
     {price: 1300.0, description: "", room_id: 1},

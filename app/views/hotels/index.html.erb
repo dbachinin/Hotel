@@ -3,11 +3,9 @@
 <p><span style="color: #000000;">Наши гостиницы предоставляют идеальный уровень комфорта на любой кошелек, и тем не менее дают возможность насладиться современным комфортом.</span></p>
 <p><span style="color: #000000;">У нас Вы сможете не только путешествовать по курортным городским кварталам, осматривая достопримечательности города Адлер, но и наслаждаться тишиной и уютом в райском горном &nbsp;хвойном лесу, среди вековых кипарисов.</span></p>
 <p><span style="color: #000000;">Мы предоставляем трансфер от аэропорта, и до любой точки необъятного Сочи.</span></p>
-<p><span style="color: #000000;">Познакомившись с нами,&nbsp;Вы больше не будете задаваться&nbsp;вопросом в каких отелях Сочи лучше остановиться. И мы прилагаем все усилия, что бы эта поездка запомнилась Вам.</span></p>
 <p><span style="color: #000000;">Например, остановившись в гостевом доме &ldquo;Версаль 2&rdquo;, в котором любят останавливаться звёзды российского шоу-бизнеса и находящийся в пятидесяти метрах от пляжа Черного моря, Вы сможете&nbsp;окунуться в ночную жизнь курортного города, бурлящую в шаговой доступности.</span></p>
 <p><span style="color: #000000;">А оказавшись в эко-отеле &ldquo;Кипарисовая усадьба&rdquo;, познаете вкус отдыха на природе, в стороне от суеты.</span></p>
-<p><span style="color: #000000;">Горнолыжные трассы Красной Поляны, погрузят Вас в спортивный азарт.</span></p>
-<p><span style="color: #000000;">С нашим пестрым спектром услуг, вы ощутите все разнообразие туризма города Сочи.</span></p>'
+<p><span style="color: #000000;">Горнолыжные трассы Красной Поляны, погрузят Вас в спортивный азарт.</span></p>'
 %>
   <section id="home" class="scrollspy" name="home"></section>
 <div class='headerwrap'>
@@ -16,7 +14,7 @@
       <h1>СЕТЬ ОТЕЛЕЙ "ЛЮДИ"</h1>
       <p class="hidden-xs">Воспользуйтесь услугами наших отелей!</p>
     </div><!-- col-lg-4 -->
-p
+
   </div><!-- container -->
 </div><!-- headerwrap -->
 <div class="container">
@@ -96,12 +94,11 @@ p
 <% @rooms = hotel.rooms.all %>
 <div id="pricing" class="container" name="pricing">
   <div id="registerwrap">
-    <h1 class="centered">КОМНАТЫ В <br> 
-
+    <h1 class="centered accordion-toggle" data-toggle="collapse" data-parent="#accordion2<%= hotel.id %>" href="#collapse2<%= hotel.id %>"><%= (t :apartmentsin).upcase%> <br> 
       <div class="accordion" id="accordion2<%= hotel.id %>">
         <div class="accordion-group">
           <div class="accordion-heading">
-            <a class="centered accordion-toggle" data-toggle="collapse" data-parent="#accordion2<%= hotel.id %>" href="#collapse2<%= hotel.id %>">
+            <a>
               <%= @hotel.name.upcase %>
             </a>
           </div><!-- /accordion-heading -->
