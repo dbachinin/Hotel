@@ -26,19 +26,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <% if request.original_fullpath == "/"%>
-          <a class="navbar-brand smoothScroll active" href="#home">
-            <%= image_tag("logo.png")%>
-          </a>
-          <%else%>
+
           <a class="navbar-brand smoothScroll" href="/">
             <%= image_tag("logo.png")%>
           </a>
-          <%end%>
+
         </div>
 
 
         <div class="navbar-collapse collapse">
+        <% if request.original_fullpath == "/" %>
           <ul class="nav navbar-nav">
             <% Hotel.all.each do |hotel| %>
 
@@ -46,7 +43,7 @@
             
             <%end%>
           </ul>
-          
+          <% end %>
           <ul class="nav navbar-nav navbar-right">
             <%= render file: 'layouts/_change_locale.html.erb' %>
 
@@ -114,7 +111,7 @@
  <% end %>
 </div>
 
-  
+
  <%= yield %>
 
 
