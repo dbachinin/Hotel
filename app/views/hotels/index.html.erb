@@ -17,25 +17,50 @@
   </div><!-- headerwrap -->
 
 
-<div class="container">
-  <div class="row">
-    <br>
-    <div class="col-lg-8">
-      <h2>МЫ СДЕЛАЕМ ВАШ ОТДЫХ ПО НАСТОЯЩЕМУ НЕЗАБЫВАЕМЫМ.</h2>
-    </div>
-    <div class="col-lg-4">
-    </div>
-  </div><!-- row -->
-</div> <!-- /container -->
-<div class="container">
-  <div class="row">
-    <br>
-    <br>
-    <div class="col-lg-6 ">
+
+  <section id="faq" name="faq" class="scrollspy"></section>
+  <div id="faqsection">
+    <div class="container">
+      <div class="row">
+      <br>
+      <br>
+        <div class="col-lg-6 col-lg-offset-3">
+          <h2 class="centered">МЫ СДЕЛАЕМ ВАШ ОТДЫХ ПО НАСТОЯЩЕМУ НЕЗАБЫВАЕМЫМ.</h2>
+          <hr>
+          <br>
+          <br>
+        </div><!-- col-lg-6 -->
+        <div class="col-lg-6" style="text-align: left">
       <%= raw(onas) %>
-    </div>
-  </div>
-</div>
+        </div><!-- col-lg-6 -->
+      
+        <!-- ACCORDION -->
+        <div class="col-lg-6 faq">
+          <div class="accordion" id="accordion2">
+            <% Hotel.all.each do |i| %>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#hotel<%= i.id%>">
+                  <licon><%= image_tag(i.description.split('U#')[1].delete("\n"), width: "100", height: "100")%></licon> <%= i.description.split('U#')[2].upcase%>
+                </a>
+              </div><!-- /accordion-heading -->
+              <div id="#hotel<%= i.id%>" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                  <p><%= i.description.split('U#')[3].upcase%></p>
+                </div><!-- /accordion-inner -->
+              </div><!-- /collapse -->
+            </div><!-- /accordion-group -->
+            <br>
+            <% end %> 
+          </div><!-- Accordion -->
+        </div><!-- col-lg-6 -->
+      </div><!-- row -->
+    </div><!-- container -->
+    <br>
+    <br>
+  </div><!-- faqsection -->
+
+
 <br>
 <br>
 <div id="registerwrap">
@@ -43,6 +68,7 @@
 </div>
 
 <br>
+
 
 <br>
   <% @hotels.each do |hotel| %>
@@ -70,7 +96,7 @@
             <br>
             <div id="collapse<%= hotel.id %>" class="accordion-body collapse in">
               <div class="accordion-inner">
-                <%= raw(hotel.description) %>
+                <%= raw(hotel.description.split('U#').first) %>
               </h3>
             </div><!-- /accordion-inner -->
           </div><!-- /collapse -->
