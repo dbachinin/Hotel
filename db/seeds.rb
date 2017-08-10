@@ -23,6 +23,12 @@ U#
 ГОСТЕВОЙ ДОМ В 500 метрах от  моря
 U#
 Wi-Fi
+U#
+прокат велосипедов
+U#
+близость к морю
+U#
+близость к городской инфраструктуре
 '},
  { name: "ЭКО-Отель \"Кипарисовая Роща\"",
  description: '<div>
@@ -49,7 +55,13 @@ hata.png
 U#
 ЭКООТЕЛЬ В ТЕНИ ВЕКОВЫХ КПАРИСОВ
 U#
-Wi-Fi
+крытый бассейн
+U#
+детская площадка
+U#
+кафе
+U#
+кинотеатр
 '}
 ])
 Room.create([
@@ -59,12 +71,24 @@ Room.create([
     { name: "Трехместный люкс",description: "Трехместный номер люкс",bed: 2,lux: true,hotel_id: 1},
     { name: "Четырехместный номер",description: "Четырехместный двухкомнатный номер",bed: 2,lux: true,hotel_id: 1}
     ])
+Room.create([
+    { name: "Двухместный стандарт (две односпальные кровати)",description: "Двухместный номер с двумя односпальными  кроватями",bed: 2,lux: false,hotel_id: 2},
+    { name: "Двухместный стандарт плюс (две односпальные кровати)",description: "Двухместный делюкс с двумя односпальными кроватями",bed: 2,lux: false,hotel_id: 2},
+    { name: "Двухместный делюкс",description: "Двухместный делюкс с двумя односпальными кроватями",bed: 2,lux: true,hotel_id: 2},
+    { name: "Трехместный делюкс",description: "Трехместный номер делюкс",bed: 2,lux: true,hotel_id: 2}
+    ])
 Price.create([
     {price: 1300.0, description: "", room_id: 1},
     {price: 1000.0, description: "", room_id: 2},
     {price: 1000.0, description: "", room_id: 3},
     {price: 1500.0, description: "", room_id: 4},
     {price: 1500.0, description: "", room_id: 5}
+    ])
+Price.create([
+    {price: 1500.0, description: "", room_id: 6},
+    {price: 1600.0, description: "", room_id: 7},
+    {price: 1600.0, description: "", room_id: 8},
+    {price: 2000.0, description: "", room_id: 9}
     ])
 Taryph.create([
     {udate: "2017-01-10",edate: "2017-04-26", index: 500.0, price_id: 1},
@@ -90,6 +114,90 @@ Taryph.create([
     {udate: "2017-09-15",edate: "2017-10-01", index: 1500.0, price_id: 2},
     {udate: "2017-10-01",edate: "2017-11-30", index: 0.0, price_id: 2},
     ])
+Taryph.create([
+    {udate: "2017-01-10",edate: "2017-04-26", index: 500.0, price_id: 3},
+    {udate: "2017-04-26",edate: "2017-05-10", index: 900.0, price_id: 3},
+    {udate: "2017-05-10",edate: "2017-06-01", index: 300.0, price_id: 3},
+    {udate: "2017-06-01",edate: "2017-06-15", index: 1500.0, price_id: 3},
+    {udate: "2017-06-15",edate: "2017-07-01", index: 2200.0, price_id: 3},
+    {udate: "2017-07-01",edate: "2017-07-15", index: 2900.0, price_id: 3},
+    {udate: "2017-07-15",edate: "2017-09-01", index: 3700.0, price_id: 3},
+    {udate: "2017-09-01",edate: "2017-09-15", index: 1800.0, price_id: 3},
+    {udate: "2017-09-15",edate: "2017-10-01", index: 1500.0, price_id: 3},
+    {udate: "2017-10-01",edate: "2017-11-30", index: 0.0, price_id: 3},
+    ])
+Taryph.create([
+    {udate: "2017-01-10",edate: "2017-04-26", index: 500.0, price_id: 4},
+    {udate: "2017-04-26",edate: "2017-05-10", index: 900.0, price_id: 4},
+    {udate: "2017-05-10",edate: "2017-06-01", index: 300.0, price_id: 4},
+    {udate: "2017-06-01",edate: "2017-06-15", index: 1500.0, price_id: 4},
+    {udate: "2017-06-15",edate: "2017-07-01", index: 2200.0, price_id: 4},
+    {udate: "2017-07-01",edate: "2017-07-15", index: 2900.0, price_id: 4},
+    {udate: "2017-07-15",edate: "2017-09-01", index: 3700.0, price_id: 4},
+    {udate: "2017-09-01",edate: "2017-09-15", index: 1800.0, price_id: 4},
+    {udate: "2017-09-15",edate: "2017-10-01", index: 1500.0, price_id: 4},
+    {udate: "2017-10-01",edate: "2017-11-30", index: 0.0, price_id: 4},
+    ])
+Taryph.create([
+    {udate: "2017-01-10",edate: "2017-04-26", index: 500.0, price_id: 5},
+    {udate: "2017-04-26",edate: "2017-05-10", index: 900.0, price_id: 5},
+    {udate: "2017-05-10",edate: "2017-06-01", index: 300.0, price_id: 5},
+    {udate: "2017-06-01",edate: "2017-06-15", index: 1500.0, price_id: 5},
+    {udate: "2017-06-15",edate: "2017-07-01", index: 2200.0, price_id: 5},
+    {udate: "2017-07-01",edate: "2017-07-15", index: 2900.0, price_id: 5},
+    {udate: "2017-07-15",edate: "2017-09-01", index: 3700.0, price_id: 5},
+    {udate: "2017-09-01",edate: "2017-09-15", index: 1800.0, price_id: 5},
+    {udate: "2017-09-15",edate: "2017-10-01", index: 1500.0, price_id: 5},
+    {udate: "2017-10-01",edate: "2017-11-30", index: 0.0, price_id: 5},
+    ])
+Taryph.create([
+    {udate: "2017-01-10",edate: "2017-04-26", index: 500.0, price_id: 6},
+    {udate: "2017-04-26",edate: "2017-05-10", index: 900.0, price_id: 6},
+    {udate: "2017-05-10",edate: "2017-06-01", index: 300.0, price_id: 6},
+    {udate: "2017-06-01",edate: "2017-06-15", index: 1500.0, price_id: 6},
+    {udate: "2017-06-15",edate: "2017-07-01", index: 2200.0, price_id: 6},
+    {udate: "2017-07-01",edate: "2017-07-15", index: 2900.0, price_id: 6},
+    {udate: "2017-07-15",edate: "2017-09-01", index: 3700.0, price_id: 6},
+    {udate: "2017-09-01",edate: "2017-09-15", index: 1800.0, price_id: 6},
+    {udate: "2017-09-15",edate: "2017-10-01", index: 1500.0, price_id: 6},
+    {udate: "2017-10-01",edate: "2017-11-30", index: 0.0, price_id: 6},
+    ])
+Taryph.create([
+    {udate: "2017-01-10",edate: "2017-04-26", index: 500.0, price_id: 7},
+    {udate: "2017-04-26",edate: "2017-05-10", index: 900.0, price_id: 7},
+    {udate: "2017-05-10",edate: "2017-06-01", index: 300.0, price_id: 7},
+    {udate: "2017-06-01",edate: "2017-06-15", index: 1500.0, price_id: 7},
+    {udate: "2017-06-15",edate: "2017-07-01", index: 2200.0, price_id: 7},
+    {udate: "2017-07-01",edate: "2017-07-15", index: 2900.0, price_id: 7},
+    {udate: "2017-07-15",edate: "2017-09-01", index: 3700.0, price_id: 7},
+    {udate: "2017-09-01",edate: "2017-09-15", index: 1800.0, price_id: 7},
+    {udate: "2017-09-15",edate: "2017-10-01", index: 1500.0, price_id: 7},
+    {udate: "2017-10-01",edate: "2017-11-30", index: 0.0, price_id: 7},
+    ])
+Taryph.create([
+    {udate: "2017-01-10",edate: "2017-04-26", index: 500.0, price_id: 8},
+    {udate: "2017-04-26",edate: "2017-05-10", index: 900.0, price_id: 8},
+    {udate: "2017-05-10",edate: "2017-06-01", index: 300.0, price_id: 8},
+    {udate: "2017-06-01",edate: "2017-06-15", index: 1500.0, price_id: 8},
+    {udate: "2017-06-15",edate: "2017-07-01", index: 2200.0, price_id: 8},
+    {udate: "2017-07-01",edate: "2017-07-15", index: 2900.0, price_id: 8},
+    {udate: "2017-07-15",edate: "2017-09-01", index: 3700.0, price_id: 8},
+    {udate: "2017-09-01",edate: "2017-09-15", index: 1800.0, price_id: 8},
+    {udate: "2017-09-15",edate: "2017-10-01", index: 1500.0, price_id: 8},
+    {udate: "2017-10-01",edate: "2017-11-30", index: 0.0, price_id: 8},
+    ])
+Taryph.create([
+    {udate: "2017-01-10",edate: "2017-04-26", index: 500.0, price_id: 9},
+    {udate: "2017-04-26",edate: "2017-05-10", index: 900.0, price_id: 9},
+    {udate: "2017-05-10",edate: "2017-06-01", index: 300.0, price_id: 9},
+    {udate: "2017-06-01",edate: "2017-06-15", index: 1500.0, price_id: 9},
+    {udate: "2017-06-15",edate: "2017-07-01", index: 2200.0, price_id: 9},
+    {udate: "2017-07-01",edate: "2017-07-15", index: 2900.0, price_id: 9},
+    {udate: "2017-07-15",edate: "2017-09-01", index: 3700.0, price_id: 9},
+    {udate: "2017-09-01",edate: "2017-09-15", index: 1800.0, price_id: 9},
+    {udate: "2017-09-15",edate: "2017-10-01", index: 1500.0, price_id: 9},
+    {udate: "2017-10-01",edate: "2017-11-30", index: 0.0, price_id: 9},
+    ])
 Service.create([
     {name: "Встреча на Ж/Д вокзале", price: "1000", enable: true},
     {name: "Встреча в Аэропорту", price: "1000", enable: true},
@@ -101,3 +209,4 @@ Service.create([
     {name: "Ночной Сочи", price: "1000", enable: true},
     {name: "Стирка", price: "1000", enable: true},
     ])
+

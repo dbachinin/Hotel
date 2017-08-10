@@ -2,75 +2,107 @@
 <% onas = '<p><span style="color: #000000;">Сеть отелей &ldquo;Люди&rdquo; воплощает в реальность&nbsp;мечты об отдыхе, и приятном время препровождении, в самом южном и теплом курорте России!</span><br /> <p><span style="color: #000000;">Остановившись в гостевом доме &ldquo;Версаль 2&rdquo;, в котором любят останавливаться звёзды российского шоу-бизнеса и находящийся в пятидесяти метрах от пляжа Черного моря, Вы сможете&nbsp;окунуться в ночную жизнь курортного города, буквально в шаговой доступности от Вас.</span></p>
 <p><span style="color: #000000;">А оказавшись в эко-отеле &ldquo;Кипарисовая усадьба&rdquo;, познаете вкус отдыха на природе, в стороне от суеты.</span></p>'
 %>
-  <!-- ========== HEADERWRAP ========== -->
-  <section id="home" name="home" class="scrollspy"></section>
-  <div id="headerwrap">
-    <div class="container">
-      <div class="col-lg-8">
-        <h1>СЕТЬ ОТЕЛЕЙ "ЛЮДИ"</h1>
-        <p class="hidden-xs">Отели на берегу Русского Моря!</p>
-      </div><!-- col-lg-4 -->
-      <div class="col-lg-4">
+<!-- ========== HEADERWRAP ========== -->
+<section id="home" name="home" class="scrollspy"></section>
+<div id="headerwrap">
+  <div class="container">
+    <div class="col-lg-8">
+      <h1>СЕТЬ ОТЕЛЕЙ "ЛЮДИ"</h1>
+      <p class="hidden-xs">Отели на берегу Русского Моря!</p>
+    </div><!-- col-lg-4 -->
+    <div class="col-lg-4">
 
-      </div><!-- col-lg-4 -->
-    </div><!-- container -->
-  </div><!-- headerwrap -->
+    </div><!-- col-lg-4 -->
+  </div><!-- container -->
+</div><!-- headerwrap -->
 
 
 
-  <section id="faq" name="faq" class="scrollspy"></section>
-  <div id="faqsection">
-    <div class="container">
-      <div class="row">
+<section id="faq" name="faq" class="scrollspy"></section>
+<div id="faqsection">
+  <div class="container">
+    <div class="row">
       <br>
       <br>
-        <div class="col-lg-6 col-lg-offset-3">
-          <h2 class="centered">МЫ СДЕЛАЕМ ВАШ ОТДЫХ ПО НАСТОЯЩЕМУ НЕЗАБЫВАЕМЫМ.</h2>
-          <hr>
-          <br>
-          <br>
-        </div><!-- col-lg-6 -->
-        <div class="col-lg-6" style="text-align: left">
-      <%= raw(onas) %>
-        </div><!-- col-lg-6 -->
+      <div class="col-lg-6 col-lg-offset-3">
+        <h2 class="centered">МЫ СДЕЛАЕМ ВАШ ОТДЫХ ПО НАСТОЯЩЕМУ НЕЗАБЫВАЕМЫМ.</h2>
+        <hr>
+        <br>
+        <br>
+      </div><!-- col-lg-6 -->
+      <div class="col-lg-6" style="text-align: left">
+        <%= raw(onas) %>
+      </div><!-- col-lg-6 -->
       
-        <!-- ACCORDION -->
-        <div class="col-lg-6 faq">
-          <div class="accordion" id="accordion2">
-            <% Hotel.all.each do |i| %>
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#hotel<%= i.id%>">
-                  <licon><%= image_tag(i.description.split('U#')[1].delete("\n"), width: "100", height: "100")%></licon> <%= i.description.split('U#')[2].upcase%>
-                </a>
-              </div><!-- /accordion-heading -->
-              <div id="#hotel<%= i.id%>" class="accordion-body collapse in">
-                <div class="accordion-inner">
-                  <p><%= i.description.split('U#')[3].upcase%></p>
-                </div><!-- /accordion-inner -->
-              </div><!-- /collapse -->
-            </div><!-- /accordion-group -->
-            <br>
-            <% end %> 
-          </div><!-- Accordion -->
-        </div><!-- col-lg-6 -->
-      </div><!-- row -->
-    </div><!-- container -->
-    <br>
-    <br>
-  </div><!-- faqsection -->
+      <!-- ACCORDION -->
+      <div class="col-lg-6 faq">
+        <div class="accordion" id="accordion2">
+          <% Hotel.all.each do |i| %>
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne<%= i.id%>">
+                <licon><%= image_tag(i.description.split('U#')[1].delete("\n"), width: "70", height: "70")%></licon> 
+                <h3 class="ac-title"><%= i.description.split('U#')[2].upcase%></h3>
+              </a>
+
+            </div><!-- /accordion-heading -->
+            <div id="collapseOne<%= i.id%>" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <br>
+
+                <%@minprice=[]; Hotel.find(1).rooms.all.each{|i| @minprice.push( price_today(Date.today, i.id))}%>
+                Цена:
+                <hr>
+                <p style="text-align: right">от <%= "#{@minprice.min}" %><small>₽</small></p>
+                Есть: 
+                <hr>
+                <% i.description.split('U#')[3..(i.description.split('U#').count)].each do |item|%>
+                <p style="text-align: right"><%= item.upcase%></p>
+                <%end%>
+
+              </div><!-- /accordion-inner -->
+            </div><!-- /collapse -->
+          </div><!-- /accordion-group -->
+          <br>
+          <%end%> 
+        </div><!-- Accordion -->
+      </div><!-- col-lg-6 -->
+
+    </div><!-- row -->
+  </div><!-- container -->
+  <br>
+  <br>
+</div><!-- faqsection -->
+
+
+
+<!-- ========== SECTION DIVIDER 03 ========== -->
+<div id="section03">
+  <div class="container">
+    <h1>Отдыхайте, легко, получайте удовольствие - сейчас, c сетью отелей - "Люди"!</h1>
+  </div><!-- container -->
+</div><!-- section03 -->
+
 
 
 <br>
 <br>
-<div id="registerwrap">
-  <h1><%= (t 'hotels') %></h1>
-</div>
-
-<br>
 
 
-<br>
+<!-- ========== FEATURES SECTION ========== -->
+<div class="container features">
+  <div class="row">
+    <div class="col-lg-6">
+      <% Hotel.all.each do |i| %>
+      <a href="#hotel<%= i.id%>" class="smoothScroll"><%= image_tag(i.description.split('U#')[1].delete("\n"), width: "100", height: "100")%></licon>
+        <h4><%= i.description.split('U#')[2].upcase%></h4>
+        <p><%= i.description.split('U#')[3].upcase%></p>
+      </div><!-- col-lg-3 -->
+      <% end %>
+    </div><!-- features -->
+  </div><!-- container -->
+
+  <br>
   <% @hotels.each do |hotel| %>
   <div class="container">
     <div class="row">
@@ -111,35 +143,35 @@
 
         <% end %>
 
-    </div>
-  </div>
-</div>
-<% @hotel = hotel %>
-<% @rooms = hotel.rooms.all %>
-<div id="pricing" class="container" name="pricing">
-  <div id="registerwrap">
-    <h1 class="centered accordion-toggle" data-toggle="collapse" data-parent="#accordion2<%= hotel.id %>" href="#collapse2<%= hotel.id %>"><%= (t :apartmentsin).upcase%> <br> 
-      <div class="accordion" id="accordion2<%= hotel.id %>">
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a>
-              <%= @hotel.name.upcase %>
-            </a>
-          </div><!-- /accordion-heading -->
-        </div>
       </div>
-    </h1>
-  </div>
-  <div id="collapse2<%= hotel.id %>" class="accordion-body collapse">
-    <div class="accordion-inner">
-      <br>
-      <br>
-
-
-      <%= render file: "#{Rails.root}/app/views/rooms/_rooms.html.erb" %>
     </div>
-  </h3>
-</div><!-- /accordion-inner -->
+  </div>
+  <% @hotel = hotel %>
+  <% @rooms = hotel.rooms.all %>
+  <div id="pricing" class="container" name="pricing">
+    <div id="registerwrap">
+      <h1 class="centered accordion-toggle" data-toggle="collapse" data-parent="#accordion2<%= hotel.id %>" href="#collapse2<%= hotel.id %>"><%= (t :apartmentsin).upcase%> <br> 
+        <div class="accordion" id="accordion2<%= hotel.id %>">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a>
+                <%= @hotel.name.upcase %>
+              </a>
+            </div><!-- /accordion-heading -->
+          </div>
+        </div>
+      </h1>
+    </div>
+    <div id="collapse2<%= hotel.id %>" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <br>
+        <br>
+
+
+        <%= render file: "#{Rails.root}/app/views/rooms/_rooms.html.erb" %>
+      </div>
+    </h3>
+  </div><!-- /accordion-inner -->
 </div><!-- /collapse -->
 </div><!-- /accordion-group -->
 </div>

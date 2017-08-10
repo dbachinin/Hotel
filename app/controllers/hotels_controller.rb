@@ -1,6 +1,6 @@
 class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
-
+  include TodaypriceHelper
   # GET /hotels
   # GET /hotels.json
   def index
