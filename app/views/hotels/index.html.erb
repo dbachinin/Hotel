@@ -89,19 +89,6 @@
 <br>
 
 
-<!-- ========== FEATURES SECTION ========== -->
-<div class="container features">
-  <div class="row">
-    <div class="col-lg-6">
-      <% Hotel.all.each do |i| %>
-      <a href="#hotel<%= i.id%>" class="smoothScroll"><%= image_tag(i.description.split('U#')[1].delete("\n"), width: "100", height: "100")%></licon>
-        <h4><%= i.description.split('U#')[2].upcase%></h4>
-        <p><%= i.description.split('U#')[3].upcase%></p>
-      </div><!-- col-lg-3 -->
-      <% end %>
-    </div><!-- features -->
-  </div><!-- container -->
-
   <br>
   <% @hotels.each do |hotel| %>
   <div class="container">
