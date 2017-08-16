@@ -18,13 +18,12 @@
                 </div>
                 <div class="check_box">
                   <label>
-                    <%= f.check_box :remember_me %>
+                    <%= f.check_box :remember_me %></div>
                     <%= f.label (t 'form.remme') %>
                   </label>
-                </div>
+                
                 <div class="actions">
                   <%= f.submit (t 'form.login'), class: "btn btn-primary btn-block" %>
-                  <a><%= t 'form.or'%> </a><br><a class= "btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#signup-modal"></span> <%= t :signup%></a>
                 </div>
                 <% end %>
               </form>
