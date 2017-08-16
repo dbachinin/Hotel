@@ -30,11 +30,8 @@
 
 <br>
 <hr>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#selectservice').selectpicker();
-  }); </script>
-  <%= form.select 'ad_service', options_for_select(Service.all.where(enable: :true).collect {|p| [p.name, p.price, p.id] }), {}, multiple: true, size: 5, class: "form-control", id: :selectservice%>
+
+  <%= form.select :ad_service, options_for_select(Service.all.where(enable: :true).collect {|p| [p.name, p.price, p.id] }), {}, multiple: true, size: 5, class: "form-control", id: :selectservice%>
   <br>
   <hr>
   <div class="actions col-lg-3">
@@ -42,4 +39,9 @@
   </div>
   <% end %>
 
-    
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#selectservice').selectpicker();
+  }); </script>
+  <br>
+  <br>

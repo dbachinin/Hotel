@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!
   #respond_to :pdf
   # require 'app/pdfs/BookingReports'
- include SubtotalHelper
+  include SubtotalHelper
   # GET /bookings
   # GET /bookings.json
   def index
@@ -16,13 +16,10 @@ class BookingsController < ApplicationController
     #@room = Room.find(params[:room_id])
   end
   def subprice
-
-    @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s) #+ params[:ad_service].inject(0){|sum, x| sum + Service.find(x).price}
-    p params[:ad_service]    
-
-    p @subprice
-
-
+    @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s) + params[:ad_service].inject(0){|sum, x| sum + Service.find(x).price} if params[:ad_service] != ""
+    @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s) if params[:ad_service] == ""
+    # p params[:ad_service]    
+    # p @subprice
   end
   # GET /bookings/1
   # GET /bookings/1.json
@@ -31,12 +28,12 @@ class BookingsController < ApplicationController
 
   end
 
-def download_pdf
-  define_params = params
-  @booking = (define_params[:booking])
-  pdf = BookingReports.new(request.original_url,@booking).to_pdf
-  send_data pdf, :type => 'application/pdf', :filename => "performe_#{@booking}.pdf"
-end
+  def download_pdf
+    define_params = params
+    @booking = (define_params[:booking])
+    pdf = BookingReports.new(request.original_url,@booking).to_pdf
+    send_data pdf, :type => 'application/pdf', :filename => "performe_#{@booking}.pdf"
+  end
 
   # GET /bookings/new
   def new
@@ -68,7 +65,8 @@ end
     @hotel = Hotel.find(@booking.hotel_id)
     @room = Room.find(@booking.room_id)
     @booking.ad_service.reject! { |c| c.empty? }
-    @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out) + @booking.ad_service.inject(0){|sum, x| sum + Service.find(x).price}
+    @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out) + @booking.ad_service.inject(0){|sum, x| sum + Service.find(x).price} if @booking.ad_service != ""
+    @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out) if @booking.ad_service == ""
     if @booking.save
       respond_to do |format|
         format.html { redirect_to @booking, notice: (t 'bcreate') }
