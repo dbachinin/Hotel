@@ -4,11 +4,13 @@ class BookingsController < ApplicationController
   #respond_to :pdf
   # require 'app/pdfs/BookingReports'
   include SubtotalHelper
+  include FullemployHelper
   # GET /bookings
   # GET /bookings.json
   def index
     if current_user.id == 1
       @bookings = Booking.all
+
     else
       @bookings = current_user.bookings.all
     end

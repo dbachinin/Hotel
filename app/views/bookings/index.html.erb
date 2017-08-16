@@ -2,6 +2,7 @@
   <div id="registerwrap">
 <h1><%= t 'mybookings' %></h1>
 </div>
+<% if current_user.id != 1%>
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -35,5 +36,13 @@
     <% end %>
   </tbody>
 </table>
+<%else%>
+<%= calendar_for(Booking.all) do |days| %>
+  <%= days.head('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun') %>
+  <%= days.day do |day| %>
+    <%= day.check_in %>
 
+  <% end %>
+<% end %>
+<% end %>
 </div>
