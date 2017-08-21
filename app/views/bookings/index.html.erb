@@ -51,9 +51,12 @@
   </div>
 </div>
 <% dd = employ_rooms%>
+@buk = []
 <%= calendar(year: @date.year, month: @date.month, first_day_of_week: 1) do |d|
- 
- p d if dd.include?(d)
+ Booking.all.each{|e| @buk << e.id if (Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_beginning_of_month)or(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_end_of_month)or(@date.at_beginning_of_month..@date.at_end_of_month).iclude?(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s))}
+# Booking.find(@buk).each{|i| eval "@buk#{i.id} = ((i.check_in.to_s) + ',' + (i.check_out.to_s))" } 
+ Booking.find(@buk).each{|i| p Room.find(i.room_id).name } if dd.include?(d)
+}
 end%>
 
 
