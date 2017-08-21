@@ -37,12 +37,25 @@
   </tbody>
 </table>
 <%else%>
-<%= calendar_for(Booking.all) do |days| %>
-  <%= days.head('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun') %>
-  <%= days.day do |day| %>
-    <%= day.check_in %>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <div class="well controls">
+      <%= link_to bookings_path(date: @date - 1.month), class: "btn btn-default" do %>
+        <i class="glyphicon glyphicon-backward"></i>
+      <% end %>
+      <%= "#{I18n.t("date.month_names")[@date.month]} #{@date.year}" %>
+      <%= link_to bookings_path(date: @date + 1.month), class: "btn btn-default" do %>
+        <i class="glyphicon glyphicon-forward"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% dd = employ_rooms%>
+<%= calendar(year: @date.year, month: @date.month, first_day_of_week: 1) do |d|
+ 
+ p d if dd.include?(d)
+end%>
 
-  <% end %>
-<% end %>
+
 <% end %>
 </div>

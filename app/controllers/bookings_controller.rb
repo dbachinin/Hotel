@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
   def index
     if current_user.id == 1
       @bookings = Booking.all
+      @date = params[:date] ? Date.parse(params[:date]) : Date.today
 
     else
       @bookings = current_user.bookings.all
@@ -20,6 +21,9 @@ class BookingsController < ApplicationController
   def subprice
     @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s) + params[:ad_service].inject(0){|sum, x| sum + Service.find(x).price} if params[:ad_service] != ""
     @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s) if params[:ad_service] == ""
+    # @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    # @statuses = []
+
     # p params[:ad_service]    
     # p @subprice
   end
