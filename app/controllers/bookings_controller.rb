@@ -12,6 +12,17 @@ class BookingsController < ApplicationController
       @bookings = Booking.all
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
 
+      @dd = employ_rooms
+      # @buk = [] 
+      # Booking.all.each{|e| @buk << e.id if (Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_beginning_of_month)or(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_end_of_month)or(@date.at_beginning_of_month..@date.at_end_of_month).include?(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s))}
+      # @bukhash = {}
+      # Booking.find(@buk).each{|i| @bukhash[i.id] = ((i.check_in.to_s) + ',' + (i.check_out.to_s)) }
+      # @bukhash.each do |k,v| 
+      # hot = Room.find(Booking.find(k).room_id).name + " в " + Hotel.find(Booking.find(k).hotel_id).name 
+      # p hot if (Date.parse(v.split(',').first)..Date.parse(v.split(',').last)).include?(Date.parse(d.to_s))
+
+      # end
+
     else
       @bookings = current_user.bookings.all
     end

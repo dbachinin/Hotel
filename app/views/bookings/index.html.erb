@@ -50,13 +50,20 @@
     </div>
   </div>
 </div>
-<% dd = employ_rooms%>
-@buk = []
-<%= calendar(year: @date.year, month: @date.month, first_day_of_week: 1) do |d|
- Booking.all.each{|e| @buk << e.id if (Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_beginning_of_month)or(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_end_of_month)or(@date.at_beginning_of_month..@date.at_end_of_month).iclude?(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s))}
-# Booking.find(@buk).each{|i| eval "@buk#{i.id} = ((i.check_in.to_s) + ',' + (i.check_out.to_s))" } 
- Booking.find(@buk).each{|i| p Room.find(i.room_id).name } if dd.include?(d)
-}
+
+<% 
+@buk = [] 
+Booking.all.each{|e| @buk << e.id if (Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_beginning_of_month)or(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_end_of_month)or(@date.at_beginning_of_month..@date.at_end_of_month).include?(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s))}
+
+(@date.at_beginning_of_month..@date.at_end_of_month).each{|day| eval "@days#{day.to_s.split('-').last} = []"; @buk.each{|i| eval "@days#{day.to_s.split('-').last} << i" if (Date.parse(Booking.find(i).check_in.to_s)..Date.parse(Booking.find(i).check_out.to_s)).include?(Date.parse(day.to_s))}}
+
+%>
+<%= num=0; calendar(year: @date.year, month: @date.month, first_day_of_week: 1) do |d|
+  num+=1
+  num = format('%02d',num).to_i
+ # Hotel.find(Booking.find(eval("@days#{num}").first).hotel_id).name if @dd.include?(d)
+ link_to raw("Количество бронирований:" + eval("content_tag(:strong,@days#{num}.count)") + content_tag(:br,"Число: #{num.to_s}")) if @dd.include?(d)
+ # num if @dd.include?(d)
 end%>
 
 
