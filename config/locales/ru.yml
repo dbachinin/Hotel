@@ -68,6 +68,8 @@ ru:
   apartment: "Номер"
   apartments: "Номера"
   apartmentsin: "Номера в"
+  discount: "Скидка"
+  downpdf: "Скачать PDF"
   form:
     login: "Логин"
     pass: "Пароль"

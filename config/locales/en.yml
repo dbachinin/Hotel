@@ -67,8 +67,9 @@ en:
   apartment: "Apartment"
   apartments: "Apartments"
   apartmentsin: "Apartments in"
-
+  discount: "Discount"
   taryphs: "Taryps"
+  downpdf: "Download PDF"
   form: 
     email: "E-mail"
     firstname: "Firstname"

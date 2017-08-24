@@ -45,6 +45,9 @@
  <%end%>
 
 <hr>
+
+<h3><%=t :discount %></h3>
+<p><%= @booking.discount != nil ? @booking.discount : 0 %>%</p>
 <h3>
   <strong><%=(t :total) + ":"%></strong>
   <%= @booking.subtotal.to_s + " ₽"%>
@@ -52,8 +55,19 @@
 
 
 </div>
-<%= link_to (t :edit), edit_booking_path(@booking) %> |
-<%= link_to (t :back), bookings_path(params[:room_id] = @booking.room_id) %>
-<%= link_to (t :delete), @booking, method: :delete, data: { confirm: (t :ausure) } %>
-<%= link_to 'Download_PDF', download_pdf_bookings_path(booking: @booking.id), target: :_blank %>
+<div class="row form-group">
+<div class="col-md-2">
+<%= button_to (t :edit), edit_booking_path(@booking), class: 'btn btn-default btn-lg outline' %>
+</div>
+<div class="col-md-2">
+<%= button_to  (t :back), bookings_path(params[:room_id] = @booking.room_id), class: 'btn btn-primary btn-lg outline' %>
+</div>
+<div class="col-md-2">
+<%= button_to  (t :delete), @booking, method: :delete, data: { confirm: (t :ausure) }, class: 'btn btn-danger btn-lg outline' %>
+</div>
+<div class="col-md-2">
+<%= button_to  (t :downpdf), download_pdf_bookings_path(booking: @booking.id), target: :_blank, class: 'btn btn-primary btn-lg outline' %>
+</div>
+
+</div>
 </div>

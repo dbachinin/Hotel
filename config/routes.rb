@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   
   
   
+  get 'persons/getall'
+
   devise_for :users
   resources :bookings do
   	collection do
@@ -26,5 +28,7 @@ post "/taryphs/:id" => 'taryphs#update'
 post "/bookings/new"
 post "/subprice" => 'bookings#subprice'
 get  "/subprice" => 'bookings#subprice'
+get "/persons" => 'persons#getall'
+get "/persons/show" => 'persons#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

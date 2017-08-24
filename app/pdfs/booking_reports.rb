@@ -61,16 +61,20 @@ IO.write("#{Rails.root}/tmp/#{@booking.id}.png", code.to_s.force_encoding("UTF-8
     move_down(10)
     text (I18n.t :adservices), :size => 15, :style => :normal, :align => :center
     move_down(10)
+
     Service.find(@booking.ad_service).each do |service| 
      text (I18n.t :adservice) + ":"
-     text (service.name) + ":" + (service.price.to_s) + " ₽",  :align => :left, :style => :normal, :size => 9
+     text (service.name) + ":" + (service.price.to_s) + " Руб",  :align => :left, :style => :normal, :size => 9
    end
+    text (I18n.t :discount) + ':'
+    text (@booking.discount != nil ? @booking.discount : 0).to_s + '%'
+    move_down(10)
    stroke_horizontal_rule
    move_down(10)
    text (I18n.t :total) + ":"
-   text @booking.subtotal.to_s + " ₽"
+   text @booking.subtotal.to_s + " Руб"
 
-   creation_date = Time.zone.now.strftime("Отчет сгенерирован %e %b %Y в %H:%M")
+   creation_date = Time.zone.now.strftime("Счет сгенерирован %e %b %Y в %H:%M")
    go_to_page(page_count)
    move_down(700)
    text creation_date, :align => :right, :style => :normal, :size => 9
