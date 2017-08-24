@@ -1,25 +1,25 @@
 <div class="col-lg-8 col-lg-offset-2">
   <div id="registerwrap">
-<h1><%= t 'mybookings' %></h1>
-</div>
-<% if current_user.id != 1%>
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th><%= t :check_in%></th>
-      <th><%= t :check_out%></th>
-      <th><%= t :hotel%></th>
-      <th><%= t :room%></th>
-      <% if current_user.id == 1 %>
-      <th>Username</th>
-      <%end%>
-      <th><%= t :days%></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <h1><%= t 'mybookings' %></h1>
+  </div>
+  <% if current_user.id != 1%>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th><%= t :check_in%></th>
+        <th><%= t :check_out%></th>
+        <th><%= t :hotel%></th>
+        <th><%= t :room%></th>
+        <% if current_user.id == 1 %>
+        <th>Username</th>
+        <%end%>
+        <th><%= t :days%></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @bookings.each do |booking| %>
+    <tbody>
+      <% @bookings.each do |booking| %>
       <tr>
         <td><%=l Date.parse(booking.check_in.to_s), form: :short %></td>
         <td><%= Date.parse(booking.check_out.to_s) %></td>
@@ -33,56 +33,77 @@
         <td><%= button_to (t :edit), edit_booking_path(booking), method: :get, class: "btn btn-default" %></td>
         <td><%= button_to (t :delete), booking, method: :delete, data: { confirm: (t 'ausure') }, class: "btn btn-danger" %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%else%>
-<div class="row">
-  <div class="col-md-12 text-center">
-    <div class="well controls">
-      <%= link_to bookings_path(date: @date - 1.month), class: "btn btn-default" do %>
+      <% end %>
+    </tbody>
+  </table>
+  <%else%>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="well controls">
+        <%= link_to bookings_path(date: @date - 1.month), class: "btn btn-default" do %>
         <i class="glyphicon glyphicon-backward"></i>
-      <% end %>
-      <%= "#{I18n.t("date.month_names")[@date.month]} #{@date.year}" %>
-      <%= link_to bookings_path(date: @date + 1.month), class: "btn btn-default" do %>
+        <% end %>
+        <%= "#{I18n.t("date.month_names")[@date.month]} #{@date.year}" %>
+        <%= link_to bookings_path(date: @date + 1.month), class: "btn btn-default" do %>
         <i class="glyphicon glyphicon-forward"></i>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 
-<% 
-@buk = [] 
-Booking.all.each{|e| @buk << e.id if (Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_beginning_of_month)or(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_end_of_month)or(@date.at_beginning_of_month..@date.at_end_of_month).include?(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s))}
+  <% 
+  @buk = [] 
+  Booking.all.each{|e| @buk << e.id if (Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_beginning_of_month)or(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_end_of_month)or(@date.at_beginning_of_month..@date.at_end_of_month).include?(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s))}
 
-(@date.at_beginning_of_month..@date.at_end_of_month).each{|day| eval "@days#{day.to_s.split('-').last} = []"; @buk.each{|i| eval "@days#{day.to_s.split('-').last} << i" if (Date.parse(Booking.find(i).check_in.to_s)..Date.parse(Booking.find(i).check_out.to_s)).include?(Date.parse(day.to_s))}}
+  (@date.at_beginning_of_month..@date.at_end_of_month).each{|day| eval "@days#{day.to_s.split('-').last} = []"; @buk.each{|i| eval "@days#{day.to_s.split('-').last} << i" if (Date.parse(Booking.find(i).check_in.to_s)..Date.parse(Booking.find(i).check_out.to_s)).include?(Date.parse(day.to_s))}}
 
-%>
-<%= num=0; calendar(year: @date.year, month: @date.month, first_day_of_week: 1) do |d|
-  num+=1
-  num = format('%02d',num).to_i
+  %>
+  <%= num=0; calendar(year: @date.year, month: @date.month, first_day_of_week: 1) do |d|
+    num+=1
+    num = format('%02d',num).to_i
  # Hotel.find(Booking.find(eval("@days#{num}").first).hotel_id).name if @dd.include?(d)
  link_to raw("Количество бронирований:" + eval("content_tag(:strong,@days#{num}.count)") + content_tag(:br,"#{num.to_s} #{I18n.t("date.month_names")[@date.month]}")), '#', {'data-toggle' => 'modal', 'data-target'=>"#day-modal#{num}", buks: eval("@days#{num}")} if @dd.include?(d)
  # num if @dd.include?(d)
-end%>
+ end%>
 
-<% (@date.at_beginning_of_month..@date.at_end_of_month).each do |day_num| %>
-<div class="modal fade" id="day-modal<%=day_num.to_s.split('-').last%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+ <% (@date.at_beginning_of_month..@date.at_end_of_month).each do |day_num| %>
+ <div class="modal fade" id="day-modal<%=day_num.to_s.split('-').last%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
-       <div class="day-section">
-          <ul class="nav nav-tabs final-login">
- <h1 class="centered"><%= 
+   <div class="day-section">
+    <ul class="nav nav-tabs final-login">
+     <h1 class="centered"><%= 
   # render file: "bookings/_day.html.erb", day: day_num
   p day_num%></h1>
   <%bron = eval("@days#{day_num.to_s.split('-').last}")%>
-  <%Booking.find(bron).each do |br|%>
-    <%= link_to (I18n.l br.check_in.to_date).to_s + '<->' + (I18n.l br.check_out.to_date).to_s, booking_path(br) -%>
-    <%= p User.find(br.user_id).firstname, User.find(br.user_id).lastname %>
-    <% end -%>
+  
+  <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Период Бронирования</th>
+      <th>Имя пользователия</th>
+      <th><%= t :hotel%></th>
+      <th><%= t :room%></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%Booking.find(bron).each do |br|%>
+    <tr>
+      <td><%= link_to (I18n.l br.check_in.to_date).to_s + '<->' + (I18n.l br.check_out.to_date).to_s, booking_path(br) -%></td>
+      <td><%= p User.find(br.user_id).firstname, User.find(br.user_id).lastname %></td>
+      <td><%= Hotel.find(br.hotel_id).name %></td>
+      <td><%= Room.find(br.room_id).name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  </table>
+  
+  
+  
+  
 </ul>
 </div>
 
-  </div>
+</div>
 </div>
 <%end%>
 
