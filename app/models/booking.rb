@@ -17,7 +17,7 @@ class Booking < ApplicationRecord
 
 	def add_discount
 		if self.discount
-			self.subtotal = self.subtotal / 100 * self.discount
+			self.subtotal = self.subtotal-(self.subtotal / 100 * self.discount)
 		end
 	end
 

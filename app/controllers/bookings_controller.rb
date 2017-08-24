@@ -30,6 +30,7 @@ class BookingsController < ApplicationController
     #@room = Room.find(params[:room_id])
   end
   def subprice
+
     @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s) + params[:ad_service].inject(0){|sum, x| sum + Service.find(x).price} if params[:ad_service] != ""
     @subprice = price_subtotal(params[:room_id],Date.parse(params[:check_in]),Date.parse(params[:check_out]).to_s) if params[:ad_service] == ""
     # @date = params[:date] ? Date.parse(params[:date]) : Date.today
@@ -42,6 +43,7 @@ class BookingsController < ApplicationController
   # GET /bookings/1.json
   def show
     @room_id = @booking.room_id
+    @booking.ad_service.reject! { |c| c.empty? }
 
   end
 
@@ -72,6 +74,7 @@ class BookingsController < ApplicationController
   # GET /bookings/1/edit
   def edit
     @room = @booking.room_id
+
     # @subprice = price_subtotal(@booking.room_id,Date.parse(@booking.check_in).to_s,Date.parse(@booking.check_out).to_s)
   end
 
@@ -100,6 +103,9 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
+    @booking.ad_service.reject! { |c| c.empty? }
+    @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out) + @booking.ad_service.inject(0){|sum, x| sum + Service.find(x).price} if @booking.ad_service != ""
+    @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out) if @booking.ad_service == ""
     respond_to do |format|
       if @booking.update(booking_params)
         format.html { redirect_to @booking, notice: (t 'bupdate') }

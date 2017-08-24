@@ -3,6 +3,7 @@ class BookingReports < Prawn::Document
   def initialize(url, booking)
     super()
     @url, @booking = url, Booking.find(booking)
+    @booking.ad_service.reject! { |c| c.empty? }
   end
 
 

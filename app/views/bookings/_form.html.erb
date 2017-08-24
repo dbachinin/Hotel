@@ -42,8 +42,9 @@
   <%= form.text_field :check_out,  class: "input-sm form-control", id: :out %>
 </div>
 
-<div class="price">
 
+<div class="price">
+<%= form.text_field :discount, placeholder: '%скидки'%>
 </div>
 <%= form.hidden_field :hotel_id, value: params[:hotel_id], id: :booking_hotel_id if params[:hotel_id] %>
 

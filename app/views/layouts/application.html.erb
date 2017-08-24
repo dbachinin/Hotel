@@ -58,9 +58,7 @@
                 <% if current_user.id == 1%>
                 <li><%= link_to 'Ad_services', services_path %></li>
                 <li><%= link_to 'Shahmatka', bookings_path%></li>
-                <% if @room%>
-                <li><%= link_to (t :prices), ([@hotel, @room,'prices']), class: 'navbar-link' %></li>
-                <%end%>                
+             
                 <%if [@hotel,@room,@price] && @prices %>
                 <li><%= link_to (t :taryphs), price_taryphs_path(@price||@prices), class: 'navbar-link' %></li>
                 <%end%>
