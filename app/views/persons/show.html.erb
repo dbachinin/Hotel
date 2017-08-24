@@ -1,0 +1,14 @@
+<div class="col-lg-8 col-lg-offset-2">
+<h1><%= @people.firstname + " " + @people.lastname %></h1>
+<h2><%= @people.email %></h2>
+<br>
+<hr>
+<% Booking.where(user_id: @people.id).each do |h| %>
+	<p><%= link_to h.check_in.to_s + '<->' + h.check_out.to_s, h%></p>
+	<p><%=p Room.find(h.room_id).name.to_s + ' в ' + Hotel.find(h.hotel_id).name.to_s%></p>
+	<a>Стоимостью: <%= p h.subtotal%> с <%= h.discount != nil ? h.discount : 0%>% скидкой</a>
+	<br>
+	<hr>
+	<br>
+	<% end -%>
+</div>
