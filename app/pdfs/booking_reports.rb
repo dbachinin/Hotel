@@ -27,7 +27,7 @@ class BookingReports < Prawn::Document
           size: 120,
           border_modules: 4,
           module_px_size: 6,
-          file: "#{@booking.id}.png"
+          file: "tmp/#{@booking.id}.png"
           )
     image "#{Rails.root}/app/assets/images/logo.png", position: 150, width: 200
 
