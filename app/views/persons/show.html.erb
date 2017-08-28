@@ -3,6 +3,12 @@
 <h2><%= @people.email %></h2>
 <br>
 <hr>
+<%= form_for @people, url: persons_update_path do |f|%>
+<%= f.text_area :description, placeholder: @people.description %>
+<%= f.text_field :discount, placeholder: (t :discount).to_s + ' %' %>
+<%= f.hidden_field :id, value: params[:person] %>
+<%= f.submit %>
+<% end %>
 <% Booking.where(user_id: @people.id).each do |h| %>
 	<p><%= link_to h.check_in.to_s + '<->' + h.check_out.to_s, h%></p>
 	<p><%=p Room.find(h.room_id).name.to_s + ' в ' + Hotel.find(h.hotel_id).name.to_s%></p>

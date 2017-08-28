@@ -29,6 +29,8 @@ post "/bookings/new"
 post "/subprice" => 'bookings#subprice'
 get  "/subprice" => 'bookings#subprice'
 get "/persons" => 'persons#getall'
-get "/persons/show" => 'persons#show'
+get "/persons/show"# => 'persons#show'
+patch "/persons/update" => 'persons#update'
+resources :persons
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

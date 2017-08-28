@@ -6,6 +6,8 @@
       <th><%= t :lastname %></th>
       <th>DateReg</th>
       <th>Counts of bookings</th>
+      <th><%= t :discount %></th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +23,8 @@
           <td><%= person.lastname%></td>
           <td><%= person.created_at%></td>
           <td><%= Booking.where(user_id: person.id).count%></td>
+          <td><%= person.discount %></td>
+          <td><%= person.description %></td>
         </tr>
       <% end %>
     <% end %>
