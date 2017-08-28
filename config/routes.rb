@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :bookings do
   	collection do
-  		post 'download_pdf'
+  		get 'download_pdf'
   	end
   end
   resources :services
@@ -26,7 +26,6 @@ root 'hotels#index'
 post "/prices/:id" => 'prices#update'
 post "/taryphs/:id" => 'taryphs#update'
 post "/bookings/new"
-post "/bookings/:id/edit"  => 'bookings#edit'
 post "/subprice" => 'bookings#subprice'
 get  "/subprice" => 'bookings#subprice'
 get "/persons" => 'persons#getall'
