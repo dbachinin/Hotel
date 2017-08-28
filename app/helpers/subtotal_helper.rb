@@ -3,6 +3,10 @@ module SubtotalHelper
 		Subtotal.new(room_id,check_in, check_out).calc_subtotal
 	end
 
+	def employ_rooms(room_id, check_in, check_out)
+		Employed.new(room_id, check_in, check_out)
+	end
+
 	class Subtotal
 		def initialize(room_id,check_in,check_out)
 			@room_id, @check_in, @check_out = room_id, check_in, check_out
@@ -37,12 +41,35 @@ module SubtotalHelper
 			length_period = (otezd - zaezd).to_i                   if zaezd >= nachalo_perioda and otezd <= conec_perioda#; p "ggg #{length_period}"
 			@cena = @cena + (cena * length_period.to_f)
 			
-		
 
 
 
+
+		end
+		return @cena
 	end
-	return @cena
 end
+
+class Employed
+	def initialize(room_id,check_in,check_out)
+		@room_id, @check_in, @check_out = room_id, check_in, check_out
+	end
+	attr_accessor :room_id, :check_in, :check_out
+	room_id||=1
+	check_in||=Date.today
+	check_out||=Date.today
+
+	startdate = Date.parse(check_in.to_s).at_end_of_month
+	stopdate = Date.parse(check_out.to_s).at_end_of_month
+	@period = []
+	@buk = []
+	Booking.where(room_id: room_id).each do |booking|
+		if (startdate..stopdate).include?(Date.parse(booking.check_in.to_s)..Date.parse(booking.check_out.to_s)) && (startdate..stopdate).include?(Date.parse(booking.check_in.to_s)) && (startdate..stopdate).include?(Date.parse(booking.check_out.to_s))
+			@buk.push(booking.id)
+		end
+	end
+	(startdate..stopdate).each {|day| @buk.each{|i| return i  if @buk.count >= Room.find(room_id).count && (Date.parse(Booking.find(i).check_in.to_s)..Date.parse(Booking.find(i).check_out.to_s)).include?(Date.parse(day.to_s))}}
+	# days = (startdate..stopdate).each {|n| eval "@days#{n.to_s.split('-').join}" }
+	# return days if days
 end
 end

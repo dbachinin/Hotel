@@ -53,7 +53,7 @@
 
   <% 
   @buk = [] 
-  Booking.all.each{|e| @buk << e.id if (Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_beginning_of_month)or(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s)).include?(@date.at_end_of_month)or(@date.at_beginning_of_month..@date.at_end_of_month).include?(Date.parse(e.check_in.to_s)..Date.parse(e.check_in.to_s))}
+  Booking.all.each{|e| @buk << e.id if (Date.parse(e.check_in.to_s)..Date.parse(e.check_out.to_s)).include?(@date.at_beginning_of_month)or(Date.parse(e.check_in.to_s)..Date.parse(e.check_out.to_s)).include?(@date.at_end_of_month)or(@date.at_beginning_of_month..@date.at_end_of_month).include?(Date.parse(e.check_in.to_s)..Date.parse(e.check_out.to_s))}
 
   (@date.at_beginning_of_month..@date.at_end_of_month).each{|day| eval "@days#{day.to_s.split('-').last} = []"; @buk.each{|i| eval "@days#{day.to_s.split('-').last} << i" if (Date.parse(Booking.find(i).check_in.to_s)..Date.parse(Booking.find(i).check_out.to_s)).include?(Date.parse(day.to_s))}}
 
@@ -77,24 +77,24 @@
   <%bron = eval("@days#{day_num.to_s.split('-').last}")%>
   
   <table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Период Бронирования</th>
-      <th>Имя пользователия</th>
-      <th><%= t :hotel%></th>
-      <th><%= t :room%></th>
-    </tr>
-  </thead>
-  <tbody>
-    <%Booking.find(bron).each do |br|%>
-    <tr>
-      <td><%= link_to (I18n.l br.check_in.to_date).to_s + '<->' + (I18n.l br.check_out.to_date).to_s, booking_path(br) -%></td>
-      <td><%= p User.find(br.user_id).firstname, User.find(br.user_id).lastname %></td>
-      <td><%= Hotel.find(br.hotel_id).name %></td>
-      <td><%= Room.find(br.room_id).name %></td>
-    </tr>
-    <% end %>
-  </tbody>
+    <thead>
+      <tr>
+        <th>Период Бронирования</th>
+        <th>Имя пользователия</th>
+        <th><%= t :hotel%></th>
+        <th><%= t :room%></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%Booking.find(bron).each do |br|%>
+      <tr>
+        <td><%= link_to (I18n.l br.check_in.to_date).to_s + '<->' + (I18n.l br.check_out.to_date).to_s, booking_path(br) -%></td>
+        <td><%= p User.find(br.user_id).firstname, User.find(br.user_id).lastname %></td>
+        <td><%= Hotel.find(br.hotel_id).name %></td>
+        <td><%= Room.find(br.room_id).name %></td>
+      </tr>
+      <% end %>
+    </tbody>
   </table>
   
   

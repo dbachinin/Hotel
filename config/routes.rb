@@ -26,6 +26,7 @@ root 'hotels#index'
 post "/prices/:id" => 'prices#update'
 post "/taryphs/:id" => 'taryphs#update'
 post "/bookings/new"
+# post "/bookings/:id/update"
 post "/subprice" => 'bookings#subprice'
 get  "/subprice" => 'bookings#subprice'
 get "/persons" => 'persons#getall'

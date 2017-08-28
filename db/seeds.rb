@@ -65,17 +65,17 @@ U#
 '}
 ])
 Room.create([
-    { name: "Трехместный стандарт",description: "Трехместный номер с двумя кроватями",bed: 2,lux: false,hotel_id: 1},
-    { name: "Двухместный делюкс",description: "Двухместный делюкс с одной двуспальной кроватью",bed: 1,lux: true,hotel_id: 1},
-    { name: "Двухместный делюкс",description: "Двухместный делюкс с двумя односпальными кроватями",bed: 2,lux: true,hotel_id: 1},
-    { name: "Трехместный люкс",description: "Трехместный номер люкс",bed: 2,lux: true,hotel_id: 1},
-    { name: "Четырехместный номер",description: "Четырехместный двухкомнатный номер",bed: 2,lux: true,hotel_id: 1}
+    { name: "Трехместный стандарт",description: "Трехместный номер с двумя кроватями",bed: 2,lux: false,hotel_id: 1,count: 3},
+    { name: "Двухместный делюкс",description: "Двухместный делюкс с одной двуспальной кроватью",bed: 1,lux: true,hotel_id: 1,count: 5},
+    { name: "Двухместный делюкс",description: "Двухместный делюкс с двумя односпальными кроватями",bed: 2,lux: true,hotel_id: 1,count: 2},
+    { name: "Трехместный люкс",description: "Трехместный номер люкс",bed: 2,lux: true,hotel_id: 1,count: 3},
+    { name: "Четырехместный номер",description: "Четырехместный двухкомнатный номер",bed: 2,lux: true,hotel_id: 1,count: 3}
     ])
 Room.create([
-    { name: "Двухместный стандарт (две односпальные кровати)",description: "Двухместный номер с двумя односпальными  кроватями",bed: 2,lux: false,hotel_id: 2},
-    { name: "Двухместный стандарт плюс (две односпальные кровати)",description: "Двухместный делюкс с двумя односпальными кроватями",bed: 2,lux: false,hotel_id: 2},
-    { name: "Двухместный делюкс",description: "Двухместный делюкс с двумя односпальными кроватями",bed: 2,lux: true,hotel_id: 2},
-    { name: "Трехместный делюкс",description: "Трехместный номер делюкс",bed: 2,lux: true,hotel_id: 2}
+    { name: "Двухместный стандарт (две односпальные кровати)",description: "Двухместный номер с двумя односпальными  кроватями",bed: 2,lux: false,hotel_id: 2,count: 2},
+    { name: "Двухместный стандарт плюс (две односпальные кровати)",description: "Двухместный делюкс с двумя односпальными кроватями",bed: 2,lux: false,hotel_id: 2,count: 3},
+    { name: "Двухместный делюкс",description: "Двухместный делюкс с двумя односпальными кроватями",bed: 2,lux: true,hotel_id: 2,count: 4},
+    { name: "Трехместный делюкс",description: "Трехместный номер делюкс",bed: 2,lux: true,hotel_id: 2,count: 2}
     ])
 Price.create([
     {price: 1300.0, description: "", room_id: 1},

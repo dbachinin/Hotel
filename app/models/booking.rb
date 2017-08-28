@@ -42,7 +42,8 @@ class Booking < ApplicationRecord
 		def employed_room
 			Booking.where(room_id: self.room_id).each do |i|
 				if Date.parse(i.check_out.to_s) <= Date.parse(self.check_out.to_s) && Date.parse(i.check_in.to_s) >= Date.parse(self.check_in.to_s)
-					errors.add(:check_in, "error date")
+
+						errors.add(:check_in, "error date")
 
 				end
 			end

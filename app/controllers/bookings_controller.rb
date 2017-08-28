@@ -59,15 +59,16 @@ class BookingsController < ApplicationController
     @booking = current_user.bookings.build
     @hotel = Hotel.find(params[:hotel_id])
     @room = Room.find(params[:room_id])
-    @disa = @booking.search_full_employ(@room.id)
+    @disa = employ_rooms(@room.id,@booking.check_in, @booking.check_out)
     @disa.uniq!
+    @booking.discount = current_user.discount
 
      # respond_to do |format|
       # format.html
        # format.json
     #   format.js
      # end
-    # p @disa 
+     p @disa 
    # @room.price.last.taryph.each {|i| p "fff" if Date.parse(i.udate.to_s) < Date.parse('2017-04-18') and Date.parse(i.edate.to_s) < Date.parse('2017-04-18')}
  end
 
@@ -87,6 +88,7 @@ class BookingsController < ApplicationController
     @booking.ad_service.reject! { |c| c.empty? }
     @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out) + @booking.ad_service.inject(0){|sum, x| sum + Service.find(x).price} if @booking.ad_service != ""
     @booking.subtotal = price_subtotal(@booking.room_id,@booking.check_in,@booking.check_out) if @booking.ad_service == ""
+    @booking.discount = current_user.discount
     if @booking.save
       respond_to do |format|
         format.html { redirect_to @booking, notice: (t 'bcreate') }
