@@ -21,6 +21,7 @@
           <td><%= person.lastname%></td>
           <td><%= person.created_at%></td>
           <td><%= Booking.where(user_id: person.id).count%></td>
+          <td><%= form_with person, url: edit_user_registration_path(person) {text_field_tag(:discount); submit_tag('%')}%></td>
         </tr>
       <% end %>
     <% end %>

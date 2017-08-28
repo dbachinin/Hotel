@@ -2,6 +2,7 @@ class Booking < ApplicationRecord
 	before_create :rand_id
 	has_many :services, dependent: :destroy
 	belongs_to :user
+
 	with_options if: :employ?, on: :create do |room| 
 		room.validates :check_in, presence: true, if: :employed_room
 		room.validates :check_out, presence: true, if: :employed_room
@@ -16,8 +17,8 @@ class Booking < ApplicationRecord
 	# end
 
 	def add_discount
-		if self.discount
-			self.subtotal = self.subtotal-(self.subtotal / 100 * self.discount)
+		if current_user.discount
+			self.subtotal = self.subtotal-(self.subtotal / 100 * current_user.discount)
 		end
 	end
 
