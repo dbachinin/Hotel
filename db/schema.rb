@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828080234) do
+ActiveRecord::Schema.define(version: 20170901132448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170828080234) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "subtotal"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.text "ad_service", default: [], array: true
     t.integer "discount"
     t.index ["user_id"], name: "index_bookings_on_user_id"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170828080234) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "room_id"
+    t.bigint "room_id"
     t.index ["room_id"], name: "index_prices_on_room_id"
   end
 
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20170828080234) do
     t.boolean "lux"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "hotel_id"
+    t.bigint "hotel_id"
     t.integer "count"
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20170828080234) do
     t.float "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "price_id"
+    t.bigint "price_id"
     t.index ["price_id"], name: "index_taryphs_on_price_id"
   end
 
@@ -89,6 +89,10 @@ ActiveRecord::Schema.define(version: 20170828080234) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.string "provider"
     t.string "uid"
     t.string "firstname"
@@ -96,11 +100,14 @@ ActiveRecord::Schema.define(version: 20170828080234) do
     t.string "login"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "description"
-    t.integer "discount"
+    t.integer "discount", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "users"
+  add_foreign_key "prices", "rooms"
+  add_foreign_key "rooms", "hotels"
   add_foreign_key "services", "bookings"
+  add_foreign_key "taryphs", "prices"
 end

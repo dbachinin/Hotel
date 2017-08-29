@@ -2,13 +2,13 @@ class User < ApplicationRecord
   after_initialize :create_login, if: :new_record?
   # after_initialize :login_in_login, if: :new_record?
 	has_many :bookings
-	validates :login, :email, presence: true, uniqueness: {case_sensitive: false}
+	validates :email, presence: true, uniqueness: {case_sensitive: false}
 
 	validates_format_of :login, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
+  devise :database_authenticatable, :registerable, 
+  :recoverable, :rememberable, :trackable, :validatable, :confirmable, authentication_keys: [:login]
 
 
   def create_login
