@@ -3,6 +3,8 @@
 <p><span style="color: #000000;">А оказавшись в эко-отеле &ldquo;Кипарисовая усадьба&rdquo;, познаете вкус отдыха на природе, в стороне от суеты.</span></p>'
 %>
 <!-- ========== HEADERWRAP ========== -->
+<% $HOSTNAME_LOCAL = request.original_url %>
+<%= p $HOSTAME_LOCAL %>
 <section id="home" name="home" class="scrollspy"></section>
 <div id="headerwrap">
   <div class="container">
@@ -153,6 +155,7 @@
       <div class="accordion-inner">
         <br>
         <br>
+
 
 
         <%= render file: "#{Rails.root}/app/views/rooms/_rooms.html.erb" %>

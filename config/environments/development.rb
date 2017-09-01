@@ -34,17 +34,17 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-
+  $HOSTNAME_LOCAL||='localhost:3000'
   config.action_mailer.perform_caching = false
   #config.action_mailer.default_url_options = { host: request.url.split('/')[2] }
-  config.action_mailer.default_url_options =  {host: '192.168.110.94:3000', from: 'admin@localhost'}
+  config.action_mailer.default_url_options =  {host: 'localhost:3000', from: 'admin@localhost'}
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
     address: "smtp.yandex.ru",
     port:    587,
-    domain:  "192.168.110.94:3000",
+    domain:  $HOSTNAME_LOCAL,
     authentication: "plain",
     user_name:      ENV['YA_USERNAME'],
     password:       ENV['YA_PASS']

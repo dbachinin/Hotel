@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_create :rand_id
   after_initialize :create_login, if: :new_record?
   # after_initialize :login_in_login, if: :new_record?
 	has_many :bookings
@@ -40,8 +41,14 @@ class User < ApplicationRecord
   # def login
   # 	@login || self.login || self.email
   # end
-
-
+private
+    def rand_id
+      if User.first
+      begin
+        self.id = SecureRandom.random_number(1_000_000)
+      end while Booking.where(id: self.id).exists?
+    end
+    end
 #     def self.find_for_database_authentication(warden_conditions)
 #       conditions = warden_conditions.dup
 #       conditions[:email].downcase! if conditions[:email]
