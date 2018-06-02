@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
+//= require turbolinks
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
 //= require bootstrap-select
-//= require turbolinks
 //= require_tree .
 $('.carousel').on('mouseenter',function(){ $( this ).carousel();})
 
