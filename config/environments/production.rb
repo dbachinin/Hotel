@@ -77,7 +77,7 @@ Rails.application.configure do
   :port => 587,
   :domain => "smtp.mail.yahoo.com",
   :user_name => 'dbachinin@yahoo.com',
-  :password => 'Z@eb00d0lr@' ,
+  :password => ENV['YA_PASS'] ,
   :enable_starttls_auto => true,
   :authentication => :plain
   }
