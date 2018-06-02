@@ -31,7 +31,95 @@ U#
 близость к городской инфраструктуре
 '},
  { name: "ЭКО-Отель \"Кипарисовая Роща\"",
- description: '<div>
+ description: '
+ <style>
+#Img {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#Img:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+</style>
+<div>
 <p>В лесном массиве на берегу моря, в окружении кипарисов, деревьев о которых существует самое большое количество легенд, у народов всего мира, начинает свою деятельность ЭКО-Отель &ldquo;Кипарисовая Усадьба&rdquo;. Отличительными особенностями которого являются:</p>
 <p>1. Лучшее соотношение цены/качества</p>
 <p>2. Отдельные коттеджи с изолированными номерами</p>
@@ -42,10 +130,15 @@ U#
 <p>7. Неповторимый дизайнерский экостиль</p>
 <p>В отеле есть номера следующих категорий:</p>
 <p>Эко &ndash; отель &laquo;Кипарисовая Усадьба&raquo; &ndash; идеальное место для тех, кто ищет покоя и комфорта даже в курортной суете. Отель Кипарисовая Усадьба пропитан морским воздухом, красотой и единением с природой. Море, горы и уникальный кипарисовый парк создают неповторимое сочетание.</p>
-<p><img src="http://www.hotelludi.ru/wp-content/uploads/2017/01/test_01_1_20150716_1148736245-300x197.jpg" alt="" /></p>
+<p><img id="Img" src="http://www.hotelludi.ru/wp-content/uploads/2017/01/test_01_1_20150716_1814431627-300x212.jpg" alt="" width="300" height="212"></p>
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
 <p>Кипарис имеет твердую насыщенную высоким содержанием смолы древесину. Раньше Кипарис был редкой и дорогой породой дерева. Позволить себе иметь из него изделия могли только очень богатые люди. Из хвои и веток Кипариса изготавливают эфирное масло, которое с успехом используют в ароматерапии и медицины. Благодаря своим антисептическим, тонизирующими свойствами масло эффективно против стафилококков и туберкулезной палочки. Больным подагрой и артритами рекомендуют принимать ванны с Кипарисовым маслом. Кипарис обладает мощной мужской энергетикой. Имея фаллическую форму, он считается поистине мужским деревом. Оказывающим воздействие на мужскую потенцию. Если находиться в непосредственной близости возле растения, энергия Кипариса одарит мужчину ореолом неотразимости и сексуальной энергии.</p>
 <p>Отель &laquo;Кипарисовая Усадьба&raquo; отлично подходит для спокойного отдыха. Вечнозеленая и прохладная территория. Состоит из четырех коттеджей, в которых расположились гипоаллергенные номера. Уютного кафе, беседками возле каждого коттеджа. Крытым бассейном, фруктовой ярмаркой, парковкой и многим другим.</p>
-<p><img src="http://www.hotelludi.ru/wp-content/uploads/2017/01/test_01_1_20150716_1814431627-300x212.jpg" alt="" /></p>
+
 <p>&laquo;Кипарисовая Усадьба&raquo; расположена на границе п. Нижняя Хобза и Лоо, Лазаревского района города Сочи, в 5-7 минутах ходьбы до галечного пляжа.</p>
 <p><img src="http://www.hotelludi.ru/wp-content/uploads/2017/01/test_01_1_20150716_1859607527-300x198.jpg" alt="" /></p>
 <p>Номера в отеле имеют свой необычный стиль и шарм. Ведь каждый из номеров имеет неповторимую стилистику. Дизайн всей инфраструктуры выдержан в &laquo;экостиле&raquo; Все номера с удобствами, оснащены телевизором, мини-баром, телефоном, во всей гостинице бесплатный Wi-Fi. На территории отеля свой микроклимат, который создает даже в знойную жару &ndash; прохладу, поэтому кондиционеры не требуются. Мы стараемся сделать все для вашего комфортного отдыха.</p>
@@ -62,6 +155,25 @@ U#
 кафе
 U#
 кинотеатр
+<script>
+var modal = document.getElementById("myModal");
+var img = document.getElementById("Img");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
 '}
 ])
 Room.create([
